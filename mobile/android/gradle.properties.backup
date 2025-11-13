@@ -1,0 +1,7 @@
+# Disable Gradle daemon and reduce memory
+org.gradle.daemon=false
+org.gradle.jvmargs=-Xmx1536m -XX:MaxMetaspaceSize=512m
+org.gradle.parallel=false
+org.gradle.configureondemand=false
+android.enableJetifier=true
+android.useAndroidX=true

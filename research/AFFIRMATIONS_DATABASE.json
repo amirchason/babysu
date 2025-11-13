@@ -1,0 +1,454 @@
+{
+  "affirmationCategories": {
+    "selfEsteem": {
+      "purpose": "Build positive self-image and self-worth",
+      "ageAdaptations": {
+        "0-2years": {
+          "perspective": "Second person (You are...)",
+          "examples": [
+            "You are loved",
+            "You are special",
+            "You are our sunshine",
+            "You are precious",
+            "You are safe here",
+            "You are perfect just as you are"
+          ],
+          "deliveryNotes": "Sung by parent/caregiver to child, warm and soothing tone"
+        },
+        "2-3years": {
+          "perspective": "Second person and beginning first person",
+          "examples": [
+            "You are amazing",
+            "I am special",
+            "You are loved so much",
+            "I am important",
+            "You make us happy",
+            "I am good"
+          ],
+          "deliveryNotes": "Encourage child to repeat first-person affirmations"
+        },
+        "3-4years": {
+          "perspective": "First person encouraged",
+          "examples": [
+            "I am special and unique",
+            "I am loved for who I am",
+            "I am proud of myself",
+            "I am a wonderful friend",
+            "I am creative",
+            "I am important to my family"
+          ],
+          "deliveryNotes": "Child sings along, beginning to internalize messages"
+        },
+        "4-6years": {
+          "perspective": "First person, more specific",
+          "examples": [
+            "I am unique and that's my superpower",
+            "I am proud of who I am becoming",
+            "I accept myself completely",
+            "I am worthy of love and respect",
+            "I celebrate my individuality",
+            "I am confident in who I am"
+          ],
+          "deliveryNotes": "Child leads, understands meaning of affirmations"
+        }
+      },
+      "musicalTips": {
+        "tempo": "Moderate (80-100 BPM), confident but not rushed",
+        "melody": "Ascending phrases convey uplifting feeling",
+        "dynamics": "Strong but gentle, affirming tone",
+        "repetition": "Each affirmation repeated 2-4 times per song"
+      }
+    },
+    
+    "growthMindset": {
+      "purpose": "Encourage resilience, learning from mistakes, perseverance",
+      "researchBasis": "Carol Dweck's growth mindset research",
+      "ageAdaptations": {
+        "0-2years": {
+          "perspective": "Second person, simple concepts",
+          "examples": [
+            "You can try",
+            "You are learning",
+            "You are growing",
+            "You can do it"
+          ],
+          "deliveryNotes": "Simple, encouraging, celebrate small attempts"
+        },
+        "2-3years": {
+          "perspective": "Mixed, action-oriented",
+          "examples": [
+            "I can try again",
+            "I am learning new things",
+            "I can do hard things",
+            "Mistakes help me learn",
+            "I keep trying"
+          ],
+          "deliveryNotes": "Link to specific situations (puzzle, climbing, etc.)"
+        },
+        "3-4years": {
+          "perspective": "First person, process-focused",
+          "examples": [
+            "I can learn anything I want to learn",
+            "Mistakes are proof that I'm trying",
+            "I get better with practice",
+            "Challenges help me grow",
+            "I don't give up",
+            "I can ask for help when I need it"
+          ],
+          "deliveryNotes": "Emphasize process over outcome"
+        },
+        "4-6years": {
+          "perspective": "First person, sophisticated understanding",
+          "examples": [
+            "My brain grows stronger when I learn new things",
+            "I embrace challenges as opportunities",
+            "Mistakes are my teachers",
+            "I am patient with my learning journey",
+            "Effort matters more than getting it perfect",
+            "I can do hard things with practice and help"
+          ],
+          "deliveryNotes": "Connect to school experiences, explain why effort matters"
+        }
+      },
+      "musicalTips": {
+        "tempo": "Moderate to upbeat (100-120 BPM), energetic",
+        "melody": "Repetitive but building, suggestion of progress",
+        "dynamics": "Building energy, encouraging",
+        "structure": "Verse shows challenge, chorus shows overcoming"
+      }
+    },
+    
+    "emotionalRegulation": {
+      "purpose": "Help children identify and manage emotions",
+      "ageAdaptations": {
+        "0-2years": {
+          "perspective": "Second person, validation",
+          "examples": [
+            "You are safe",
+            "You are okay",
+            "We are here with you",
+            "You can calm down"
+          ],
+          "deliveryNotes": "Soothing, slow tempo during upset moments"
+        },
+        "2-3years": {
+          "perspective": "Mixed, naming emotions",
+          "examples": [
+            "I can calm down",
+            "I can take deep breaths",
+            "It's okay to feel sad/mad/scared",
+            "I can use my words",
+            "My feelings are okay"
+          ],
+          "deliveryNotes": "Name the emotion, offer coping strategy"
+        },
+        "3-4years": {
+          "perspective": "First person, coping strategies",
+          "examples": [
+            "When I feel angry, I can take deep breaths",
+            "I can calm my body down",
+            "I can tell someone how I feel",
+            "All my feelings are okay to have",
+            "I am learning to control my emotions",
+            "I can take a break when I need one"
+          ],
+          "deliveryNotes": "Teach specific calming techniques through song"
+        },
+        "4-6years": {
+          "perspective": "First person, emotional intelligence",
+          "examples": [
+            "I understand my feelings and can express them",
+            "I can choose how I respond to my emotions",
+            "Taking deep breaths helps me feel calm",
+            "I can solve problems when I'm calm",
+            "My emotions are signals, not commands",
+            "I am in charge of my reactions"
+          ],
+          "deliveryNotes": "Songs as tools for emotional moments, prevention and intervention"
+        }
+      },
+      "musicalTips": {
+        "tempo": "Slow for calming (60-70 BPM), moderate for teaching (80-90 BPM)",
+        "melody": "Descending phrases for calming, steady for grounding",
+        "dynamics": "Soft and gentle, consistent volume",
+        "breathingCues": "Build in breathing pauses, exhale on certain notes"
+      }
+    },
+    
+    "socialSkills": {
+      "purpose": "Develop empathy, sharing, cooperation, friendship skills",
+      "ageAdaptations": {
+        "0-2years": {
+          "perspective": "Second person, social awareness",
+          "examples": [
+            "You are kind",
+            "You can share",
+            "You are gentle",
+            "You are a good friend"
+          ],
+          "deliveryNotes": "Model and label prosocial behavior"
+        },
+        "2-3years": {
+          "perspective": "Mixed, basic social skills",
+          "examples": [
+            "I can share my toys",
+            "I take turns",
+            "I use gentle hands",
+            "I say please and thank you",
+            "I am a friend"
+          ],
+          "deliveryNotes": "Concrete, actionable social behaviors"
+        },
+        "3-4years": {
+          "perspective": "First person, relational",
+          "examples": [
+            "I am a good friend who shares and cares",
+            "I listen when others talk",
+            "I can help others",
+            "I include everyone",
+            "I say sorry when I hurt someone",
+            "I forgive my friends"
+          ],
+          "deliveryNotes": "Model empathy and perspective-taking"
+        },
+        "4-6years": {
+          "perspective": "First person, empathy and leadership",
+          "examples": [
+            "I treat others the way I want to be treated",
+            "I stand up for others who need help",
+            "I celebrate my friends' successes",
+            "I am kind even when it's hard",
+            "I can disagree respectfully",
+            "I work well in a team"
+          ],
+          "deliveryNotes": "Complex social scenarios, moral reasoning"
+        }
+      },
+      "musicalTips": {
+        "tempo": "Moderate (90-110 BPM), friendly and upbeat",
+        "melody": "Warm, inviting, conversational",
+        "dynamics": "Moderate, welcoming",
+        "structure": "Call-and-response to model turn-taking"
+      }
+    },
+    
+    "bodyPositivity": {
+      "purpose": "Healthy relationship with body, celebrate physical abilities",
+      "ageAdaptations": {
+        "0-2years": {
+          "perspective": "Second person, body celebration",
+          "examples": [
+            "Your body is wonderful",
+            "Your body is strong",
+            "Your body can move",
+            "Your body is growing"
+          ],
+          "deliveryNotes": "Celebrate developmental milestones (crawling, walking)"
+        },
+        "2-3years": {
+          "perspective": "Mixed, body capabilities",
+          "examples": [
+            "My body is strong",
+            "I can jump and run",
+            "My body helps me play",
+            "I take care of my body",
+            "My body can do amazing things"
+          ],
+          "deliveryNotes": "Focus on what body can do, not appearance"
+        },
+        "3-4years": {
+          "perspective": "First person, body appreciation",
+          "examples": [
+            "My body is perfect for me",
+            "I am grateful for my strong body",
+            "My body lets me dance and play",
+            "I take care of my body by eating well and resting",
+            "Every body is different and special",
+            "I love my body"
+          ],
+          "deliveryNotes": "Emphasize function over form, diversity"
+        },
+        "4-6years": {
+          "perspective": "First person, body respect",
+          "examples": [
+            "My body is unique and valuable",
+            "I respect and care for my body",
+            "My body is capable of incredible things",
+            "I listen to what my body needs",
+            "All bodies are good bodies",
+            "I am more than how I look"
+          ],
+          "deliveryNotes": "Counter societal messages, emphasize health not appearance"
+        }
+      },
+      "musicalTips": {
+        "tempo": "Upbeat (110-130 BPM), energetic for movement",
+        "melody": "Celebratory, joyful",
+        "dynamics": "Strong and confident",
+        "movement": "Incorporate body movements into song"
+      }
+    },
+    
+    "culturalIdentity": {
+      "purpose": "Pride in heritage, celebrate diversity",
+      "ageAdaptations": {
+        "0-2years": {
+          "perspective": "Second person, family connection",
+          "examples": [
+            "You are loved by your family",
+            "You are [cultural heritage]",
+            "Your name is beautiful",
+            "You belong here"
+          ],
+          "deliveryNotes": "Incorporate cultural music styles"
+        },
+        "2-3years": {
+          "perspective": "Mixed, identity awareness",
+          "examples": [
+            "I am proud of my family",
+            "My name is special",
+            "I come from [heritage]",
+            "My family loves me"
+          ],
+          "deliveryNotes": "Simple, positive cultural references"
+        },
+        "3-4years": {
+          "perspective": "First person, cultural pride",
+          "examples": [
+            "I am proud of who I am",
+            "My culture is beautiful",
+            "My family's traditions are special",
+            "I celebrate my heritage",
+            "I respect all cultures",
+            "We are all different and that's wonderful"
+          ],
+          "deliveryNotes": "Celebrate own culture while honoring others"
+        },
+        "4-6years": {
+          "perspective": "First person, cultural appreciation",
+          "examples": [
+            "I am proud of my cultural heritage",
+            "I celebrate diversity in our world",
+            "My culture makes me unique",
+            "I learn from people different from me",
+            "I am a global citizen",
+            "I respect and honor all cultures"
+          ],
+          "deliveryNotes": "Complex understanding of diversity and inclusion"
+        }
+      },
+      "musicalTips": {
+        "tempo": "Varied based on cultural tradition",
+        "melody": "Incorporate musical elements from child's culture",
+        "instruments": "Traditional instruments when appropriate",
+        "language": "Include words from heritage language"
+      }
+    },
+    
+    "independence": {
+      "purpose": "Build autonomy, self-reliance, confidence in abilities",
+      "ageAdaptations": {
+        "0-2years": {
+          "perspective": "Second person, encouragement",
+          "examples": [
+            "You can try",
+            "You can explore",
+            "You are discovering",
+            "You can do it"
+          ],
+          "deliveryNotes": "Encourage exploration within safe limits"
+        },
+        "2-3years": {
+          "perspective": "First person, 'I can'",
+          "examples": [
+            "I can do it myself",
+            "I am learning to [dress/eat/clean up]",
+            "I can make choices",
+            "I am independent",
+            "I can help"
+          ],
+          "deliveryNotes": "Support growing independence positively"
+        },
+        "3-4years": {
+          "perspective": "First person, capability",
+          "examples": [
+            "I can do many things by myself",
+            "I am capable and strong",
+            "I make good choices",
+            "I can solve problems",
+            "I am responsible",
+            "I can ask for help when I need it"
+          ],
+          "deliveryNotes": "Balance independence with appropriate help-seeking"
+        },
+        "4-6years": {
+          "perspective": "First person, self-efficacy",
+          "examples": [
+            "I am responsible for my actions",
+            "I can make independent choices",
+            "I trust myself to try new things",
+            "I am confident in my abilities",
+            "I can take care of myself",
+            "I am becoming more independent every day"
+          ],
+          "deliveryNotes": "Support transition to school independence"
+        }
+      },
+      "musicalTips": {
+        "tempo": "Upbeat (100-120 BPM), confident",
+        "melody": "Strong, march-like possible for confidence",
+        "dynamics": "Clear and strong",
+        "structure": "Building pattern showing growing capability"
+      }
+    }
+  },
+  
+  "implementationGuidelines": {
+    "frequencyRecommendations": {
+      "dailyAffirmations": "1-3 affirmation songs per day, especially during morning routine",
+      "situationalAffirmations": "Use specific affirmations during challenging moments (tantrums, transitions, bedtime)",
+      "preventativeAffirmations": "Regular use builds resilience before challenges arise"
+    },
+    "deliveryBestPractices": {
+      "eyeContact": "Make eye contact when singing to young children",
+      "physicalTouch": "Appropriate touch (hand-holding, hugs) reinforces message",
+      "authenticity": "Sing with genuine emotion and belief",
+      "repetition": "Same affirmations daily for weeks to internalize",
+      "context": "Link affirmations to real situations"
+    },
+    "languageConsiderations": {
+      "firstPerson": "Most powerful for ages 2+, helps internalization",
+      "secondPerson": "Appropriate for infants and when sung by caregiver to child",
+      "presentTense": "Always use present tense ('I am' not 'I will be')",
+      "positiveFraming": "State what IS, not what isn't ('I am brave' not 'I'm not scared')",
+      "simplicity": "Age-appropriate vocabulary, short sentences"
+    },
+    "musicalConsiderations": {
+      "melody": "Memorable, easy to sing without accompaniment",
+      "range": "Within child's vocal range (typically D4-D5 for young children)",
+      "tempo": "Match emotional content (slow=calm, upbeat=confidence)",
+      "repetition": "High repetition makes affirmations memorable",
+      "accessibility": "Parent should be able to sing easily"
+    },
+    "adaptingForSpecialNeeds": {
+      "autism": "Clear, literal language; predictable structure; visual supports mentioned in lyrics",
+      "anxiety": "Extra emphasis on safety, calm, regulation affirmations",
+      "ADHD": "Movement-based affirmations, shorter songs, high energy",
+      "trauma": "Safety-focused, gentle, caregiver-bonding affirmations"
+    }
+  },
+  
+  "scientificBasis": {
+    "neuroplasticity": "Repeated positive messages create neural pathways, especially in developing brains",
+    "selfTalk": "External affirmations become internalized self-talk by ages 3-4",
+    "emotionalRegulation": "Positive affirmations activate prefrontal cortex, supporting executive function",
+    "resilience": "Growth mindset affirmations build stress resilience and coping skills",
+    "identity": "Early messages shape self-concept and identity formation",
+    "references": [
+      "Dweck, C. - Growth mindset research",
+      "Tsabary, S. - Conscious parenting and affirmations",
+      "Hay, L. - Positive affirmation foundations",
+      "Brown, B. - Worthiness and shame resilience"
+    ]
+  }
+}

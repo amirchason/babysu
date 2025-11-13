@@ -1,0 +1,3750 @@
+================================================================================
+                    BABYSU LOCAL-FIRST MOBILE APP
+                      ELABORATE DEVELOPMENT PLAN
+================================================================================
+
+Version: 1.0.0
+Created: 2025-11-04
+Last Updated: 2025-11-04
+Project: BabySu - Personalized AI Children's Music App
+Type: Local-First Mobile Transformation
+Backup: babysu-backup-20251104-070014.tar.gz
+bd Master Issue: babysu-ae49
+
+================================================================================
+                          TABLE OF CONTENTS
+================================================================================
+
+1. EXECUTIVE SUMMARY
+2. CURRENT STATE ANALYSIS
+3. TARGET ARCHITECTURE
+4. TECHNICAL SPECIFICATIONS
+5. DEPENDENCIES & PACKAGES
+6. IMPLEMENTATION PHASES (DETAILED)
+7. CODE SCAFFOLDING & STRUCTURE
+8. DATABASE SCHEMAS & MIGRATIONS
+9. FILE SYSTEM ARCHITECTURE
+10. API SIMPLIFICATION
+11. STATE MANAGEMENT STRATEGY
+12. OFFLINE-FIRST PATTERNS
+13. ERROR HANDLING STRATEGY
+14. TESTING STRATEGY
+15. PERFORMANCE OPTIMIZATION
+16. SECURITY CONSIDERATIONS
+17. DEPLOYMENT STRATEGY
+18. SUCCESS METRICS & KPIs
+19. RISK MITIGATION
+20. MAINTENANCE & SUPPORT
+
+================================================================================
+                        1. EXECUTIVE SUMMARY
+================================================================================
+
+1.1 WHAT WE'RE BUILDING
+-------------------------
+Transform BabySu from a cloud-first web application into a LOCAL-FIRST
+mobile application that:
+- Stores all child profiles locally (SQLite database)
+- Downloads and stores songs locally (file system)
+- Works completely offline after initial song downloads
+- Uses API ONLY for song generation (no authentication, no cloud sync)
+- Preserves 100% of existing UX/UI design
+- Delivers native mobile experience with offline capabilities
+
+1.2 WHY LOCAL-FIRST
+-------------------
+Current Problems:
+- Requires constant internet connection
+- Slow data fetching from cloud
+- Dependent on backend availability
+- Privacy concerns (data in cloud)
+- Expensive backend infrastructure
+
+Local-First Benefits:
+✅ Works offline (90% of features)
+✅ Instant app performance
+✅ Enhanced privacy (data on device)
+✅ Reduced server costs (no database, no auth)
+✅ Better user experience
+✅ No vendor lock-in
+
+1.3 HOW IT WORKS
+----------------
+Architecture Flow:
+
+[User] → [React Native App]
+           ↓
+       [SQLite DB] (Child profiles, Song metadata)
+           ↓
+      [File System] (Downloaded MP3s, Images)
+           ↓
+    [API] (Song generation ONLY)
+           ↓
+    [PiAPI/Udio] (Music generation service)
+
+User Journey:
+1. User adds child profile → Saved to SQLite
+2. User generates song → API call to PiAPI
+3. App polls for completion → Get song URL
+4. App downloads MP3 → Saved to file system
+5. User plays song → Plays from local file (OFFLINE)
+
+1.4 PROJECT SCOPE
+-----------------
+IN SCOPE:
+✅ SQLite database for child profiles
+✅ SQLite database for song metadata
+✅ Local file storage for audio/images
+✅ Download manager with progress tracking
+✅ Offline audio playback
+✅ Minimal API integration (2 endpoints)
+✅ Preserve all existing UX/UI
+✅ React Native mobile app (iOS + Android)
+✅ Offline-first data sync strategy
+
+OUT OF SCOPE:
+❌ Cloud synchronization between devices
+❌ User authentication (local app only)
+❌ Backend database changes
+❌ UI/UX redesign
+❌ Web app modifications
+❌ Payment integration (future phase)
+❌ Social features (future phase)
+
+1.5 SUCCESS CRITERIA
+--------------------
+Phase 1 Success: Local database operational
+Phase 2 Success: File downloads working
+Phase 3 Success: Offline playback functional
+Phase 4 Success: Song generation integrated
+Phase 5 Success: App works 100% offline after setup
+Phase 6 Success: Published to TestFlight/Internal Testing
+
+Overall Success:
+✅ User can add/edit children without internet
+✅ User can generate songs (requires internet)
+✅ User can download songs to device
+✅ User can play songs offline indefinitely
+✅ App uses < 500MB for 100 songs
+✅ App starts in < 2 seconds
+✅ Zero crashes in 1000 user sessions
+
+================================================================================
+                      2. CURRENT STATE ANALYSIS
+================================================================================
+
+2.1 EXISTING CODEBASE INVENTORY
+--------------------------------
+
+PROJECT ROOT: /data/data/com.termux/files/home/proj/babysu/
+
+DIRECTORY STRUCTURE:
+babysu/
+├── backend/                 ✅ Node.js + Express API (KEEP)
+│   ├── src/
+│   │   ├── routes/         ✅ Auth, Songs, Children, Users
+│   │   ├── services/       ✅ Suno, Prompt, Song services
+│   │   ├── config/         ✅ Firebase config
+│   │   └── middleware/     ✅ Auth, validation
+│   ├── .env                ✅ Environment variables
+│   └── package.json        ✅ Dependencies installed
+│
+├── webapp/                  ✅ Vite + React (REFERENCE ONLY)
+│   ├── src/
+│   │   ├── features/       ✅ Auth, Children, Songs, Profile
+│   │   ├── core/           ✅ API, Auth, Config
+│   │   ├── ui/             ✅ Components, Layouts
+│   │   └── platform/       ✅ Router, Store
+│   └── package.json        ✅ Dependencies installed
+│
+└── mobile/                  ⚠️ SCAFFOLD ONLY (IMPLEMENT HERE)
+    ├── src/
+    │   ├── screens/        📁 Empty (TO BUILD)
+    │   ├── components/     📁 Empty (TO BUILD)
+    │   ├── navigation/     📁 Empty (TO BUILD)
+    │   ├── store/          📁 Empty (TO BUILD)
+    │   └── services/       📁 Empty (TO BUILD)
+    └── package.json        ✅ Dependencies installed
+
+2.2 TECHNOLOGY STACK (CURRENT)
+-------------------------------
+
+BACKEND:
+- Runtime: Node.js 18+
+- Framework: Express.js 4.18.2
+- Database: Firebase Firestore (cloud)
+- Auth: Firebase Admin SDK
+- AI: Google Gemini API
+- Music: PiAPI/Udio API
+- Queue: Bull + Redis
+- Logging: Winston
+
+WEBAPP:
+- Build: Vite 7.1.12
+- Framework: React 19.1.1
+- UI: Material-UI 7.3.4
+- State: Redux Toolkit 2.9.2
+- Routing: React Router 7.9.4
+- HTTP: Axios 1.13.1
+
+MOBILE (SCAFFOLD):
+- Platform: React Native 0.73.0
+- Framework: Expo ~50.0.0
+- State: Redux Toolkit 2.0.1
+- Navigation: React Navigation 6.x
+- UI: React Native Paper 5.11.3
+- Storage: AsyncStorage 1.21.0
+
+2.3 CURRENT DATA FLOW
+----------------------
+
+WEBAPP CURRENT FLOW:
+User → Webapp → Backend API → Firebase Firestore
+                  ↓
+              PiAPI/Udio
+                  ↓
+            Cloud Storage
+
+Problems:
+❌ Requires internet for all operations
+❌ Dependent on Firebase availability
+❌ Slow due to cloud round-trips
+❌ Expensive (Firebase + hosting costs)
+
+2.4 EXISTING FEATURES (TO PRESERVE)
+------------------------------------
+
+AUTHENTICATION:
+✅ Email/password login
+✅ Guest mode (localStorage)
+✅ Auto-login
+✅ Session persistence
+
+CHILD MANAGEMENT:
+✅ Add child (name, age, gender)
+✅ Edit child profile
+✅ Delete child
+✅ View all children
+✅ Empty state prompts
+
+SONG GENERATION:
+✅ Generate from child profile
+✅ Custom topic/category/style
+✅ View generation status
+✅ Poll for completion
+✅ Display lyrics
+✅ Show song metadata
+
+SONG LIBRARY:
+✅ List all songs
+✅ Filter by child
+✅ Search songs
+✅ Toggle favorites
+✅ Delete songs
+✅ Sort by date/name
+
+AUDIO PLAYBACK:
+✅ Play/pause
+✅ Progress bar
+✅ Volume control
+✅ Song cover art
+✅ Lyrics display
+
+2.5 UI/UX TO PRESERVE (100%)
+-----------------------------
+
+DESIGN SYSTEM:
+✅ Material Design principles
+✅ Color scheme (primary, secondary)
+✅ Typography (fonts, sizes)
+✅ Spacing (margins, padding)
+✅ Components (buttons, cards, inputs)
+✅ Navigation patterns
+✅ Loading states
+✅ Error messages
+✅ Empty states
+
+SCREENS TO COPY:
+1. LoginPage (with guest mode)
+2. RegisterPage
+3. ChildrenPage (list view)
+4. AddChildPage (form)
+5. EditChildPage (form)
+6. GenerateSongPage (form)
+7. SongLibraryPage (grid view)
+8. SongDetailPage (playback)
+9. ProfilePage (settings)
+10. AboutPage
+
+ALL INTERACTIONS:
+✅ Button click feedback
+✅ Form validation
+✅ Loading spinners
+✅ Success/error toasts
+✅ Confirmation dialogs
+✅ Swipe gestures (mobile)
+✅ Pull-to-refresh
+
+================================================================================
+                        3. TARGET ARCHITECTURE
+================================================================================
+
+3.1 HIGH-LEVEL ARCHITECTURE
+----------------------------
+
+┌─────────────────────────────────────────────────────────────┐
+│                    REACT NATIVE APP                         │
+│                   (User Interface)                          │
+└──────────────────────┬──────────────────────────────────────┘
+                       │
+       ┌───────────────┴───────────────┐
+       │                               │
+       ▼                               ▼
+┌──────────────┐              ┌──────────────┐
+│   SQLITE DB  │              │ FILE SYSTEM  │
+│              │              │              │
+│ • children   │              │ • /audio/    │
+│ • songs      │              │ • /images/   │
+│ • settings   │              │ • /cache/    │
+└──────────────┘              └──────────────┘
+       │
+       │ (Song generation only)
+       │
+       ▼
+┌──────────────┐
+│  BACKEND API │
+│ (Simplified) │
+│              │
+│ POST /generate
+│ GET  /status/:id
+└──────────────┘
+       │
+       ▼
+┌──────────────┐
+│  PIAPI/UDIO  │
+│ (Music Gen)  │
+└──────────────┘
+
+3.2 DATA STORAGE LAYERS
+------------------------
+
+LAYER 1: SQLite Database (Structured Data)
+- Purpose: Store relational data
+- Location: Device internal storage
+- Persistence: Permanent (until app uninstall)
+- Size: ~10MB for 10,000 records
+- Access: SQL queries via expo-sqlite
+
+LAYER 2: File System (Binary Data)
+- Purpose: Store audio/image files
+- Location: App-specific directory
+- Persistence: Permanent (until app uninstall)
+- Size: ~5MB per song (audio + image)
+- Access: expo-file-system
+
+LAYER 3: AsyncStorage (App Preferences)
+- Purpose: Store settings, tokens
+- Location: Device storage
+- Persistence: Permanent
+- Size: < 1MB
+- Access: Key-value API
+
+LAYER 4: Memory Cache (Runtime State)
+- Purpose: App state, UI state
+- Location: RAM
+- Persistence: Session only
+- Size: < 50MB
+- Access: Redux store
+
+3.3 COMPONENT ARCHITECTURE
+---------------------------
+
+SCREENS (Top-Level Components):
+├── Auth
+│   ├── LoginScreen.js
+│   ├── RegisterScreen.js
+│   └── GuestModeScreen.js
+├── Children
+│   ├── ChildrenListScreen.js
+│   ├── AddChildScreen.js
+│   └── EditChildScreen.js
+├── Songs
+│   ├── SongLibraryScreen.js
+│   ├── GenerateSongScreen.js
+│   └── SongDetailScreen.js
+└── Profile
+    ├── ProfileScreen.js
+    └── SettingsScreen.js
+
+COMPONENTS (Reusable):
+├── UI
+│   ├── Button.js
+│   ├── Input.js
+│   ├── Card.js
+│   ├── LoadingSpinner.js
+│   ├── ErrorMessage.js
+│   └── EmptyState.js
+├── Children
+│   ├── ChildCard.js
+│   ├── ChildForm.js
+│   └── ChildAvatar.js
+├── Songs
+│   ├── SongCard.js
+│   ├── AudioPlayer.js
+│   ├── LyricsDisplay.js
+│   └── DownloadButton.js
+└── Common
+    ├── Header.js
+    ├── TabBar.js
+    └── OfflineIndicator.js
+
+SERVICES (Business Logic):
+├── database/
+│   ├── DatabaseService.js      (SQLite operations)
+│   ├── ChildRepository.js      (Child CRUD)
+│   └── SongRepository.js       (Song CRUD)
+├── storage/
+│   ├── FileService.js          (File operations)
+│   ├── DownloadManager.js      (Download queue)
+│   └── CacheManager.js         (Cache cleanup)
+├── api/
+│   ├── ApiService.js           (HTTP client)
+│   ├── SongGenerationService.js (Song API)
+│   └── NetworkService.js       (Network status)
+└── audio/
+    ├── AudioPlayerService.js   (Playback)
+    └── AudioQueueService.js    (Queue management)
+
+3.4 STATE MANAGEMENT
+--------------------
+
+REDUX STORE STRUCTURE:
+{
+  auth: {
+    isAuthenticated: boolean,
+    userId: string | null,
+    guestMode: boolean
+  },
+  children: {
+    list: Child[],
+    selectedId: string | null,
+    loading: boolean,
+    error: string | null
+  },
+  songs: {
+    list: Song[],
+    selectedId: string | null,
+    loading: boolean,
+    error: string | null,
+    downloadQueue: string[],
+    downloadProgress: { [songId]: number }
+  },
+  player: {
+    currentSongId: string | null,
+    isPlaying: boolean,
+    progress: number,
+    duration: number,
+    volume: number
+  },
+  ui: {
+    isOffline: boolean,
+    showingModal: string | null,
+    toast: { message: string, type: string } | null
+  }
+}
+
+3.5 NAVIGATION STRUCTURE
+-------------------------
+
+TAB NAVIGATOR (Bottom Tabs):
+├── Home Tab
+│   └── SongLibraryScreen
+├── Children Tab
+│   └── ChildrenListScreen
+├── Generate Tab
+│   └── GenerateSongScreen
+└── Profile Tab
+    └── ProfileScreen
+
+STACK NAVIGATORS:
+Home Stack:
+  ├── SongLibraryScreen
+  └── SongDetailScreen
+
+Children Stack:
+  ├── ChildrenListScreen
+  ├── AddChildScreen
+  └── EditChildScreen
+
+Auth Stack:
+  ├── LoginScreen
+  ├── RegisterScreen
+  └── GuestModeScreen
+
+3.6 OFFLINE-FIRST STRATEGY
+---------------------------
+
+OFFLINE CAPABILITIES:
+✅ View all children (from SQLite)
+✅ Add/edit/delete children (save to SQLite)
+✅ Browse downloaded songs (from SQLite)
+✅ Play downloaded songs (from file system)
+✅ Toggle favorites (update SQLite)
+✅ View lyrics (from SQLite)
+✅ View app settings
+
+ONLINE REQUIRED:
+⚠️ Generate new songs (API call)
+⚠️ Download songs (fetch audio/image)
+⚠️ Stream songs (before download)
+
+SYNC STRATEGY:
+1. On app launch: Check for pending downloads
+2. If online: Resume pending downloads
+3. If offline: Show offline indicator
+4. On connection restored: Auto-resume downloads
+5. No cloud sync (local-only app)
+
+================================================================================
+                    4. TECHNICAL SPECIFICATIONS
+================================================================================
+
+4.1 DATABASE SCHEMA (SQLite)
+-----------------------------
+
+TABLE: children
+----------------
+CREATE TABLE children (
+  id TEXT PRIMARY KEY NOT NULL,           -- UUID v4
+  name TEXT NOT NULL,                     -- Child's name
+  age REAL NOT NULL,                      -- Age in years (decimal)
+  gender TEXT,                            -- 'male', 'female', 'other', null
+  interests TEXT,                         -- JSON array of interests
+  avatar_path TEXT,                       -- Local file path to avatar
+  created_at INTEGER NOT NULL,            -- Unix timestamp (ms)
+  updated_at INTEGER NOT NULL,            -- Unix timestamp (ms)
+  deleted_at INTEGER,                     -- Soft delete timestamp
+  synced_to_cloud BOOLEAN DEFAULT 0       -- Future: cloud sync flag
+);
+
+CREATE INDEX idx_children_created ON children(created_at);
+CREATE INDEX idx_children_deleted ON children(deleted_at);
+CREATE INDEX idx_children_name ON children(name COLLATE NOCASE);
+
+TABLE: songs
+------------
+CREATE TABLE songs (
+  id TEXT PRIMARY KEY NOT NULL,           -- UUID v4
+  title TEXT NOT NULL,                    -- Song title
+  child_ids TEXT NOT NULL,                -- JSON array of child IDs
+  topic TEXT,                             -- Song topic/theme
+  category TEXT,                          -- Song category
+  style TEXT,                             -- Music style
+  lyrics TEXT,                            -- Full song lyrics
+  duration INTEGER,                       -- Duration in seconds
+  image_url TEXT,                         -- Remote image URL
+  image_local_path TEXT,                  -- Local image file path
+  audio_url TEXT,                         -- Remote audio URL
+  audio_local_path TEXT,                  -- Local audio file path
+  is_downloaded BOOLEAN DEFAULT 0,        -- Download status
+  download_progress INTEGER DEFAULT 0,     -- 0-100
+  is_favorite BOOLEAN DEFAULT 0,          -- Favorite flag
+  play_count INTEGER DEFAULT 0,           -- Times played
+  last_played_at INTEGER,                 -- Unix timestamp
+  created_at INTEGER NOT NULL,            -- Unix timestamp
+  updated_at INTEGER NOT NULL,            -- Unix timestamp
+  deleted_at INTEGER,                     -- Soft delete
+  task_id TEXT,                           -- API task ID
+  generation_status TEXT,                 -- 'pending','processing','completed','failed'
+  generation_error TEXT,                  -- Error message if failed
+  tags TEXT                               -- JSON array of tags
+);
+
+CREATE INDEX idx_songs_created ON songs(created_at DESC);
+CREATE INDEX idx_songs_favorite ON songs(is_favorite, created_at DESC);
+CREATE INDEX idx_songs_downloaded ON songs(is_downloaded);
+CREATE INDEX idx_songs_status ON songs(generation_status);
+CREATE INDEX idx_songs_deleted ON songs(deleted_at);
+CREATE INDEX idx_songs_title ON songs(title COLLATE NOCASE);
+
+TABLE: settings
+---------------
+CREATE TABLE settings (
+  key TEXT PRIMARY KEY NOT NULL,          -- Setting key
+  value TEXT NOT NULL,                    -- Setting value (JSON)
+  updated_at INTEGER NOT NULL             -- Unix timestamp
+);
+
+INSERT INTO settings (key, value, updated_at) VALUES
+  ('theme', '"light"', strftime('%s','now') * 1000),
+  ('audio_quality', '"high"', strftime('%s','now') * 1000),
+  ('auto_download', 'true', strftime('%s','now') * 1000),
+  ('download_wifi_only', 'true', strftime('%s','now') * 1000);
+
+TABLE: downloads_queue
+----------------------
+CREATE TABLE downloads_queue (
+  id TEXT PRIMARY KEY NOT NULL,           -- Queue item ID
+  song_id TEXT NOT NULL,                  -- Foreign key to songs
+  type TEXT NOT NULL,                     -- 'audio' or 'image'
+  url TEXT NOT NULL,                      -- Download URL
+  status TEXT NOT NULL,                   -- 'pending','downloading','completed','failed'
+  progress INTEGER DEFAULT 0,             -- 0-100
+  error TEXT,                             -- Error message
+  retry_count INTEGER DEFAULT 0,          -- Retry attempts
+  created_at INTEGER NOT NULL,
+  started_at INTEGER,
+  completed_at INTEGER,
+  FOREIGN KEY(song_id) REFERENCES songs(id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_queue_status ON downloads_queue(status);
+CREATE INDEX idx_queue_song ON downloads_queue(song_id);
+
+4.2 FILE SYSTEM STRUCTURE
+--------------------------
+
+BASE DIRECTORY: {DocumentDirectory}/babysu/
+
+STRUCTURE:
+babysu/
+├── audio/                    (Downloaded song audio files)
+│   ├── {songId}.mp3
+│   ├── {songId}.mp3
+│   └── ...
+├── images/                   (Downloaded song cover art)
+│   ├── {songId}.jpg
+│   ├── {songId}.jpg
+│   └── ...
+├── avatars/                  (Child profile pictures)
+│   ├── {childId}.jpg
+│   ├── {childId}.jpg
+│   └── ...
+├── cache/                    (Temporary downloads)
+│   ├── temp_audio/
+│   └── temp_images/
+└── logs/                     (Debug logs)
+    └── app.log
+
+FILE NAMING CONVENTION:
+- Audio: {songId}.mp3
+- Images: {songId}.jpg
+- Avatars: {childId}.jpg
+
+FILE SIZE LIMITS:
+- Audio: Max 10MB per file
+- Images: Max 2MB per file
+- Avatars: Max 1MB per file
+- Total: Max 5GB (configurable)
+
+4.3 API SPECIFICATIONS
+----------------------
+
+BASE URL: http://localhost:5000/api (development)
+         https://api.babysu.app/api (production)
+
+ENDPOINT 1: Generate Song
+--------------------------
+POST /songs/generate
+
+Headers:
+  Content-Type: application/json
+  x-user-id: {userId} (optional for local app)
+
+Request Body:
+{
+  "childIds": ["child-uuid-1", "child-uuid-2"],
+  "topic": "Bedtime routine",
+  "category": "Daily Routines",
+  "style": "lullaby",
+  "customPrompt": "gentle piano with soft vocals" (optional)
+}
+
+Response (Success - 200):
+{
+  "success": true,
+  "data": {
+    "taskId": "239f2dfc-781d-4a4c-8838-c1c66a1c55a0",
+    "status": "pending",
+    "estimatedTime": 60
+  }
+}
+
+Response (Error - 400):
+{
+  "success": false,
+  "error": "Invalid child IDs provided"
+}
+
+ENDPOINT 2: Check Song Status
+------------------------------
+GET /songs/status/:taskId
+
+Headers:
+  x-user-id: {userId} (optional)
+
+Response (Pending - 200):
+{
+  "success": true,
+  "data": {
+    "taskId": "239f2dfc-781d-4a4c-8838-c1c66a1c55a0",
+    "status": "processing",
+    "progress": 45
+  }
+}
+
+Response (Completed - 200):
+{
+  "success": true,
+  "data": {
+    "taskId": "239f2dfc-781d-4a4c-8838-c1c66a1c55a0",
+    "status": "completed",
+    "songs": [
+      {
+        "id": "song-uuid-1",
+        "title": "Emma's Bedtime Lullaby",
+        "audioUrl": "https://cdn.piapi.ai/audio/song-uuid-1.mp3",
+        "imageUrl": "https://cdn.piapi.ai/images/song-uuid-1.jpg",
+        "lyrics": "Close your eyes...",
+        "duration": 180,
+        "tags": ["lullaby", "piano", "soft"]
+      },
+      {
+        "id": "song-uuid-2",
+        "title": "Sleep Tight Tonight",
+        "audioUrl": "https://cdn.piapi.ai/audio/song-uuid-2.mp3",
+        "imageUrl": "https://cdn.piapi.ai/images/song-uuid-2.jpg",
+        "lyrics": "Stars are shining...",
+        "duration": 165,
+        "tags": ["lullaby", "gentle", "calming"]
+      }
+    ]
+  }
+}
+
+Response (Failed - 200):
+{
+  "success": true,
+  "data": {
+    "taskId": "239f2dfc-781d-4a4c-8838-c1c66a1c55a0",
+    "status": "failed",
+    "error": "Insufficient API credits"
+  }
+}
+
+4.4 DATA MODELS (TypeScript Interfaces)
+----------------------------------------
+
+interface Child {
+  id: string;                    // UUID
+  name: string;                  // Min 1, max 50 chars
+  age: number;                   // 0.1 to 18
+  gender?: 'male' | 'female' | 'other';
+  interests?: string[];          // Max 10 interests
+  avatarPath?: string;           // File system path
+  createdAt: number;             // Unix timestamp ms
+  updatedAt: number;             // Unix timestamp ms
+  deletedAt?: number;            // Soft delete
+}
+
+interface Song {
+  id: string;                    // UUID
+  title: string;                 // Max 100 chars
+  childIds: string[];            // Child UUIDs
+  topic?: string;                // Max 200 chars
+  category?: string;             // Max 50 chars
+  style?: string;                // Max 50 chars
+  lyrics?: string;               // No limit
+  duration?: number;             // Seconds
+  imageUrl?: string;             // Remote URL
+  imageLocalPath?: string;       // Local file path
+  audioUrl?: string;             // Remote URL
+  audioLocalPath?: string;       // Local file path
+  isDownloaded: boolean;
+  downloadProgress: number;      // 0-100
+  isFavorite: boolean;
+  playCount: number;
+  lastPlayedAt?: number;
+  createdAt: number;
+  updatedAt: number;
+  deletedAt?: number;
+  taskId?: string;               // API task ID
+  generationStatus?: 'pending' | 'processing' | 'completed' | 'failed';
+  generationError?: string;
+  tags?: string[];
+}
+
+interface DownloadQueueItem {
+  id: string;
+  songId: string;
+  type: 'audio' | 'image';
+  url: string;
+  status: 'pending' | 'downloading' | 'completed' | 'failed';
+  progress: number;              // 0-100
+  error?: string;
+  retryCount: number;
+  createdAt: number;
+  startedAt?: number;
+  completedAt?: number;
+}
+
+interface AppSettings {
+  theme: 'light' | 'dark';
+  audioQuality: 'high' | 'medium' | 'low';
+  autoDownload: boolean;
+  downloadWifiOnly: boolean;
+  maxStorageGB: number;
+}
+
+4.5 STATE MANAGEMENT (Redux Slices)
+------------------------------------
+
+SLICE: authSlice
+----------------
+State:
+{
+  isAuthenticated: boolean,
+  userId: string | null,
+  guestMode: boolean,
+  loading: boolean,
+  error: string | null
+}
+
+Actions:
+- loginAsGuest()
+- loginWithEmail(email, password)
+- logout()
+- checkAuthStatus()
+
+SLICE: childrenSlice
+--------------------
+State:
+{
+  list: Child[],
+  selectedId: string | null,
+  loading: boolean,
+  error: string | null
+}
+
+Actions:
+- loadChildren() → Fetch from SQLite
+- addChild(child: Child) → Insert to SQLite
+- updateChild(id, updates) → Update SQLite
+- deleteChild(id) → Soft delete in SQLite
+- selectChild(id)
+
+SLICE: songsSlice
+-----------------
+State:
+{
+  list: Song[],
+  selectedId: string | null,
+  loading: boolean,
+  error: string | null,
+  downloadQueue: string[],
+  downloadProgress: Record<string, number>
+}
+
+Actions:
+- loadSongs() → Fetch from SQLite
+- generateSong(params) → API call + SQLite insert
+- pollSongStatus(taskId) → API poll + SQLite update
+- downloadSong(songId) → Download audio/image
+- toggleFavorite(songId) → Update SQLite
+- deleteSong(songId) → Soft delete SQLite
+- updateDownloadProgress(songId, progress)
+
+SLICE: playerSlice
+------------------
+State:
+{
+  currentSongId: string | null,
+  isPlaying: boolean,
+  progress: number,
+  duration: number,
+  volume: number,
+  queue: string[]
+}
+
+Actions:
+- playSong(songId)
+- pauseSong()
+- resumeSong()
+- seekTo(position)
+- setVolume(level)
+- addToQueue(songId)
+- removeFromQueue(songId)
+
+================================================================================
+                    5. DEPENDENCIES & PACKAGES
+================================================================================
+
+5.1 CORE DEPENDENCIES (package.json)
+-------------------------------------
+
+{
+  "name": "babysu-mobile",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    // Core Framework
+    "expo": "~50.0.0",
+    "react": "18.2.0",
+    "react-native": "0.73.0",
+
+    // Navigation
+    "@react-navigation/native": "^6.1.9",
+    "@react-navigation/native-stack": "^6.9.17",
+    "@react-navigation/bottom-tabs": "^6.5.11",
+    "react-native-screens": "~3.29.0",
+    "react-native-safe-area-context": "4.8.2",
+
+    // State Management
+    "@reduxjs/toolkit": "^2.0.1",
+    "react-redux": "^9.0.4",
+
+    // Database
+    "expo-sqlite": "~13.4.0",
+
+    // File System
+    "expo-file-system": "~16.0.6",
+
+    // Audio Playback
+    "expo-av": "~13.10.4",
+    "react-native-track-player": "^4.0.1",
+
+    // Storage
+    "@react-native-async-storage/async-storage": "1.21.0",
+
+    // HTTP Client
+    "axios": "^1.6.2",
+
+    // UI Components
+    "react-native-paper": "^5.11.3",
+    "react-native-vector-icons": "^10.0.3",
+
+    // Forms
+    "react-hook-form": "^7.48.2",
+
+    // Utilities
+    "uuid": "^9.0.1",
+    "date-fns": "^2.30.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.6",
+    "@types/react": "~18.2.45",
+    "typescript": "^5.3.3"
+  }
+}
+
+5.2 INSTALLATION COMMANDS
+--------------------------
+
+# Navigate to mobile directory
+cd mobile
+
+# Install core dependencies (already done)
+npm install
+
+# Install additional required packages
+npx expo install expo-sqlite
+npx expo install expo-file-system
+npx expo install expo-av
+npx expo install react-native-track-player
+npx expo install @react-native-async-storage/async-storage
+npm install uuid date-fns lodash
+npm install react-hook-form
+
+# Install type definitions
+npm install --save-dev @types/uuid @types/lodash
+
+5.3 EXPO SDK MODULES
+--------------------
+
+expo-sqlite:
+- Purpose: SQLite database access
+- Size: ~500KB
+- Platforms: iOS, Android
+- Docs: https://docs.expo.dev/versions/latest/sdk/sqlite/
+
+expo-file-system:
+- Purpose: File system operations
+- Size: ~100KB
+- Platforms: iOS, Android, Web
+- Docs: https://docs.expo.dev/versions/latest/sdk/filesystem/
+
+expo-av:
+- Purpose: Audio/video playback
+- Size: ~2MB
+- Platforms: iOS, Android, Web
+- Docs: https://docs.expo.dev/versions/latest/sdk/av/
+
+@react-native-async-storage/async-storage:
+- Purpose: Key-value storage
+- Size: ~50KB
+- Platforms: iOS, Android, Web
+- Docs: https://react-native-async-storage.github.io/async-storage/
+
+react-native-track-player:
+- Purpose: Background audio playback
+- Size: ~1MB
+- Platforms: iOS, Android
+- Docs: https://react-native-track-player.js.org/
+
+5.4 PLATFORM-SPECIFIC REQUIREMENTS
+-----------------------------------
+
+iOS:
+- Minimum: iOS 13.0+
+- Permissions: Microphone (if recording), File access
+- Config: Info.plist updates for permissions
+
+Android:
+- Minimum: Android 5.0 (API 21)+
+- Permissions: Internet, Storage, Audio
+- Config: AndroidManifest.xml updates
+
+Both:
+- Storage: Recommend 2GB free space
+- RAM: Minimum 2GB
+
+================================================================================
+                6. IMPLEMENTATION PHASES (DETAILED)
+================================================================================
+
+PHASE 1: LOCAL DATABASE SETUP
+------------------------------
+
+Duration: 3-4 days
+Priority: P0 (Critical)
+Dependencies: None
+
+Objectives:
+✅ Install and configure expo-sqlite
+✅ Create database initialization system
+✅ Implement database migration framework
+✅ Create child profile repository
+✅ Create song repository
+✅ Write comprehensive tests
+
+Tasks:
+
+TASK 1.1: Install Database Dependencies
+- Command: npx expo install expo-sqlite
+- Verify: Import works without errors
+- Test: Run simple query
+- Time: 30 minutes
+- bd label: phase1, database, setup
+
+TASK 1.2: Create Database Service
+- File: mobile/src/services/database/DatabaseService.js
+- Implement:
+  * openDatabase()
+  * executeQuery(sql, params)
+  * executeTransaction(queries)
+  * closeDatabase()
+- Time: 2 hours
+- bd label: phase1, database, service
+
+TASK 1.3: Create Database Schema
+- File: mobile/src/services/database/schema.js
+- Implement: All CREATE TABLE statements
+- Include: Indexes, constraints
+- Time: 2 hours
+- bd label: phase1, database, schema
+
+TASK 1.4: Create Migration System
+- File: mobile/src/services/database/migrations.js
+- Implement:
+  * Migration versioning
+  * Up/down migrations
+  * Version tracking
+- Time: 3 hours
+- bd label: phase1, database, migrations
+
+TASK 1.5: Create Child Repository
+- File: mobile/src/services/database/ChildRepository.js
+- Implement:
+  * create(child)
+  * findAll()
+  * findById(id)
+  * update(id, updates)
+  * delete(id) [soft delete]
+- Time: 4 hours
+- bd label: phase1, database, repository
+
+TASK 1.6: Create Song Repository
+- File: mobile/src/services/database/SongRepository.js
+- Implement:
+  * create(song)
+  * findAll(filters)
+  * findById(id)
+  * update(id, updates)
+  * delete(id) [soft delete]
+  * findByChildId(childId)
+  * findFavorites()
+  * findDownloaded()
+- Time: 5 hours
+- bd label: phase1, database, repository
+
+TASK 1.7: Write Database Tests
+- File: mobile/src/services/database/__tests__/
+- Test: All CRUD operations
+- Test: Migrations
+- Test: Edge cases
+- Time: 4 hours
+- bd label: phase1, testing
+
+Success Criteria:
+✅ Database initializes on app launch
+✅ All tables created with proper schema
+✅ CRUD operations work for children
+✅ CRUD operations work for songs
+✅ Migrations run successfully
+✅ Tests pass 100%
+✅ No memory leaks
+
+Code Files to Create:
+1. mobile/src/services/database/DatabaseService.js (200 lines)
+2. mobile/src/services/database/schema.js (150 lines)
+3. mobile/src/services/database/migrations.js (100 lines)
+4. mobile/src/services/database/ChildRepository.js (250 lines)
+5. mobile/src/services/database/SongRepository.js (350 lines)
+6. mobile/src/services/database/index.js (50 lines)
+7. mobile/src/services/database/__tests__/DatabaseService.test.js
+8. mobile/src/services/database/__tests__/ChildRepository.test.js
+9. mobile/src/services/database/__tests__/SongRepository.test.js
+
+---
+
+PHASE 2: LOCAL FILE STORAGE
+----------------------------
+
+Duration: 3-4 days
+Priority: P0 (Critical)
+Dependencies: Phase 1
+
+Objectives:
+✅ Install file system dependencies
+✅ Create file storage service
+✅ Implement download manager
+✅ Add progress tracking
+✅ Handle download errors/retries
+✅ Implement cache management
+
+Tasks:
+
+TASK 2.1: Install File System Dependencies
+- Command: npx expo install expo-file-system
+- Verify: Import and permissions
+- Time: 30 minutes
+- bd label: phase2, storage, setup
+
+TASK 2.2: Create File Storage Service
+- File: mobile/src/services/storage/FileService.js
+- Implement:
+  * initializeDirectories()
+  * saveFile(url, localPath)
+  * deleteFile(path)
+  * fileExists(path)
+  * getFileInfo(path)
+  * clearCache()
+- Time: 3 hours
+- bd label: phase2, storage, service
+
+TASK 2.3: Create Download Manager
+- File: mobile/src/services/storage/DownloadManager.js
+- Implement:
+  * queueDownload(url, localPath, songId)
+  * startDownload(downloadId)
+  * pauseDownload(downloadId)
+  * resumeDownload(downloadId)
+  * cancelDownload(downloadId)
+  * getProgress(downloadId)
+  * onProgressUpdate(callback)
+  * onComplete(callback)
+  * onError(callback)
+- Features:
+  * Concurrent downloads (max 3)
+  * Retry logic (max 3 attempts)
+  * Progress tracking
+  * Queue management
+- Time: 6 hours
+- bd label: phase2, storage, downloads
+
+TASK 2.4: Create Cache Manager
+- File: mobile/src/services/storage/CacheManager.js
+- Implement:
+  * getCacheSize()
+  * clearCache()
+  * cleanupOldFiles(maxAge)
+  * optimizeStorage()
+- Time: 2 hours
+- bd label: phase2, storage, cache
+
+TASK 2.5: Integrate with Redux
+- File: mobile/src/store/slices/downloadSlice.js
+- Implement:
+  * downloadSong(songId) thunk
+  * updateProgress(songId, progress) action
+  * downloadComplete(songId) action
+  * downloadFailed(songId, error) action
+- Time: 3 hours
+- bd label: phase2, redux, integration
+
+TASK 2.6: Write Storage Tests
+- Files: __tests__ directory
+- Test: File operations
+- Test: Download queue
+- Test: Error handling
+- Time: 3 hours
+- bd label: phase2, testing
+
+Success Criteria:
+✅ Directories created on first launch
+✅ Files download successfully
+✅ Progress tracking works
+✅ Retries on network errors
+✅ Cache cleanup works
+✅ Storage limits enforced
+✅ Tests pass 100%
+
+Code Files to Create:
+1. mobile/src/services/storage/FileService.js (200 lines)
+2. mobile/src/services/storage/DownloadManager.js (400 lines)
+3. mobile/src/services/storage/CacheManager.js (150 lines)
+4. mobile/src/services/storage/index.js (50 lines)
+5. mobile/src/store/slices/downloadSlice.js (200 lines)
+6. mobile/src/services/storage/__tests__/FileService.test.js
+7. mobile/src/services/storage/__tests__/DownloadManager.test.js
+
+---
+
+PHASE 3: REDUX STORE & STATE MANAGEMENT
+----------------------------------------
+
+Duration: 2-3 days
+Priority: P0 (Critical)
+Dependencies: Phase 1, Phase 2
+
+Objectives:
+✅ Set up Redux store
+✅ Create all slices
+✅ Connect to database/storage
+✅ Add persistence
+✅ Implement selectors
+
+Tasks:
+
+TASK 3.1: Configure Redux Store
+- File: mobile/src/store/index.js
+- Implement:
+  * Store configuration
+  * Middleware setup
+  * DevTools integration
+- Time: 1 hour
+- bd label: phase3, redux, setup
+
+TASK 3.2: Create Auth Slice
+- File: mobile/src/store/slices/authSlice.js
+- Actions: loginAsGuest, logout, checkAuthStatus
+- Time: 2 hours
+- bd label: phase3, redux, slice
+
+TASK 3.3: Create Children Slice
+- File: mobile/src/store/slices/childrenSlice.js
+- Actions: loadChildren, addChild, updateChild, deleteChild
+- Integrate: ChildRepository
+- Time: 3 hours
+- bd label: phase3, redux, slice
+
+TASK 3.4: Create Songs Slice
+- File: mobile/src/store/slices/songsSlice.js
+- Actions: loadSongs, generateSong, toggleFavorite, deleteSong
+- Integrate: SongRepository
+- Time: 4 hours
+- bd label: phase3, redux, slice
+
+TASK 3.5: Create Player Slice
+- File: mobile/src/store/slices/playerSlice.js
+- Actions: play, pause, seekTo, setVolume
+- Time: 2 hours
+- bd label: phase3, redux, slice
+
+TASK 3.6: Create Selectors
+- Files: Each slice file
+- Implement: Memoized selectors
+- Time: 2 hours
+- bd label: phase3, redux, selectors
+
+TASK 3.7: Add Redux Persist
+- Package: redux-persist
+- Persist: Auth state, settings
+- Time: 2 hours
+- bd label: phase3, redux, persist
+
+Success Criteria:
+✅ Store configured and working
+✅ All slices operational
+✅ Actions dispatch correctly
+✅ State updates properly
+✅ Selectors optimize re-renders
+✅ Persistence works
+
+Code Files to Create:
+1. mobile/src/store/index.js (100 lines)
+2. mobile/src/store/slices/authSlice.js (150 lines)
+3. mobile/src/store/slices/childrenSlice.js (300 lines)
+4. mobile/src/store/slices/songsSlice.js (400 lines)
+5. mobile/src/store/slices/playerSlice.js (200 lines)
+6. mobile/src/store/slices/uiSlice.js (100 lines)
+
+---
+
+PHASE 4: API INTEGRATION
+-------------------------
+
+Duration: 2-3 days
+Priority: P0 (Critical)
+Dependencies: Phase 3
+
+Objectives:
+✅ Create API client
+✅ Implement song generation
+✅ Add status polling
+✅ Handle network errors
+✅ Add retry logic
+
+Tasks:
+
+TASK 4.1: Create API Client
+- File: mobile/src/services/api/ApiService.js
+- Implement:
+  * Axios instance
+  * Request interceptors
+  * Response interceptors
+  * Error handling
+- Time: 2 hours
+- bd label: phase4, api, client
+
+TASK 4.2: Create Song Generation Service
+- File: mobile/src/services/api/SongGenerationService.js
+- Implement:
+  * generateSong(params)
+  * checkStatus(taskId)
+  * pollUntilComplete(taskId, callback)
+- Time: 3 hours
+- bd label: phase4, api, service
+
+TASK 4.3: Add Network Detection
+- File: mobile/src/services/api/NetworkService.js
+- Implement:
+  * isOnline()
+  * onConnectionChange(callback)
+  * requiresConnection(action)
+- Time: 2 hours
+- bd label: phase4, api, network
+
+TASK 4.4: Integrate with Redux
+- Update: songsSlice.js
+- Add thunks:
+  * generateSongAsync(params)
+  * pollSongStatusAsync(taskId)
+- Time: 3 hours
+- bd label: phase4, redux, integration
+
+TASK 4.5: Add Error Handling
+- Implement:
+  * Network errors
+  * API errors
+  * Timeout handling
+  * Retry logic
+- Time: 2 hours
+- bd label: phase4, api, errors
+
+Success Criteria:
+✅ API calls work
+✅ Song generation succeeds
+✅ Status polling works
+✅ Network errors handled
+✅ Offline mode detected
+✅ Retries on failure
+
+Code Files to Create:
+1. mobile/src/services/api/ApiService.js (150 lines)
+2. mobile/src/services/api/SongGenerationService.js (250 lines)
+3. mobile/src/services/api/NetworkService.js (100 lines)
+4. mobile/src/services/api/index.js (50 lines)
+
+---
+
+PHASE 5: UI COMPONENTS & SCREENS
+---------------------------------
+
+Duration: 5-7 days
+Priority: P1 (High)
+Dependencies: Phase 1-4
+
+Objectives:
+✅ Copy UX/UI from webapp
+✅ Build all screens
+✅ Create reusable components
+✅ Add navigation
+✅ Implement interactions
+
+Tasks:
+
+TASK 5.1: Set Up Navigation
+- File: mobile/src/navigation/AppNavigator.js
+- Implement:
+  * Tab navigator
+  * Stack navigators
+  * Auth flow
+- Time: 3 hours
+- bd label: phase5, navigation
+
+TASK 5.2: Create UI Components
+- Files: mobile/src/components/ui/
+- Components:
+  * Button.js
+  * Input.js
+  * Card.js
+  * LoadingSpinner.js
+  * ErrorMessage.js
+  * EmptyState.js
+- Copy styles from webapp
+- Time: 6 hours
+- bd label: phase5, ui, components
+
+TASK 5.3: Build Auth Screens
+- Files: mobile/src/screens/auth/
+- Screens:
+  * LoginScreen.js
+  * GuestModeScreen.js
+- Copy UX from webapp LoginPage
+- Time: 4 hours
+- bd label: phase5, screens, auth
+
+TASK 5.4: Build Children Screens
+- Files: mobile/src/screens/children/
+- Screens:
+  * ChildrenListScreen.js
+  * AddChildScreen.js
+  * EditChildScreen.js
+- Copy UX from webapp
+- Time: 8 hours
+- bd label: phase5, screens, children
+
+TASK 5.5: Build Song Screens
+- Files: mobile/src/screens/songs/
+- Screens:
+  * SongLibraryScreen.js
+  * GenerateSongScreen.js
+  * SongDetailScreen.js
+- Copy UX from webapp
+- Time: 10 hours
+- bd label: phase5, screens, songs
+
+TASK 5.6: Build Profile Screen
+- File: mobile/src/screens/profile/ProfileScreen.js
+- Copy UX from webapp
+- Time: 3 hours
+- bd label: phase5, screens, profile
+
+TASK 5.7: Add Offline Indicator
+- Component: OfflineIndicator.js
+- Show: Banner when offline
+- Time: 2 hours
+- bd label: phase5, ui, offline
+
+Success Criteria:
+✅ All screens implemented
+✅ Navigation works smoothly
+✅ UI matches webapp design
+✅ Interactions feel native
+✅ Loading states present
+✅ Error states handled
+
+Code Files to Create:
+1. mobile/src/navigation/AppNavigator.js (200 lines)
+2. mobile/src/screens/auth/LoginScreen.js (150 lines)
+3. mobile/src/screens/auth/GuestModeScreen.js (100 lines)
+4. mobile/src/screens/children/ChildrenListScreen.js (300 lines)
+5. mobile/src/screens/children/AddChildScreen.js (200 lines)
+6. mobile/src/screens/children/EditChildScreen.js (200 lines)
+7. mobile/src/screens/songs/SongLibraryScreen.js (400 lines)
+8. mobile/src/screens/songs/GenerateSongScreen.js (300 lines)
+9. mobile/src/screens/songs/SongDetailScreen.js (350 lines)
+10. mobile/src/screens/profile/ProfileScreen.js (200 lines)
+11. mobile/src/components/ui/*.js (50-100 lines each)
+
+---
+
+PHASE 6: AUDIO PLAYBACK
+------------------------
+
+Duration: 3-4 days
+Priority: P1 (High)
+Dependencies: Phase 5
+
+Objectives:
+✅ Install audio player
+✅ Implement playback service
+✅ Add player UI
+✅ Support background playback
+✅ Handle interruptions
+
+Tasks:
+
+TASK 6.1: Install Audio Dependencies
+- Command: npm install react-native-track-player
+- Configure: iOS/Android setup
+- Time: 1 hour
+- bd label: phase6, audio, setup
+
+TASK 6.2: Create Audio Player Service
+- File: mobile/src/services/audio/AudioPlayerService.js
+- Implement:
+  * setupPlayer()
+  * play(songId)
+  * pause()
+  * resume()
+  * stop()
+  * seekTo(position)
+  * setVolume(level)
+  * onPlaybackStateChange(callback)
+  * onProgressUpdate(callback)
+- Time: 5 hours
+- bd label: phase6, audio, service
+
+TASK 6.3: Create Player Component
+- File: mobile/src/components/player/AudioPlayer.js
+- Features:
+  * Play/pause button
+  * Progress bar
+  * Time display
+  * Volume control
+  * Song info
+- Time: 4 hours
+- bd label: phase6, audio, ui
+
+TASK 6.4: Add Background Playback
+- Configure: iOS/Android capabilities
+- Implement: Background task
+- Time: 3 hours
+- bd label: phase6, audio, background
+
+TASK 6.5: Handle Audio Interruptions
+- Implement:
+  * Phone calls
+  * Notifications
+  * Other apps
+- Time: 2 hours
+- bd label: phase6, audio, interruptions
+
+TASK 6.6: Integrate with Redux
+- Update: playerSlice.js
+- Connect: AudioPlayerService
+- Time: 2 hours
+- bd label: phase6, redux, integration
+
+Success Criteria:
+✅ Audio plays from local files
+✅ Audio streams from URLs
+✅ Progress bar updates
+✅ Background playback works
+✅ Interruptions handled
+✅ Volume control works
+
+Code Files to Create:
+1. mobile/src/services/audio/AudioPlayerService.js (400 lines)
+2. mobile/src/components/player/AudioPlayer.js (300 lines)
+3. mobile/src/components/player/MiniPlayer.js (150 lines)
+
+---
+
+PHASE 7: TESTING & QA
+---------------------
+
+Duration: 3-4 days
+Priority: P1 (High)
+Dependencies: Phase 1-6
+
+Objectives:
+✅ Write unit tests
+✅ Write integration tests
+✅ Test offline scenarios
+✅ Test edge cases
+✅ Performance testing
+
+Tasks:
+
+TASK 7.1: Unit Tests - Database
+- Test: All repositories
+- Coverage: 90%+
+- Time: 4 hours
+- bd label: phase7, testing, unit
+
+TASK 7.2: Unit Tests - Redux
+- Test: All slices
+- Test: All actions
+- Time: 4 hours
+- bd label: phase7, testing, unit
+
+TASK 7.3: Integration Tests
+- Test: Full user flows
+- Test: API integration
+- Time: 6 hours
+- bd label: phase7, testing, integration
+
+TASK 7.4: Offline Testing
+- Test: Airplane mode
+- Test: Poor connection
+- Test: Connection loss
+- Time: 3 hours
+- bd label: phase7, testing, offline
+
+TASK 7.5: Performance Testing
+- Test: App start time
+- Test: Database queries
+- Test: Large datasets
+- Time: 3 hours
+- bd label: phase7, testing, performance
+
+TASK 7.6: Bug Fixes
+- Fix: Issues found
+- Document: Known issues
+- Time: Variable
+- bd label: phase7, bugfix
+
+Success Criteria:
+✅ Test coverage > 80%
+✅ All critical paths tested
+✅ Offline mode works
+✅ No memory leaks
+✅ App starts < 2 seconds
+✅ Zero crashes in testing
+
+---
+
+PHASE 8: POLISH & DEPLOYMENT
+-----------------------------
+
+Duration: 2-3 days
+Priority: P2 (Medium)
+Dependencies: Phase 7
+
+Objectives:
+✅ Add animations
+✅ Improve UX
+✅ Optimize performance
+✅ Prepare for deployment
+✅ Create build
+
+Tasks:
+
+TASK 8.1: Add Animations
+- Add: Loading animations
+- Add: Transitions
+- Time: 3 hours
+- bd label: phase8, polish
+
+TASK 8.2: Performance Optimization
+- Optimize: Database queries
+- Optimize: Image loading
+- Time: 3 hours
+- bd label: phase8, performance
+
+TASK 8.3: Build Configuration
+- Configure: app.json
+- Configure: EAS Build
+- Time: 2 hours
+- bd label: phase8, deployment
+
+TASK 8.4: Create Production Build
+- Build: iOS app
+- Build: Android APK
+- Time: 2 hours
+- bd label: phase8, deployment
+
+TASK 8.5: Documentation
+- Update: README
+- Write: USER_GUIDE
+- Time: 3 hours
+- bd label: phase8, docs
+
+Success Criteria:
+✅ Smooth animations
+✅ Fast performance
+✅ Build successful
+✅ Documentation complete
+✅ Ready for TestFlight/Internal Testing
+
+================================================================================
+                    7. CODE SCAFFOLDING & STRUCTURE
+================================================================================
+
+7.1 DIRECTORY STRUCTURE (TO CREATE)
+------------------------------------
+
+mobile/
+├── src/
+│   ├── components/
+│   │   ├── ui/
+│   │   │   ├── Button.js
+│   │   │   ├── Input.js
+│   │   │   ├── Card.js
+│   │   │   ├── LoadingSpinner.js
+│   │   │   ├── ErrorMessage.js
+│   │   │   └── EmptyState.js
+│   │   ├── children/
+│   │   │   ├── ChildCard.js
+│   │   │   ├── ChildForm.js
+│   │   │   └── ChildAvatar.js
+│   │   ├── songs/
+│   │   │   ├── SongCard.js
+│   │   │   ├── SongList.js
+│   │   │   └── DownloadButton.js
+│   │   ├── player/
+│   │   │   ├── AudioPlayer.js
+│   │   │   ├── MiniPlayer.js
+│   │   │   └── ProgressBar.js
+│   │   └── common/
+│   │       ├── Header.js
+│   │       ├── TabBar.js
+│   │       └── OfflineIndicator.js
+│   │
+│   ├── screens/
+│   │   ├── auth/
+│   │   │   ├── LoginScreen.js
+│   │   │   ├── RegisterScreen.js
+│   │   │   └── GuestModeScreen.js
+│   │   ├── children/
+│   │   │   ├── ChildrenListScreen.js
+│   │   │   ├── AddChildScreen.js
+│   │   │   └── EditChildScreen.js
+│   │   ├── songs/
+│   │   │   ├── SongLibraryScreen.js
+│   │   │   ├── GenerateSongScreen.js
+│   │   │   └── SongDetailScreen.js
+│   │   └── profile/
+│   │       ├── ProfileScreen.js
+│   │       └── SettingsScreen.js
+│   │
+│   ├── navigation/
+│   │   ├── AppNavigator.js
+│   │   ├── AuthNavigator.js
+│   │   ├── MainNavigator.js
+│   │   └── navigationTypes.js
+│   │
+│   ├── store/
+│   │   ├── index.js
+│   │   └── slices/
+│   │       ├── authSlice.js
+│   │       ├── childrenSlice.js
+│   │       ├── songsSlice.js
+│   │       ├── playerSlice.js
+│   │       ├── downloadSlice.js
+│   │       └── uiSlice.js
+│   │
+│   ├── services/
+│   │   ├── database/
+│   │   │   ├── DatabaseService.js
+│   │   │   ├── schema.js
+│   │   │   ├── migrations.js
+│   │   │   ├── ChildRepository.js
+│   │   │   ├── SongRepository.js
+│   │   │   └── index.js
+│   │   ├── storage/
+│   │   │   ├── FileService.js
+│   │   │   ├── DownloadManager.js
+│   │   │   ├── CacheManager.js
+│   │   │   └── index.js
+│   │   ├── api/
+│   │   │   ├── ApiService.js
+│   │   │   ├── SongGenerationService.js
+│   │   │   ├── NetworkService.js
+│   │   │   └── index.js
+│   │   └── audio/
+│   │       ├── AudioPlayerService.js
+│   │       └── index.js
+│   │
+│   ├── hooks/
+│   │   ├── useDatabase.js
+│   │   ├── useDownload.js
+│   │   ├── useAudioPlayer.js
+│   │   └── useNetworkStatus.js
+│   │
+│   ├── utils/
+│   │   ├── constants.js
+│   │   ├── helpers.js
+│   │   └── validators.js
+│   │
+│   └── theme/
+│       ├── colors.js
+│       ├── typography.js
+│       └── spacing.js
+│
+├── assets/
+│   ├── images/
+│   ├── icons/
+│   └── fonts/
+│
+└── __tests__/
+    ├── components/
+    ├── screens/
+    └── services/
+
+7.2 KEY FILE TEMPLATES
+-----------------------
+
+FILE: mobile/src/services/database/DatabaseService.js
+------------------------------------------------------
+```javascript
+import * as SQLite from 'expo-sqlite';
+
+class DatabaseService {
+  constructor() {
+    this.db = null;
+    this.isInitialized = false;
+  }
+
+  async initialize() {
+    if (this.isInitialized) return;
+
+    try {
+      this.db = await SQLite.openDatabaseAsync('babysu.db');
+      await this.runMigrations();
+      this.isInitialized = true;
+      console.log('Database initialized successfully');
+    } catch (error) {
+      console.error('Database initialization failed:', error);
+      throw error;
+    }
+  }
+
+  async executeQuery(sql, params = []) {
+    if (!this.isInitialized) {
+      await this.initialize();
+    }
+
+    try {
+      return await this.db.runAsync(sql, params);
+    } catch (error) {
+      console.error('Query failed:', sql, error);
+      throw error;
+    }
+  }
+
+  async executeTransaction(queries) {
+    // Transaction implementation
+  }
+
+  async runMigrations() {
+    // Migration implementation
+  }
+}
+
+export default new DatabaseService();
+```
+
+FILE: mobile/src/store/slices/childrenSlice.js
+-----------------------------------------------
+```javascript
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import ChildRepository from '../../services/database/ChildRepository';
+
+export const loadChildren = createAsyncThunk(
+  'children/loadChildren',
+  async () => {
+    return await ChildRepository.findAll();
+  }
+);
+
+export const addChild = createAsyncThunk(
+  'children/addChild',
+  async (child) => {
+    return await ChildRepository.create(child);
+  }
+);
+
+const childrenSlice = createSlice({
+  name: 'children',
+  initialState: {
+    list: [],
+    selectedId: null,
+    loading: false,
+    error: null
+  },
+  reducers: {
+    selectChild: (state, action) => {
+      state.selectedId = action.payload;
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loadChildren.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(loadChildren.fulfilled, (state, action) => {
+        state.loading = false;
+        state.list = action.payload;
+      })
+      .addCase(loadChildren.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  }
+});
+
+export const { selectChild } = childrenSlice.actions;
+export default childrenSlice.reducer;
+```
+
+================================================================================
+              8. DATABASE SCHEMAS & MIGRATIONS (SQL CODE)
+================================================================================
+
+8.1 INITIAL MIGRATION (V1)
+---------------------------
+
+File: mobile/src/services/database/migrations/001_initial_schema.sql
+
+```sql
+-- Migration V1: Initial Schema
+-- Created: 2025-11-04
+-- Description: Create initial tables for children, songs, settings
+
+-- =============================================================================
+-- TABLE: children
+-- Purpose: Store child profiles locally
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS children (
+  id TEXT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL CHECK(length(name) > 0 AND length(name) <= 50),
+  age REAL NOT NULL CHECK(age >= 0.1 AND age <= 18),
+  gender TEXT CHECK(gender IN ('male', 'female', 'other', NULL)),
+  interests TEXT,
+  avatar_path TEXT,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  deleted_at INTEGER DEFAULT NULL
+);
+
+CREATE INDEX idx_children_created ON children(created_at DESC);
+CREATE INDEX idx_children_deleted ON children(deleted_at);
+CREATE INDEX idx_children_name ON children(name COLLATE NOCASE);
+
+-- =============================================================================
+-- TABLE: songs
+-- Purpose: Store song metadata and download status
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS songs (
+  id TEXT PRIMARY KEY NOT NULL,
+  title TEXT NOT NULL CHECK(length(title) > 0 AND length(title) <= 100),
+  child_ids TEXT NOT NULL,
+  topic TEXT,
+  category TEXT,
+  style TEXT,
+  lyrics TEXT,
+  duration INTEGER CHECK(duration > 0),
+  image_url TEXT,
+  image_local_path TEXT,
+  audio_url TEXT,
+  audio_local_path TEXT,
+  is_downloaded BOOLEAN NOT NULL DEFAULT 0,
+  download_progress INTEGER NOT NULL DEFAULT 0 CHECK(download_progress >= 0 AND download_progress <= 100),
+  is_favorite BOOLEAN NOT NULL DEFAULT 0,
+  play_count INTEGER NOT NULL DEFAULT 0,
+  last_played_at INTEGER,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  deleted_at INTEGER DEFAULT NULL,
+  task_id TEXT,
+  generation_status TEXT CHECK(generation_status IN ('pending', 'processing', 'completed', 'failed', NULL)),
+  generation_error TEXT,
+  tags TEXT
+);
+
+CREATE INDEX idx_songs_created ON songs(created_at DESC);
+CREATE INDEX idx_songs_favorite ON songs(is_favorite, created_at DESC);
+CREATE INDEX idx_songs_downloaded ON songs(is_downloaded);
+CREATE INDEX idx_songs_status ON songs(generation_status);
+CREATE INDEX idx_songs_deleted ON songs(deleted_at);
+CREATE INDEX idx_songs_title ON songs(title COLLATE NOCASE);
+CREATE INDEX idx_songs_task ON songs(task_id);
+
+-- =============================================================================
+-- TABLE: settings
+-- Purpose: Store app settings and preferences
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS settings (
+  key TEXT PRIMARY KEY NOT NULL,
+  value TEXT NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+
+-- Insert default settings
+INSERT OR IGNORE INTO settings (key, value, updated_at) VALUES
+  ('theme', '"light"', strftime('%s','now') * 1000),
+  ('audio_quality', '"high"', strftime('%s','now') * 1000),
+  ('auto_download', 'true', strftime('%s','now') * 1000),
+  ('download_wifi_only', 'true', strftime('%s','now') * 1000),
+  ('max_storage_mb', '5000', strftime('%s','now') * 1000);
+
+-- =============================================================================
+-- TABLE: downloads_queue
+-- Purpose: Manage download queue and track download status
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS downloads_queue (
+  id TEXT PRIMARY KEY NOT NULL,
+  song_id TEXT NOT NULL,
+  type TEXT NOT NULL CHECK(type IN ('audio', 'image')),
+  url TEXT NOT NULL,
+  status TEXT NOT NULL CHECK(status IN ('pending', 'downloading', 'completed', 'failed')),
+  progress INTEGER NOT NULL DEFAULT 0 CHECK(progress >= 0 AND progress <= 100),
+  error TEXT,
+  retry_count INTEGER NOT NULL DEFAULT 0,
+  created_at INTEGER NOT NULL,
+  started_at INTEGER,
+  completed_at INTEGER,
+  FOREIGN KEY(song_id) REFERENCES songs(id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_queue_status ON downloads_queue(status);
+CREATE INDEX idx_queue_song ON downloads_queue(song_id);
+
+-- =============================================================================
+-- TABLE: schema_version
+-- Purpose: Track database schema version for migrations
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS schema_version (
+  version INTEGER PRIMARY KEY NOT NULL,
+  applied_at INTEGER NOT NULL,
+  description TEXT
+);
+
+INSERT INTO schema_version (version, applied_at, description) VALUES
+  (1, strftime('%s','now') * 1000, 'Initial schema creation');
+```
+
+8.2 SAMPLE DATA (FOR TESTING)
+------------------------------
+
+```sql
+-- Sample child for testing
+INSERT INTO children (id, name, age, gender, interests, created_at, updated_at)
+VALUES (
+  'child-test-001',
+  'Emma',
+  5.5,
+  'female',
+  '["bedtime", "animals", "stars"]',
+  strftime('%s','now') * 1000,
+  strftime('%s','now') * 1000
+);
+
+-- Sample song for testing
+INSERT INTO songs (
+  id, title, child_ids, topic, category, style, lyrics,
+  duration, is_downloaded, is_favorite, created_at, updated_at,
+  generation_status
+)
+VALUES (
+  'song-test-001',
+  'Emma''s Bedtime Lullaby',
+  '["child-test-001"]',
+  'Bedtime routine',
+  'Daily Routines',
+  'lullaby',
+  'Close your eyes, Emma dear...',
+  180,
+  0,
+  0,
+  strftime('%s','now') * 1000,
+  strftime('%s','now') * 1000,
+  'completed'
+);
+```
+
+8.3 DATABASE UTILITY QUERIES
+-----------------------------
+
+```sql
+-- Get all children (active only)
+SELECT * FROM children WHERE deleted_at IS NULL ORDER BY created_at DESC;
+
+-- Get all downloaded songs
+SELECT * FROM songs WHERE is_downloaded = 1 AND deleted_at IS NULL;
+
+-- Get favorite songs
+SELECT * FROM songs WHERE is_favorite = 1 AND deleted_at IS NULL ORDER BY created_at DESC;
+
+-- Get songs for specific child
+SELECT s.* FROM songs s
+WHERE deleted_at IS NULL
+AND json_extract(s.child_ids, '$[0]') = 'child-id-here';
+
+-- Get download queue (pending/downloading)
+SELECT * FROM downloads_queue
+WHERE status IN ('pending', 'downloading')
+ORDER BY created_at ASC;
+
+-- Get storage usage
+SELECT
+  (SELECT COUNT(*) FROM children WHERE deleted_at IS NULL) as total_children,
+  (SELECT COUNT(*) FROM songs WHERE deleted_at IS NULL) as total_songs,
+  (SELECT COUNT(*) FROM songs WHERE is_downloaded = 1) as downloaded_songs;
+
+-- Cleanup old deleted items (soft delete older than 30 days)
+DELETE FROM children WHERE deleted_at < (strftime('%s','now') - 2592000) * 1000;
+DELETE FROM songs WHERE deleted_at < (strftime('%s','now') - 2592000) * 1000;
+```
+
+================================================================================
+                     9. FILE SYSTEM ARCHITECTURE
+================================================================================
+
+9.1 FILE PATHS & CONSTANTS
+---------------------------
+
+File: mobile/src/utils/constants.js
+
+```javascript
+import * as FileSystem from 'expo-file-system';
+
+export const FILE_PATHS = {
+  BASE_DIR: `${FileSystem.documentDirectory}babysu/`,
+  AUDIO_DIR: `${FileSystem.documentDirectory}babysu/audio/`,
+  IMAGES_DIR: `${FileSystem.documentDirectory}babysu/images/`,
+  AVATARS_DIR: `${FileSystem.documentDirectory}babysu/avatars/`,
+  CACHE_DIR: `${FileSystem.documentDirectory}babysu/cache/`,
+  LOGS_DIR: `${FileSystem.documentDirectory}babysu/logs/`,
+};
+
+export const FILE_LIMITS = {
+  MAX_AUDIO_SIZE_MB: 10,
+  MAX_IMAGE_SIZE_MB: 2,
+  MAX_AVATAR_SIZE_MB: 1,
+  MAX_TOTAL_STORAGE_GB: 5,
+  CACHE_MAX_AGE_DAYS: 7,
+};
+
+export const FILE_EXTENSIONS = {
+  AUDIO: '.mp3',
+  IMAGE: '.jpg',
+  AVATAR: '.jpg',
+};
+
+export const getAudioPath = (songId) => {
+  return `${FILE_PATHS.AUDIO_DIR}${songId}${FILE_EXTENSIONS.AUDIO}`;
+};
+
+export const getImagePath = (songId) => {
+  return `${FILE_PATHS.IMAGES_DIR}${songId}${FILE_EXTENSIONS.IMAGE}`;
+};
+
+export const getAvatarPath = (childId) => {
+  return `${FILE_PATHS.AVATARS_DIR}${childId}${FILE_EXTENSIONS.AVATAR}`;
+};
+```
+
+9.2 FILE INITIALIZATION
+------------------------
+
+```javascript
+// Initialize all directories on app first launch
+async function initializeFileSystem() {
+  const directories = [
+    FILE_PATHS.BASE_DIR,
+    FILE_PATHS.AUDIO_DIR,
+    FILE_PATHS.IMAGES_DIR,
+    FILE_PATHS.AVATARS_DIR,
+    FILE_PATHS.CACHE_DIR,
+    FILE_PATHS.LOGS_DIR,
+  ];
+
+  for (const dir of directories) {
+    const dirInfo = await FileSystem.getInfoAsync(dir);
+    if (!dirInfo.exists) {
+      await FileSystem.makeDirectoryAsync(dir, { intermediates: true });
+      console.log(`Created directory: ${dir}`);
+    }
+  }
+}
+```
+
+9.3 STORAGE MANAGEMENT
+----------------------
+
+```javascript
+// Get total storage used
+async function getStorageUsed() {
+  let totalBytes = 0;
+
+  const dirs = [
+    FILE_PATHS.AUDIO_DIR,
+    FILE_PATHS.IMAGES_DIR,
+    FILE_PATHS.AVATARS_DIR,
+  ];
+
+  for (const dir of dirs) {
+    const files = await FileSystem.readDirectoryAsync(dir);
+    for (const file of files) {
+      const filePath = `${dir}${file}`;
+      const info = await FileSystem.getInfoAsync(filePath);
+      totalBytes += info.size || 0;
+    }
+  }
+
+  return {
+    bytes: totalBytes,
+    mb: (totalBytes / 1024 / 1024).toFixed(2),
+    gb: (totalBytes / 1024 / 1024 / 1024).toFixed(2),
+  };
+}
+
+// Clean up old cache files
+async function cleanCache(maxAgeDays = 7) {
+  const now = Date.now();
+  const maxAge = maxAgeDays * 24 * 60 * 60 * 1000;
+
+  const cacheFiles = await FileSystem.readDirectoryAsync(FILE_PATHS.CACHE_DIR);
+
+  for (const file of cacheFiles) {
+    const filePath = `${FILE_PATHS.CACHE_DIR}${file}`;
+    const info = await FileSystem.getInfoAsync(filePath);
+    const age = now - info.modificationTime * 1000;
+
+    if (age > maxAge) {
+      await FileSystem.deleteAsync(filePath);
+      console.log(`Deleted old cache file: ${file}`);
+    }
+  }
+}
+```
+
+================================================================================
+                       10. API SIMPLIFICATION
+================================================================================
+
+10.1 BACKEND CHANGES NEEDED
+----------------------------
+
+Current Backend: Full-featured API with auth, database, etc.
+New Backend: Minimal API for song generation only
+
+Changes Required:
+
+1. REMOVE:
+   - ❌ Firebase Auth middleware
+   - ❌ User authentication endpoints
+   - ❌ User database operations
+   - ❌ Child profile endpoints (now local-only)
+   - ❌ Song storage endpoints (now local-only)
+
+2. KEEP:
+   - ✅ POST /api/songs/generate
+   - ✅ GET /api/songs/status/:taskId
+   - ✅ PiAPI/Udio integration
+   - ✅ Gemini prompt service
+
+3. SIMPLIFY:
+   - Remove auth middleware from song routes
+   - Remove database writes
+   - Make stateless (no session management)
+   - Return only song URLs (no database storage)
+
+10.2 SIMPLIFIED BACKEND CODE
+-----------------------------
+
+File: backend/src/routes/song.routes.js (SIMPLIFIED)
+
+```javascript
+const express = require('express');
+const router = express.Router();
+const songGenerationService = require('../services/songGenerationService');
+
+// Generate new song
+router.post('/generate', async (req, res) => {
+  try {
+    const { topic, category, style, customPrompt } = req.body;
+
+    // Validate input
+    if (!topic) {
+      return res.status(400).json({
+        success: false,
+        error: 'Topic is required'
+      });
+    }
+
+    // Call PiAPI/Udio to generate song
+    const result = await songGenerationService.generateSong({
+      topic,
+      category,
+      style,
+      customPrompt
+    });
+
+    res.json({
+      success: true,
+      data: {
+        taskId: result.taskId,
+        status: 'pending',
+        estimatedTime: 60
+      }
+    });
+  } catch (error) {
+    console.error('Song generation error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Song generation failed'
+    });
+  }
+});
+
+// Check song generation status
+router.get('/status/:taskId', async (req, res) => {
+  try {
+    const { taskId } = req.params;
+
+    // Check status with PiAPI/Udio
+    const status = await songGenerationService.checkStatus(taskId);
+
+    res.json({
+      success: true,
+      data: status
+    });
+  } catch (error) {
+    console.error('Status check error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Status check failed'
+    });
+  }
+});
+
+module.exports = router;
+```
+
+10.3 MOBILE API CLIENT
+----------------------
+
+File: mobile/src/services/api/ApiService.js
+
+```javascript
+import axios from 'axios';
+
+const API_BASE_URL = __DEV__
+  ? 'http://localhost:5000/api'
+  : 'https://api.babysu.app/api';
+
+class ApiService {
+  constructor() {
+    this.client = axios.create({
+      baseURL: API_BASE_URL,
+      timeout: 30000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    // Request interceptor
+    this.client.interceptors.request.use(
+      (config) => {
+        console.log(`API Request: ${config.method.toUpperCase()} ${config.url}`);
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+
+    // Response interceptor
+    this.client.interceptors.response.use(
+      (response) => {
+        return response.data;
+      },
+      (error) => {
+        console.error('API Error:', error.message);
+        return Promise.reject(this.handleError(error));
+      }
+    );
+  }
+
+  handleError(error) {
+    if (error.response) {
+      // Server responded with error
+      return {
+        status: error.response.status,
+        message: error.response.data.error || 'Server error',
+        data: error.response.data,
+      };
+    } else if (error.request) {
+      // No response received
+      return {
+        status: 0,
+        message: 'Network error. Please check your internet connection.',
+        data: null,
+      };
+    } else {
+      // Request setup error
+      return {
+        status: -1,
+        message: error.message,
+        data: null,
+      };
+    }
+  }
+
+  async generateSong(params) {
+    return await this.client.post('/songs/generate', params);
+  }
+
+  async checkSongStatus(taskId) {
+    return await this.client.get(`/songs/status/${taskId}`);
+  }
+}
+
+export default new ApiService();
+```
+
+================================================================================
+                   11. STATE MANAGEMENT STRATEGY
+================================================================================
+
+11.1 REDUX STORE CONFIGURATION
+-------------------------------
+
+File: mobile/src/store/index.js
+
+```javascript
+import { configureStore } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import authReducer from './slices/authSlice';
+import childrenReducer from './slices/childrenSlice';
+import songsReducer from './slices/songsSlice';
+import playerReducer from './slices/playerSlice';
+import downloadReducer from './slices/downloadSlice';
+import uiReducer from './slices/uiSlice';
+
+// Persist configuration
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['auth', 'ui'], // Only persist these slices
+};
+
+const rootReducer = {
+  auth: persistReducer(persistConfig, authReducer),
+  children: childrenReducer,
+  songs: songsReducer,
+  player: playerReducer,
+  download: downloadReducer,
+  ui: uiReducer,
+};
+
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export const persistor = persistStore(store);
+```
+
+11.2 ASYNC THUNKS PATTERN
+--------------------------
+
+```javascript
+// Example: Load children from SQLite
+export const loadChildren = createAsyncThunk(
+  'children/loadChildren',
+  async (_, { rejectWithValue }) => {
+    try {
+      const children = await ChildRepository.findAll();
+      return children;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// Example: Generate song with API
+export const generateSong = createAsyncThunk(
+  'songs/generateSong',
+  async (params, { rejectWithValue, dispatch }) => {
+    try {
+      // 1. Call API
+      const response = await ApiService.generateSong(params);
+
+      // 2. Save to SQLite with pending status
+      const song = {
+        id: uuid.v4(),
+        taskId: response.data.taskId,
+        title: `${params.topic} Song`,
+        ...params,
+        generationStatus: 'pending',
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      };
+
+      await SongRepository.create(song);
+
+      // 3. Start polling
+      dispatch(pollSongStatus(song.id, response.data.taskId));
+
+      return song;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// Example: Poll song status
+export const pollSongStatus = createAsyncThunk(
+  'songs/pollStatus',
+  async ({ songId, taskId }, { dispatch, getState }) => {
+    const poll = async () => {
+      try {
+        const status = await ApiService.checkSongStatus(taskId);
+
+        if (status.data.status === 'completed') {
+          // Update song with URLs
+          await SongRepository.update(songId, {
+            audioUrl: status.data.songs[0].audioUrl,
+            imageUrl: status.data.songs[0].imageUrl,
+            lyrics: status.data.songs[0].lyrics,
+            duration: status.data.songs[0].duration,
+            generationStatus: 'completed',
+          });
+
+          // Auto-download if enabled
+          const autoDownload = getState().ui.settings.autoDownload;
+          if (autoDownload) {
+            dispatch(downloadSong(songId));
+          }
+
+          return status.data;
+        } else if (status.data.status === 'failed') {
+          await SongRepository.update(songId, {
+            generationStatus: 'failed',
+            generationError: status.data.error,
+          });
+          throw new Error(status.data.error);
+        } else {
+          // Still processing, poll again in 5 seconds
+          setTimeout(() => poll(), 5000);
+        }
+      } catch (error) {
+        console.error('Polling error:', error);
+        throw error;
+      }
+    };
+
+    await poll();
+  }
+);
+```
+
+11.3 SELECTORS
+--------------
+
+```javascript
+// Memoized selectors for performance
+import { createSelector } from '@reduxjs/toolkit';
+
+// Select all active children
+export const selectActiveChildren = createSelector(
+  [(state) => state.children.list],
+  (children) => children.filter(child => !child.deletedAt)
+);
+
+// Select downloaded songs
+export const selectDownloadedSongs = createSelector(
+  [(state) => state.songs.list],
+  (songs) => songs.filter(song => song.isDownloaded && !song.deletedAt)
+);
+
+// Select favorite songs
+export const selectFavoriteSongs = createSelector(
+  [(state) => state.songs.list],
+  (songs) => songs.filter(song => song.isFavorite && !song.deletedAt)
+);
+
+// Select songs by child
+export const selectSongsByChild = createSelector(
+  [(state) => state.songs.list, (_, childId) => childId],
+  (songs, childId) => songs.filter(song =>
+    song.childIds.includes(childId) && !song.deletedAt
+  )
+);
+```
+
+================================================================================
+                     12. OFFLINE-FIRST PATTERNS
+================================================================================
+
+12.1 OFFLINE DETECTION
+----------------------
+
+File: mobile/src/services/api/NetworkService.js
+
+```javascript
+import NetInfo from '@react-native-community/netinfo';
+
+class NetworkService {
+  constructor() {
+    this.isOnline = true;
+    this.listeners = [];
+
+    // Subscribe to network state updates
+    this.unsubscribe = NetInfo.addEventListener(state => {
+      const wasOnline = this.isOnline;
+      this.isOnline = state.isConnected && state.isInternetReachable;
+
+      if (wasOnline !== this.isOnline) {
+        this.notifyListeners(this.isOnline);
+      }
+    });
+  }
+
+  onConnectionChange(callback) {
+    this.listeners.push(callback);
+
+    // Return unsubscribe function
+    return () => {
+      this.listeners = this.listeners.filter(cb => cb !== callback);
+    };
+  }
+
+  notifyListeners(isOnline) {
+    this.listeners.forEach(callback => callback(isOnline));
+  }
+
+  async checkConnection() {
+    const state = await NetInfo.fetch();
+    return state.isConnected && state.isInternetReachable;
+  }
+
+  requiresConnection(action) {
+    if (!this.isOnline) {
+      throw new Error('This action requires an internet connection');
+    }
+  }
+}
+
+export default new NetworkService();
+```
+
+12.2 OFFLINE UI INDICATOR
+--------------------------
+
+File: mobile/src/components/common/OfflineIndicator.js
+
+```javascript
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import NetworkService from '../../services/api/NetworkService';
+
+export default function OfflineIndicator() {
+  const [isOffline, setIsOffline] = useState(!NetworkService.isOnline);
+
+  useEffect(() => {
+    const unsubscribe = NetworkService.onConnectionChange((isOnline) => {
+      setIsOffline(!isOnline);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  if (!isOffline) return null;
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>
+        📡 No internet connection
+      </Text>
+      <Text style={styles.subtext}>
+        Some features are unavailable
+      </Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#FFA500',
+    padding: 10,
+    alignItems: 'center',
+  },
+  text: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  subtext: {
+    color: 'white',
+    fontSize: 12,
+  },
+});
+```
+
+12.3 OFFLINE QUEUE PATTERN
+---------------------------
+
+```javascript
+// Queue actions that require internet
+class OfflineQueue {
+  constructor() {
+    this.queue = [];
+  }
+
+  add(action) {
+    this.queue.push({
+      id: uuid.v4(),
+      action,
+      timestamp: Date.now(),
+      retries: 0,
+    });
+  }
+
+  async processQueue() {
+    if (!NetworkService.isOnline || this.queue.length === 0) {
+      return;
+    }
+
+    const pending = [...this.queue];
+    this.queue = [];
+
+    for (const item of pending) {
+      try {
+        await item.action();
+        console.log('Processed queued action:', item.id);
+      } catch (error) {
+        console.error('Failed to process action:', error);
+
+        if (item.retries < 3) {
+          item.retries++;
+          this.queue.push(item);
+        }
+      }
+    }
+  }
+}
+
+export default new OfflineQueue();
+```
+
+12.4 DATA SYNCHRONIZATION STRATEGY
+-----------------------------------
+
+For local-first app, we DON'T sync to cloud, but we do:
+
+1. **On App Launch**:
+   - Load all data from SQLite
+   - Check for pending downloads
+   - Resume interrupted downloads if online
+
+2. **On Network Restored**:
+   - Process offline queue
+   - Resume pending song generations
+   - Complete pending downloads
+
+3. **Data Conflicts**: N/A (no cloud sync)
+
+4. **Data Backup**: (Future enhancement)
+   - Export SQLite database
+   - Export downloaded files
+   - Save to iCloud/Google Drive
+
+================================================================================
+                    13. ERROR HANDLING STRATEGY
+================================================================================
+
+13.1 ERROR TYPES & HANDLING
+----------------------------
+
+DATABASE ERRORS:
+- Error Type: SQLite errors
+- Handling: Retry once, then show error to user
+- Recovery: Reset database if corrupted
+
+NETWORK ERRORS:
+- Error Type: API request failures
+- Handling: Retry with exponential backoff
+- Recovery: Queue for later if persistent
+
+FILE SYSTEM ERRORS:
+- Error Type: Storage full, permission denied
+- Handling: Clean cache, show storage warning
+- Recovery: Delete old files, prompt user
+
+API ERRORS:
+- 400: Invalid request → Show validation error
+- 401: Unauthorized → (N/A in local-first)
+- 402: Insufficient credits → Show payment prompt
+- 500: Server error → Retry, then show error
+- Timeout: Retry up to 3 times
+
+13.2 ERROR HANDLING UTILITIES
+------------------------------
+
+File: mobile/src/utils/errorHandler.js
+
+```javascript
+export class AppError extends Error {
+  constructor(message, type, recoverable = true) {
+    super(message);
+    this.type = type;
+    this.recoverable = recoverable;
+    this.timestamp = Date.now();
+  }
+}
+
+export const ERROR_TYPES = {
+  DATABASE: 'database',
+  NETWORK: 'network',
+  STORAGE: 'storage',
+  API: 'api',
+  VALIDATION: 'validation',
+};
+
+export async function handleError(error, context) {
+  console.error(`Error in ${context}:`, error);
+
+  if (error instanceof AppError) {
+    switch (error.type) {
+      case ERROR_TYPES.DATABASE:
+        return handleDatabaseError(error);
+      case ERROR_TYPES.NETWORK:
+        return handleNetworkError(error);
+      case ERROR_TYPES.STORAGE:
+        return handleStorageError(error);
+      case ERROR_TYPES.API:
+        return handleApiError(error);
+      default:
+        return showGenericError(error);
+    }
+  }
+
+  return showGenericError(error);
+}
+
+async function handleDatabaseError(error) {
+  // Attempt recovery
+  try {
+    await DatabaseService.initialize();
+    return { recovered: true };
+  } catch (recoveryError) {
+    return {
+      recovered: false,
+      message: 'Database error. Please restart the app.',
+    };
+  }
+}
+
+async function handleNetworkError(error) {
+  // Queue for retry when online
+  OfflineQueue.add(error.retryAction);
+  return {
+    recovered: true,
+    message: 'No internet. Action will retry when online.',
+  };
+}
+```
+
+13.3 USER-FACING ERROR MESSAGES
+--------------------------------
+
+```javascript
+export const ERROR_MESSAGES = {
+  DATABASE_INIT_FAILED: 'Failed to initialize app. Please restart.',
+  DATABASE_QUERY_FAILED: 'Failed to load data. Please try again.',
+  NETWORK_ERROR: 'No internet connection. Please check your network.',
+  STORAGE_FULL: 'Storage is full. Please delete some songs.',
+  FILE_DOWNLOAD_FAILED: 'Failed to download file. Please try again.',
+  SONG_GENERATION_FAILED: 'Failed to generate song. Please try again.',
+  API_CREDITS_EXHAUSTED: 'Insufficient credits. Please upgrade your plan.',
+  VALIDATION_ERROR: 'Please check your input and try again.',
+};
+
+// User-friendly error formatter
+export function formatErrorForUser(error) {
+  if (typeof error === 'string') {
+    return error;
+  }
+
+  return ERROR_MESSAGES[error.code] || 'An unexpected error occurred.';
+}
+```
+
+================================================================================
+                       14. TESTING STRATEGY
+================================================================================
+
+14.1 TEST PYRAMID
+-----------------
+
+Unit Tests (70%):
+- Database repositories
+- Redux slices
+- Utility functions
+- Services
+
+Integration Tests (20%):
+- Database + Redux
+- API + Redux
+- Download Manager + File System
+
+E2E Tests (10%):
+- Full user flows
+- Critical paths
+
+14.2 UNIT TEST EXAMPLES
+-----------------------
+
+File: mobile/src/services/database/__tests__/ChildRepository.test.js
+
+```javascript
+import ChildRepository from '../ChildRepository';
+import DatabaseService from '../DatabaseService';
+
+describe('ChildRepository', () => {
+  beforeAll(async () => {
+    await DatabaseService.initialize();
+  });
+
+  afterEach(async () => {
+    // Clean up test data
+    await DatabaseService.executeQuery('DELETE FROM children');
+  });
+
+  test('should create a child', async () => {
+    const child = {
+      id: 'test-1',
+      name: 'Emma',
+      age: 5,
+      gender: 'female',
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+
+    const created = await ChildRepository.create(child);
+
+    expect(created).toMatchObject(child);
+  });
+
+  test('should find all children', async () => {
+    await ChildRepository.create({
+      id: 'test-1',
+      name: 'Emma',
+      age: 5,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    });
+
+    await ChildRepository.create({
+      id: 'test-2',
+      name: 'Noah',
+      age: 7,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    });
+
+    const children = await ChildRepository.findAll();
+
+    expect(children).toHaveLength(2);
+  });
+
+  test('should soft delete a child', async () => {
+    const child = await ChildRepository.create({
+      id: 'test-1',
+      name: 'Emma',
+      age: 5,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    });
+
+    await ChildRepository.delete(child.id);
+
+    const deleted = await ChildRepository.findById(child.id);
+    expect(deleted.deletedAt).toBeTruthy();
+  });
+});
+```
+
+14.3 INTEGRATION TEST EXAMPLE
+------------------------------
+
+```javascript
+import { renderHook, act } from '@testing-library/react-hooks';
+import { Provider } from 'react-redux';
+import { store } from '../../../store';
+import { loadChildren, addChild } from '../../../store/slices/childrenSlice';
+
+describe('Children Integration Tests', () => {
+  test('should load children from database into Redux', async () => {
+    const wrapper = ({ children }) => (
+      <Provider store={store}>{children}</Provider>
+    );
+
+    const { result, waitForNextUpdate } = renderHook(
+      () => store.getState().children,
+      { wrapper }
+    );
+
+    act(() => {
+      store.dispatch(loadChildren());
+    });
+
+    await waitForNextUpdate();
+
+    expect(result.current.loading).toBe(false);
+    expect(result.current.list).toBeDefined();
+  });
+});
+```
+
+14.4 E2E TEST EXAMPLE
+---------------------
+
+```javascript
+import { by, element, expect } from 'detox';
+
+describe('Song Generation Flow', () => {
+  beforeAll(async () => {
+    await device.launchApp();
+  });
+
+  it('should generate a song', async () => {
+    // 1. Login as guest
+    await element(by.id('guest-login-button')).tap();
+
+    // 2. Navigate to generate tab
+    await element(by.id('generate-tab')).tap();
+
+    // 3. Select child
+    await element(by.id('child-select')).tap();
+    await element(by.text('Emma')).tap();
+
+    // 4. Enter topic
+    await element(by.id('topic-input')).typeText('Bedtime routine');
+
+    // 5. Generate song
+    await element(by.id('generate-button')).tap();
+
+    // 6. Wait for generation
+    await waitFor(element(by.text('Song ready!')))
+      .toBeVisible()
+      .withTimeout(90000);
+
+    // 7. Verify song appears in library
+    await element(by.id('library-tab')).tap();
+    await expect(element(by.text('Bedtime routine Song'))).toBeVisible();
+  });
+});
+```
+
+================================================================================
+                    15. PERFORMANCE OPTIMIZATION
+================================================================================
+
+15.1 DATABASE OPTIMIZATION
+---------------------------
+
+INDEXES:
+- Add indexes on frequently queried columns
+- Composite indexes for complex queries
+- Avoid over-indexing (slows writes)
+
+QUERY OPTIMIZATION:
+```sql
+-- BAD: No index on deletedAt
+SELECT * FROM songs WHERE deleted_at IS NULL;
+
+-- GOOD: Has index idx_songs_deleted
+SELECT * FROM songs WHERE deleted_at IS NULL;
+
+-- BAD: JSON parsing in WHERE clause
+SELECT * FROM songs WHERE json_extract(child_ids, '$[0]') = 'child-id';
+
+-- GOOD: Separate junction table (future enhancement)
+CREATE TABLE song_children (
+  song_id TEXT,
+  child_id TEXT,
+  PRIMARY KEY(song_id, child_id)
+);
+```
+
+TRANSACTIONS:
+```javascript
+// BAD: Multiple individual queries
+for (const song of songs) {
+  await SongRepository.create(song);
+}
+
+// GOOD: Single transaction
+await DatabaseService.executeTransaction(
+  songs.map(song => ({
+    sql: 'INSERT INTO songs (...) VALUES (...)',
+    params: [song.id, song.title, ...]
+  }))
+);
+```
+
+15.2 RENDER OPTIMIZATION
+-------------------------
+
+MEMOIZATION:
+```javascript
+// Memoize expensive components
+const SongCard = React.memo(({ song }) => {
+  return (
+    <Card>
+      <Title>{song.title}</Title>
+      <Lyrics>{song.lyrics}</Lyrics>
+    </Card>
+  );
+});
+
+// Memoize selectors
+const selectFilteredSongs = createSelector(
+  [selectAllSongs, selectFilters],
+  (songs, filters) => songs.filter(/* ... */)
+);
+```
+
+LIST VIRTUALIZATION:
+```javascript
+// Use FlatList for long lists
+<FlatList
+  data={songs}
+  renderItem={({ item }) => <SongCard song={item} />}
+  keyExtractor={item => item.id}
+  maxToRenderPerBatch={10}
+  windowSize={5}
+  removeClippedSubviews={true}
+/>
+```
+
+IMAGE OPTIMIZATION:
+```javascript
+// Use FastImage for better performance
+import FastImage from 'react-native-fast-image';
+
+<FastImage
+  source={{ uri: song.imageUrl }}
+  style={styles.image}
+  resizeMode={FastImage.resizeMode.cover}
+/>
+```
+
+15.3 BUNDLE SIZE OPTIMIZATION
+------------------------------
+
+```javascript
+// Use dynamic imports for heavy features
+const AudioPlayer = lazy(() => import('./components/AudioPlayer'));
+
+// Tree-shaking: Import only what you need
+import { debounce } from 'lodash/debounce'; // Good
+import _ from 'lodash'; // Bad (imports entire library)
+```
+
+15.4 PERFORMANCE MONITORING
+----------------------------
+
+```javascript
+// Track performance metrics
+import { InteractionManager } from 'react-native';
+
+function measurePerformance(label, fn) {
+  const start = Date.now();
+
+  InteractionManager.runAfterInteractions(() => {
+    fn();
+    const duration = Date.now() - start;
+    console.log(`${label} took ${duration}ms`);
+  });
+}
+
+// Usage
+measurePerformance('Load songs', async () => {
+  await dispatch(loadSongs());
+});
+```
+
+================================================================================
+                    16. SECURITY CONSIDERATIONS
+================================================================================
+
+16.1 DATA SECURITY
+------------------
+
+LOCAL DATA PROTECTION:
+- SQLite database: Not encrypted by default
+- File system: Sandboxed per app
+- AsyncStorage: Plain text storage
+
+ENCRYPTION (Future Enhancement):
+```javascript
+// Encrypt sensitive data before storing
+import * as Crypto from 'expo-crypto';
+
+async function encryptData(data) {
+  const encrypted = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    data
+  );
+  return encrypted;
+}
+```
+
+16.2 API SECURITY
+-----------------
+
+NO AUTHENTICATION NEEDED:
+- Local-first app doesn't require user auth
+- API is stateless
+- No user data stored on server
+
+API KEY PROTECTION:
+```javascript
+// Store API keys in .env (never commit)
+PIAPI_API_KEY=your_key_here
+
+// Access in code
+import Constants from 'expo-constants';
+const API_KEY = Constants.expoConfig.extra.piapiKey;
+```
+
+16.3 INPUT VALIDATION
+---------------------
+
+```javascript
+// Validate all user inputs
+function validateChild(child) {
+  if (!child.name || child.name.length === 0) {
+    throw new Error('Name is required');
+  }
+
+  if (child.name.length > 50) {
+    throw new Error('Name must be 50 characters or less');
+  }
+
+  if (child.age < 0.1 || child.age > 18) {
+    throw new Error('Age must be between 0.1 and 18');
+  }
+
+  if (child.gender && !['male', 'female', 'other'].includes(child.gender)) {
+    throw new Error('Invalid gender');
+  }
+
+  return true;
+}
+```
+
+16.4 PERMISSIONS
+----------------
+
+iOS: Info.plist
+```xml
+<key>NSMicrophoneUsageDescription</key>
+<string>We need access to record audio (if recording feature added)</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>To save child avatars</string>
+```
+
+Android: AndroidManifest.xml
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+```
+
+================================================================================
+                     17. DEPLOYMENT STRATEGY
+================================================================================
+
+17.1 BUILD CONFIGURATION
+-------------------------
+
+File: app.json
+
+```json
+{
+  "expo": {
+    "name": "BabySu",
+    "slug": "babysu",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.babysu.app",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.babysu.app",
+      "versionCode": 1
+    },
+    "extra": {
+      "apiUrl": "https://api.babysu.app",
+      "piapiKey": "process.env.PIAPI_API_KEY"
+    }
+  }
+}
+```
+
+17.2 EAS BUILD
+--------------
+
+Install EAS CLI:
+```bash
+npm install -g eas-cli
+```
+
+Configure EAS:
+```bash
+eas build:configure
+```
+
+File: eas.json
+```json
+{
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      }
+    },
+    "production": {
+      "autoIncrement": true
+    }
+  }
+}
+```
+
+Build Commands:
+```bash
+# iOS development build
+eas build --platform ios --profile development
+
+# Android development build
+eas build --platform android --profile development
+
+# Production builds
+eas build --platform ios --profile production
+eas build --platform android --profile production
+```
+
+17.3 DEPLOYMENT CHECKLIST
+--------------------------
+
+PRE-DEPLOYMENT:
+☐ All tests passing
+☐ No console errors
+☐ Performance optimized
+☐ Assets optimized
+☐ Environment variables configured
+☐ API endpoints configured for production
+☐ App icons created
+☐ Splash screens created
+☐ App Store assets prepared
+
+IOS DEPLOYMENT:
+☐ Apple Developer account ($99/year)
+☐ App Store Connect configured
+☐ Certificates and provisioning profiles
+☐ TestFlight beta testing
+☐ App Store review guidelines compliance
+☐ Privacy policy URL
+☐ Support URL
+
+ANDROID DEPLOYMENT:
+☐ Google Play Console account ($25 one-time)
+☐ App signing key configured
+☐ Internal testing track
+☐ Closed beta testing
+☐ Open beta testing
+☐ Production release
+
+17.4 RELEASE WORKFLOW
+---------------------
+
+VERSIONING (Semantic Versioning):
+- Major: 1.0.0 → 2.0.0 (breaking changes)
+- Minor: 1.0.0 → 1.1.0 (new features)
+- Patch: 1.0.0 → 1.0.1 (bug fixes)
+
+RELEASE PROCESS:
+1. Create release branch: `git checkout -b release/v1.0.0`
+2. Update version in app.json
+3. Build: `eas build --platform all --profile production`
+4. Test build thoroughly
+5. Submit to stores
+6. Monitor for issues
+7. Tag release: `git tag v1.0.0`
+8. Merge to main
+
+================================================================================
+                    18. SUCCESS METRICS & KPIs
+================================================================================
+
+18.1 TECHNICAL METRICS
+----------------------
+
+PERFORMANCE:
+- App start time: < 2 seconds
+- Database query time: < 50ms average
+- Screen transition: < 300ms
+- Download speed: Limited by network
+- Memory usage: < 200MB average
+
+RELIABILITY:
+- Crash-free rate: > 99%
+- API success rate: > 95%
+- Download success rate: > 90%
+- Database integrity: 100%
+
+QUALITY:
+- Test coverage: > 80%
+- Code review approval: 100%
+- Lint errors: 0
+- Type errors: 0
+
+18.2 USER METRICS
+-----------------
+
+ENGAGEMENT:
+- Daily active users (DAU)
+- Monthly active users (MAU)
+- Session duration
+- Songs generated per user
+- Songs downloaded per user
+- Songs played per user
+
+RETENTION:
+- Day 1 retention: Target > 40%
+- Day 7 retention: Target > 20%
+- Day 30 retention: Target > 10%
+
+SATISFACTION:
+- App Store rating: Target > 4.5
+- User reviews sentiment: Target > 80% positive
+- Support tickets: Target < 5% of users
+
+18.3 BUSINESS METRICS (FUTURE)
+-------------------------------
+
+REVENUE (When monetization added):
+- Monthly recurring revenue (MRR)
+- Average revenue per user (ARPU)
+- Customer lifetime value (LTV)
+- Conversion rate (free → paid)
+
+GROWTH:
+- User acquisition rate
+- Viral coefficient
+- Organic vs paid users
+- Referral rate
+
+================================================================================
+                       19. RISK MITIGATION
+================================================================================
+
+19.1 TECHNICAL RISKS
+--------------------
+
+RISK: Database corruption
+- Probability: Low
+- Impact: High
+- Mitigation:
+  * Regular integrity checks
+  * Export/backup feature
+  * Recovery mechanism
+
+RISK: Storage limit exceeded
+- Probability: Medium
+- Impact: Medium
+- Mitigation:
+  * Storage limit enforcement
+  * Cache cleanup
+  * User warnings
+
+RISK: API service downtime
+- Probability: Medium
+- Impact: Medium
+- Mitigation:
+  * Queue failed requests
+  * Retry logic
+  * Graceful degradation
+
+RISK: Large app size
+- Probability: Low
+- Impact: Low
+- Mitigation:
+  * Asset optimization
+  * Code splitting
+  * On-demand downloads
+
+19.2 USER EXPERIENCE RISKS
+---------------------------
+
+RISK: Confusing offline behavior
+- Mitigation:
+  * Clear offline indicator
+  * Informative error messages
+  * Feature availability hints
+
+RISK: Unexpected data loss
+- Mitigation:
+  * Soft deletes
+  * Confirmation dialogs
+  * Undo functionality (future)
+
+RISK: Poor performance on older devices
+- Mitigation:
+  * Performance testing on target devices
+  * Optimize for low-end devices
+  * Progressive feature degradation
+
+19.3 PROJECT RISKS
+------------------
+
+RISK: Scope creep
+- Mitigation:
+  * Strict phase definitions
+  * Regular reviews
+  * MVP-first approach
+
+RISK: Timeline delays
+- Mitigation:
+  * Buffer time in estimates
+  * Regular progress tracking (bd issues)
+  * Early identification of blockers
+
+RISK: Quality issues
+- Mitigation:
+  * Test-driven development
+  * Code reviews
+  * QA phase before launch
+
+================================================================================
+                    20. MAINTENANCE & SUPPORT
+================================================================================
+
+20.1 ONGOING MAINTENANCE
+------------------------
+
+WEEKLY:
+- Monitor crash reports
+- Review user feedback
+- Check API status
+- Performance monitoring
+
+MONTHLY:
+- Update dependencies
+- Security patches
+- Performance optimization
+- Feature improvements
+
+QUARTERLY:
+- Major version updates
+- Platform updates (iOS/Android)
+- Architecture review
+- User research
+
+20.2 SUPPORT PLAN
+-----------------
+
+CHANNELS:
+- In-app support (future)
+- Email: support@babysu.app
+- FAQ page
+- Tutorial videos
+
+RESPONSE TIMES:
+- Critical bugs: < 4 hours
+- Major bugs: < 24 hours
+- Minor bugs: < 7 days
+- Feature requests: Logged for review
+
+20.3 DOCUMENTATION
+------------------
+
+REQUIRED DOCS:
+✅ User guide
+✅ FAQ
+✅ Privacy policy
+✅ Terms of service
+✅ Developer README
+✅ API documentation
+✅ Deployment guide
+
+================================================================================
+                         APPENDIX A: COMMANDS REFERENCE
+================================================================================
+
+SETUP COMMANDS:
+```bash
+# Navigate to mobile directory
+cd mobile
+
+# Install dependencies
+npm install
+
+# Install additional packages
+npx expo install expo-sqlite expo-file-system expo-av
+npm install react-native-track-player uuid date-fns lodash react-hook-form
+
+# Start development server
+npm start
+
+# Run on iOS simulator
+npm run ios
+
+# Run on Android emulator
+npm run android
+```
+
+DATABASE COMMANDS:
+```bash
+# Access SQLite database (for debugging)
+adb pull /data/data/com.babysu.app/databases/babysu.db .
+sqlite3 babysu.db
+
+# Export database
+.output backup.sql
+.dump
+
+# Import database
+.read backup.sql
+```
+
+BUILD COMMANDS:
+```bash
+# Development build
+eas build --platform ios --profile development
+eas build --platform android --profile development
+
+# Production build
+eas build --platform ios --profile production
+eas build --platform android --profile production
+
+# Submit to stores
+eas submit --platform ios
+eas submit --platform android
+```
+
+================================================================================
+                       APPENDIX B: TROUBLESHOOTING
+================================================================================
+
+COMMON ISSUES:
+
+1. "Database is locked"
+   - Cause: Concurrent writes
+   - Fix: Use transactions
+
+2. "Storage full"
+   - Cause: Too many downloads
+   - Fix: Run cache cleanup
+
+3. "Network timeout"
+   - Cause: Slow connection
+   - Fix: Increase timeout, retry
+
+4. "Build failed"
+   - Cause: Various
+   - Fix: Check EAS build logs
+
+5. "App crashes on launch"
+   - Cause: Database corruption
+   - Fix: Reset database
+
+================================================================================
+                          APPENDIX C: RESOURCES
+================================================================================
+
+DOCUMENTATION:
+- Expo: https://docs.expo.dev/
+- React Navigation: https://reactnavigation.org/
+- Redux Toolkit: https://redux-toolkit.js.org/
+- Expo SQLite: https://docs.expo.dev/versions/latest/sdk/sqlite/
+- Expo File System: https://docs.expo.dev/versions/latest/sdk/filesystem/
+
+TOOLS:
+- Expo DevTools
+- React DevTools
+- Redux DevTools
+- SQLite Browser
+
+COMMUNITIES:
+- Expo Discord
+- React Native Community
+- Stack Overflow
+- Reddit r/reactnative
+
+================================================================================
+                              END OF PLAN
+================================================================================
+
+This plan is comprehensive and ready for execution. All phases are detailed with:
+✅ Clear objectives
+✅ Specific tasks
+✅ Code examples
+✅ Success criteria
+✅ Time estimates
+✅ bd integration
+
+NEXT STEPS:
+1. Review this plan
+2. Create bd subtask issues for each phase
+3. Begin Phase 1: Database setup
+4. Track progress in bd
+5. Execute systematically
+
+Total Estimated Time: 4-6 weeks (full-time development)
+
+Good luck! 🚀

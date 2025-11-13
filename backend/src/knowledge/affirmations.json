@@ -1,0 +1,345 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-08",
+  "source": "Positive psychology research, child development, Louise Hay, Carol Dweck growth mindset",
+  "categories": {
+    "selfWorth": {
+      "name": "Self-Worth & Love",
+      "purpose": "Building foundational self-esteem and sense of worthiness",
+      "ages": ["0-6months", "6-12months", "1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "affirmations": {
+        "0-2years": {
+          "style": "Third-person, parent-to-child",
+          "statements": [
+            "You are so loved",
+            "You are our precious [name]",
+            "You are safe and cared for",
+            "We love you just the way you are",
+            "You bring us so much joy",
+            "You are wanted and welcome",
+            "You make our family complete"
+          ]
+        },
+        "2-4years": {
+          "style": "Second-person, warm affirmation",
+          "statements": [
+            "[Name], you are special",
+            "You are loved for who you are",
+            "[Name], you are important",
+            "You belong here with us",
+            "You are valued and treasured",
+            "[Name], we are so glad you're here",
+            "You are enough, just as you are"
+          ]
+        },
+        "4-6years": {
+          "style": "First-person declarations",
+          "statements": [
+            "I am loved",
+            "I am special and unique",
+            "I am worthy of love",
+            "I belong",
+            "I am important",
+            "I am valuable",
+            "I am enough"
+          ]
+        }
+      }
+    },
+    "capability": {
+      "name": "Capability & Growth Mindset",
+      "purpose": "Developing confidence in abilities and belief in growth",
+      "ages": ["1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "affirmations": {
+        "1-2years": {
+          "style": "Encouraging, second-person",
+          "statements": [
+            "[Name], you can do it",
+            "You are learning and growing",
+            "You are getting stronger every day",
+            "[Name], you try new things",
+            "You are brave",
+            "You keep trying"
+          ]
+        },
+        "2-4years": {
+          "style": "Growth mindset, encouraging",
+          "statements": [
+            "[Name], you can learn anything",
+            "You are capable",
+            "Mistakes help you learn",
+            "[Name], you are a problem-solver",
+            "You can do hard things",
+            "You get better with practice",
+            "[Name], your brain is growing"
+          ]
+        },
+        "4-6years": {
+          "style": "First-person empowerment",
+          "statements": [
+            "I can do hard things",
+            "I am capable",
+            "I learn from my mistakes",
+            "I can figure things out",
+            "I am a problem-solver",
+            "I get stronger when I practice",
+            "I believe in myself",
+            "I can learn anything I want"
+          ]
+        }
+      }
+    },
+    "emotionalRegulation": {
+      "name": "Emotional Intelligence & Regulation",
+      "purpose": "Understanding and managing emotions healthily",
+      "ages": ["2-3years", "3-4years", "4-5years", "5-6years"],
+      "affirmations": {
+        "2-3years": {
+          "style": "Validating feelings",
+          "statements": [
+            "Your feelings are okay",
+            "[Name], it's okay to feel sad/angry/scared",
+            "Big feelings are okay",
+            "You are safe",
+            "[Name], you can ask for help",
+            "You can calm down"
+          ]
+        },
+        "3-4years": {
+          "style": "Emotion identification and coping",
+          "statements": [
+            "I can name my feelings",
+            "[Name], you can use words",
+            "You can take deep breaths",
+            "It's okay to cry",
+            "[Name], you can talk about feelings",
+            "You can calm your body",
+            "Feelings come and go"
+          ]
+        },
+        "4-6years": {
+          "style": "First-person regulation strategies",
+          "statements": [
+            "I can manage my emotions",
+            "I can take a break when I need it",
+            "I can use my words",
+            "I know how to calm down",
+            "My feelings are valid",
+            "I can ask for help when upset",
+            "I am in control of my actions",
+            "I can make good choices even when I'm upset"
+          ]
+        }
+      }
+    },
+    "socialSkills": {
+      "name": "Social Skills & Relationships",
+      "purpose": "Building healthy relationships and social competence",
+      "ages": ["1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "affirmations": {
+        "1-2years": {
+          "style": "Social awareness",
+          "statements": [
+            "[Name] is a friend",
+            "You share with others",
+            "[Name], you are kind",
+            "You play nicely",
+            "You take turns"
+          ]
+        },
+        "2-4years": {
+          "style": "Relationship building",
+          "statements": [
+            "[Name], you are a good friend",
+            "You share and take turns",
+            "You are kind to others",
+            "[Name], you help people",
+            "You use gentle hands",
+            "You include everyone",
+            "[Name], you listen to friends"
+          ]
+        },
+        "4-6years": {
+          "style": "First-person social confidence",
+          "statements": [
+            "I am a good friend",
+            "I am kind and caring",
+            "I can share and cooperate",
+            "I listen to others",
+            "I help my friends",
+            "I can make new friends",
+            "I treat others with respect",
+            "I am a team player"
+          ]
+        }
+      }
+    },
+    "resilience": {
+      "name": "Resilience & Perseverance",
+      "purpose": "Developing grit, persistence, and bouncing back",
+      "ages": ["2-3years", "3-4years", "4-5years", "5-6years"],
+      "affirmations": {
+        "2-3years": {
+          "style": "Encouraging persistence",
+          "statements": [
+            "[Name], you keep trying",
+            "You don't give up",
+            "[Name], you are strong",
+            "You can try again",
+            "You are brave"
+          ]
+        },
+        "3-4years": {
+          "style": "Building grit",
+          "statements": [
+            "[Name], you are resilient",
+            "You bounce back",
+            "Challenges make you stronger",
+            "[Name], you persevere",
+            "You can handle this",
+            "You are tougher than you think",
+            "[Name], you recover from setbacks"
+          ]
+        },
+        "4-6years": {
+          "style": "First-person resilience",
+          "statements": [
+            "I don't give up",
+            "I keep trying even when it's hard",
+            "I bounce back from mistakes",
+            "I am resilient",
+            "I can handle challenges",
+            "I learn and grow from failure",
+            "I am brave enough to try",
+            "I get stronger with each attempt"
+          ]
+        }
+      }
+    },
+    "bodyPositivity": {
+      "name": "Body Positivity & Physical Health",
+      "purpose": "Developing healthy relationship with body and physical self",
+      "ages": ["2-3years", "3-4years", "4-5years", "5-6years"],
+      "affirmations": {
+        "2-3years": {
+          "style": "Body appreciation",
+          "statements": [
+            "[Name], your body is strong",
+            "You can run and jump",
+            "Your body helps you play",
+            "[Name], you are growing",
+            "You take care of your body"
+          ]
+        },
+        "3-4years": {
+          "style": "Body capability focus",
+          "statements": [
+            "[Name], your body is amazing",
+            "You are strong and healthy",
+            "Your body can do wonderful things",
+            "[Name], you listen to your body",
+            "You are growing just right",
+            "Your body is perfect for you"
+          ]
+        },
+        "4-6years": {
+          "style": "First-person body confidence",
+          "statements": [
+            "My body is strong",
+            "I am healthy",
+            "My body can do amazing things",
+            "I take care of my body",
+            "I am growing and changing",
+            "My body is just right for me",
+            "I listen to what my body needs",
+            "I am active and energetic"
+          ]
+        }
+      }
+    },
+    "creativity": {
+      "name": "Creativity & Imagination",
+      "purpose": "Fostering creative confidence and imaginative thinking",
+      "ages": ["2-3years", "3-4years", "4-5years", "5-6years"],
+      "affirmations": {
+        "2-3years": {
+          "style": "Encouraging exploration",
+          "statements": [
+            "[Name], you are creative",
+            "You have great ideas",
+            "[Name], you imagine wonderful things",
+            "You make beautiful things",
+            "You are an artist"
+          ]
+        },
+        "3-4years": {
+          "style": "Creative empowerment",
+          "statements": [
+            "[Name], your ideas are special",
+            "You are imaginative",
+            "You create amazing things",
+            "[Name], your art is beautiful",
+            "You think in creative ways",
+            "Your imagination is wonderful"
+          ]
+        },
+        "4-6years": {
+          "style": "First-person creative confidence",
+          "statements": [
+            "I am creative",
+            "I have unique ideas",
+            "I express myself in my own way",
+            "I am an artist",
+            "My imagination is powerful",
+            "I create beautiful things",
+            "My ideas are valuable",
+            "I think outside the box"
+          ]
+        }
+      }
+    },
+    "culturalIdentity": {
+      "name": "Cultural Identity & Pride",
+      "purpose": "Building positive cultural and ethnic identity",
+      "ages": ["3-4years", "4-5years", "5-6years"],
+      "affirmations": {
+        "3-4years": {
+          "style": "Cultural appreciation",
+          "statements": [
+            "[Name], your family is special",
+            "You have wonderful traditions",
+            "[Name], your culture is beautiful",
+            "You are proud of who you are",
+            "Your family's story is important"
+          ]
+        },
+        "4-6years": {
+          "style": "First-person cultural pride",
+          "statements": [
+            "I am proud of my heritage",
+            "My culture is beautiful",
+            "I celebrate my traditions",
+            "I am proud of who I am",
+            "My family's history matters",
+            "I honor my roots",
+            "I am part of a wonderful culture",
+            "I respect all cultures including my own"
+          ]
+        }
+      }
+    }
+  },
+  "integrationGuidelines": {
+    "frequency": "2-4 affirmations per song",
+    "placement": "Bridge section primarily, also in chorus for emphasis",
+    "repetition": "Repeat each affirmation 2-3 times for internalization",
+    "delivery": "Clear, confident vocal delivery; slow enough for comprehension",
+    "ageAdaptation": {
+      "0-2years": "Sung to child by parent, third-person warmth",
+      "2-3years": "Transition to second-person, begin first-person in simple songs",
+      "3-6years": "Primarily first-person for ownership, powerful declarations"
+    },
+    "customization": "Select affirmations relevant to song topic (e.g., bedtime songs use safety/love affirmations)",
+    "scientificBasis": "First-person affirmations activate self-referential processing in prefrontal cortex, 2x more effective than second-person (research: Cascio et al., Social Cognitive and Affective Neuroscience, 2016)"
+  }
+}

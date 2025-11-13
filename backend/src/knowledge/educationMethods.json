@@ -1,0 +1,257 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-08",
+  "source": "Music education research, pedagog methodologies worldwide",
+  "methods": {
+    "kodaly": {
+      "name": "Kodály Method",
+      "origin": "Hungary, Zoltán Kodály (1920s)",
+      "ages": ["0-6months", "6-12months", "1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "bestFor": "Lullabies, folk music, vocal development, music literacy",
+      "corePrinciples": [
+        "Music education should start early (even in infancy)",
+        "Folk music is the foundation of musical learning",
+        "Singing is the best foundation for musicianship",
+        "Sequential development from simple to complex",
+        "Music literacy through solfège (do-re-mi)"
+      ],
+      "techniques": {
+        "solfège": "Do-re-mi syllables for pitch recognition",
+        "handSigns": "Visual representation of pitch (Curwen hand signs)",
+        "folkSongs": "Use traditional folk melodies as teaching material",
+        "pentatonic": "Begin with pentatonic scales (5 notes, easier)",
+        "rhythm": "Rhythm syllables (ta, ti-ti)",
+        "sequence": "Progress from known to unknown, simple to complex"
+      },
+      "applicationToSongs": {
+        "structure": "Simple folk song patterns, AABA form",
+        "melody": "Pentatonic scales (C-D-E-G-A), stepwise motion",
+        "rhythm": "Clear, repetitive rhythmic patterns",
+        "lyrics": "Traditional folk themes adapted for child",
+        "pedagogy": "Each song teaches one new musical concept"
+      },
+      "ageAdaptation": {
+        "0-2years": "Lullabies with simple melodies, parent singing",
+        "2-4years": "Folk-style songs, introduce pitch matching",
+        "4-6years": "Beginning solfège, hand signs, simple notation"
+      }
+    },
+    "orff": {
+      "name": "Orff Schulwerk",
+      "origin": "Germany, Carl Orff (1920s-1950s)",
+      "ages": ["1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "bestFor": "Movement songs, rhythmic learning, creative improvisation",
+      "corePrinciples": [
+        "Music, movement, and speech are interconnected",
+        "Children learn best through active participation",
+        "Improvisation and creativity are essential",
+        "Use of percussion instruments (Orff instruments)",
+        "Learning through imitation and exploration"
+      ],
+      "techniques": {
+        "movement": "Dance and physical expression to music",
+        "rhythm": "Body percussion (clapping, stomping)",
+        "improvisation": "Encourage creative musical expression",
+        "instruments": "Xylophones, metallophones, simple percussion",
+        "ostinato": "Repetitive rhythmic/melodic patterns",
+        "ensemble": "Group music-making"
+      },
+      "applicationToSongs": {
+        "structure": "Songs with clear movement cues and action",
+        "melody": "Simple, repetitive melodies for instruments",
+        "rhythm": "Strong rhythmic drive, body percussion opportunities",
+        "lyrics": "Action-oriented, movement commands",
+        "pedagogy": "Songs that invite improvisation and creativity"
+      },
+      "ageAdaptation": {
+        "1-2years": "Simple movement songs, clapping rhythms",
+        "2-4years": "Instrument exploration, creative movement",
+        "4-6years": "Complex rhythms, improvisation, ensemble work"
+      }
+    },
+    "dalcroze": {
+      "name": "Dalcroze Eurhythmics",
+      "origin": "Switzerland, Émile Jaques-Dalcroze (1900s)",
+      "ages": ["1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "bestFor": "Movement integration, rhythm development, body awareness",
+      "corePrinciples": [
+        "Experience music through movement before analyzing it",
+        "Eurhythmics: body as instrument",
+        "Rhythm is fundamental to musical understanding",
+        "Kinesthetic learning enhances musical comprehension",
+        "Improvisation develops musical creativity"
+      ],
+      "techniques": {
+        "eurhythmics": "Whole-body response to music",
+        "solfège": "Pitch training through singing",
+        "improvisation": "Spontaneous musical creation",
+        "rhythmicMovement": "Walking, running, skipping to beat",
+        "dynamicContrast": "Physical response to loud/soft",
+        "tempoVariation": "Speed changes shown through movement"
+      },
+      "applicationToSongs": {
+        "structure": "Songs with varied tempo and dynamics",
+        "melody": "Melodic contour reflected in movement",
+        "rhythm": "Clear beat for walking/moving",
+        "lyrics": "Physical action descriptions",
+        "pedagogy": "Songs that embody musical concepts physically"
+      },
+      "ageAdaptation": {
+        "1-2years": "Simple walking/stopping to music",
+        "2-4years": "Varied movements, freeze dance",
+        "4-6years": "Complex choreography, advanced rhythm patterns"
+      }
+    },
+    "suzuki": {
+      "name": "Suzuki Method (Talent Education)",
+      "origin": "Japan, Shinichi Suzuki (1940s)",
+      "ages": ["0-6months", "6-12months", "1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "bestFor": "Parent-child bonding, early music exposure, listening skills",
+      "corePrinciples": [
+        "Every child can learn music (like learning language)",
+        "Start as early as possible (even in infancy)",
+        "Parent involvement is essential",
+        "Listening comes before playing/singing",
+        "Repetition creates excellence",
+        "Nurturing environment is crucial"
+      ],
+      "techniques": {
+        "motherTongue": "Learn music like learning to speak",
+        "listening": "Daily exposure to recorded music",
+        "repetition": "Practice until mastery",
+        "positiveReinforcement": "Encourage every attempt",
+        "parentInvolvement": "Parent learns alongside child",
+        "sequential": "One skill at a time, master before moving on"
+      },
+      "applicationToSongs": {
+        "structure": "Repeated listening, gradual mastery",
+        "melody": "Beautiful, singable melodies",
+        "rhythm": "Natural speech rhythms",
+        "lyrics": "Encouraging, positive language",
+        "pedagogy": "Songs parents sing repeatedly to/with child"
+      },
+      "ageAdaptation": {
+        "0-2years": "Passive listening, parent singing to child",
+        "2-4years": "Active participation, singing along",
+        "4-6years": "Independent singing, pitch matching"
+      }
+    },
+    "montessori": {
+      "name": "Montessori Music Education",
+      "origin": "Italy, Maria Montessori (1900s)",
+      "ages": ["1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "bestFor": "Independent learning, sensorial development, practical life themes",
+      "corePrinciples": [
+        "Child-led learning and exploration",
+        "Prepared environment with accessible materials",
+        "Hands-on, concrete before abstract",
+        "Sensorial education (hearing, touch)",
+        "Grace and courtesy through music",
+        "Practical life integration"
+      ],
+      "techniques": {
+        "bellExercises": "Pitch discrimination with bells",
+        "soundCylinders": "Matching sounds, auditory discrimination",
+        "silenceGame": "Listening awareness",
+        "movementSongs": "Walking the line to music",
+        "culturalMusic": "Exposure to diverse musical traditions",
+        "independentChoice": "Child selects music activities"
+      },
+      "applicationToSongs": {
+        "structure": "Songs about daily routines and practical life",
+        "melody": "Simple, clear melodies",
+        "rhythm": "Steady, predictable rhythms",
+        "lyrics": "Independence, responsibility, grace, courtesy",
+        "pedagogy": "Songs that teach life skills and values"
+      },
+      "ageAdaptation": {
+        "1-2years": "Songs about daily tasks (eating, dressing)",
+        "2-4years": "Social grace songs (please, thank you)",
+        "4-6years": "Cultural music appreciation, complex themes"
+      }
+    },
+    "musicTogether": {
+      "name": "Music Together",
+      "origin": "USA, Kenneth Guilmartin (1987)",
+      "ages": ["0-6months", "6-12months", "1-2years", "2-3years", "3-4years", "4-5years"],
+      "bestFor": "Parent-child bonding, mixed-age groups, musical families",
+      "corePrinciples": [
+        "All children are musical",
+        "Parent/caregiver participation is vital",
+        "Music learning supports overall development",
+        "Playful, non-performance oriented",
+        "Developmentally appropriate, mixed ages",
+        "Research-based curriculum"
+      ],
+      "techniques": {
+        "participatory": "Everyone sings and moves together",
+        "informal": "Non-performance, process over product",
+        "mixedAge": "Babies through preschoolers together",
+        "homeConnection": "Materials for daily use at home",
+        "tonalPatterns": "Simple melodic patterns for improvisation",
+        "rhythmPatterns": "Simple rhythmic patterns for exploration"
+      },
+      "applicationToSongs": {
+        "structure": "Varied song types (lullabies, action, chants)",
+        "melody": "Accessible melodies for adult/child voices",
+        "rhythm": "Flexible rhythms, improvisation-friendly",
+        "lyrics": "Inclusive, joyful, developmentally rich",
+        "pedagogy": "Songs that engage whole family"
+      },
+      "ageAdaptation": {
+        "0-2years": "Bouncing songs, lullabies, parent-led",
+        "2-4years": "Active participation, movement songs",
+        "4-6years": "Complex rhythms, melody improvisation"
+      }
+    },
+    "kindermusik": {
+      "name": "Kindermusik International",
+      "origin": "USA, adapted from German methods (1978)",
+      "ages": ["0-6months", "6-12months", "1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "bestFor": "Holistic development, literacy preparation, multi-sensory learning",
+      "corePrinciples": [
+        "Music enhances all areas of child development",
+        "Multi-sensory learning (sound, sight, touch, movement)",
+        "Literacy and numeracy through music",
+        "Social-emotional development focus",
+        "Home materials extend learning",
+        "Age-specific curriculum"
+      ],
+      "techniques": {
+        "literature": "Combine music with books and stories",
+        "instruments": "Age-appropriate instrument exploration",
+        "movement": "Dance, creative movement, yoga-style stretches",
+        "vocalPlay": "Singing games, vocal exploration",
+        "listening": "Active listening exercises",
+        "multiSensory": "Visual, tactile, auditory integration"
+      },
+      "applicationToSongs": {
+        "structure": "Story-based, thematic units",
+        "melody": "Singable, memorable melodies",
+        "rhythm": "Varied to support movement activities",
+        "lyrics": "Literacy-rich, vocabulary building",
+        "pedagogy": "Songs support holistic child development"
+      },
+      "ageAdaptation": {
+        "0-2years": "Bonding songs, sensory exploration",
+        "2-4years": "Literacy prep, social skills",
+        "4-6years": "Pre-reading, writing, advanced concepts"
+      }
+    }
+  },
+  "selectionGuide": {
+    "byCategory": {
+      "lullaby": ["suzuki", "kodaly"],
+      "educational": ["kodaly", "montessori", "kindermusik"],
+      "energizing": ["orff", "dalcroze"],
+      "affirmation": ["suzuki", "montessori"],
+      "story": ["kindermusik", "orff"],
+      "seasonal": ["kodaly", "musicTogether"]
+    },
+    "byAge": {
+      "0-2years": ["suzuki", "musicTogether", "kodaly"],
+      "2-4years": ["orff", "dalcroze", "montessori"],
+      "4-6years": ["kodaly", "orff", "kindermusik"]
+    }
+  }
+}

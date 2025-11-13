@@ -1,0 +1,151 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-08",
+  "source": "Music education research, developmental psychology, acoustic science",
+  "safetyGuidelines": {
+    "maxVolume": 85,
+    "maxVolumeUnit": "decibels",
+    "maxDuration": 6,
+    "maxDurationUnit": "minutes",
+    "warning": "Sounds above 85dB can damage hearing. Songs should not exceed 6 minutes for attention span."
+  },
+  "byCategory": {
+    "lullaby": {
+      "tempoBPM": {"min": 60, "max": 80, "optimal": 68},
+      "tempoName": "Adagio (very slow, heartbeat-matching)",
+      "keySignatures": ["C major", "G major", "F major", "Pentatonic C"],
+      "preferredKeys": "Major for comfort, avoid dissonance",
+      "vocalRange": {"min": "C4", "max": "G4", "notes": 5},
+      "instruments": ["soft piano", "acoustic guitar fingerpicked", "harp", "kalimba", "cello", "music box", "warm synth pads"],
+      "dynamics": "pp to mp (very soft)",
+      "articulation": "Legato (smooth, connected)",
+      "scientificBasis": "60-80 BPM matches resting heart rate, triggers parasympathetic nervous system (calming)"
+    },
+    "educational": {
+      "tempoBPM": {"min": 100, "max": 130, "optimal": 115},
+      "tempoName": "Moderato to Allegro (moderate to lively)",
+      "keySignatures": ["C major", "G major", "D major", "F major"],
+      "preferredKeys": "Bright major keys for engagement",
+      "vocalRange": {"min": "C4", "max": "D5", "notes": 9},
+      "instruments": ["piano", "xylophone", "ukulele", "marimba", "hand drums", "cheerful brass", "synthesizers"],
+      "dynamics": "mf to f (moderately loud)",
+      "articulation": "Mixed staccato and legato (bouncy, clear)",
+      "scientificBasis": "Moderate tempo aids learning retention, rhythm enhances memory encoding"
+    },
+    "energizing": {
+      "tempoBPM": {"min": 120, "max": 150, "optimal": 135},
+      "tempoName": "Allegro to Vivace (fast, lively)",
+      "keySignatures": ["C major", "D major", "G major", "A major"],
+      "preferredKeys": "High-energy major keys",
+      "vocalRange": {"min": "D4", "max": "E5", "notes": 10},
+      "instruments": ["drums", "electric guitar", "brass section", "tambourine", "hand claps", "energetic synths"],
+      "dynamics": "f to ff (loud, powerful)",
+      "articulation": "Staccato, accented (bouncy, energetic)",
+      "scientificBasis": "120+ BPM increases heart rate, promotes physical activity, boosts dopamine"
+    },
+    "affirmation": {
+      "tempoBPM": {"min": 90, "max": 110, "optimal": 100},
+      "tempoName": "Andante to Moderato (walking pace)",
+      "keySignatures": ["C major", "G major", "D major", "A major", "E major"],
+      "preferredKeys": "Inspiring major keys",
+      "vocalRange": {"min": "C4", "max": "C5", "notes": 8},
+      "instruments": ["piano", "acoustic guitar", "strings", "light percussion", "uplifting synths"],
+      "dynamics": "mf (moderately loud, confident)",
+      "articulation": "Legato with emphasis (smooth, powerful)",
+      "scientificBasis": "Moderate tempo allows cognitive processing of affirmations, emotional resonance"
+    },
+    "story": {
+      "tempoBPM": {"min": 95, "max": 120, "optimal": 105},
+      "tempoName": "Variable (story-dependent pacing)",
+      "keySignatures": ["All major", "Simple minor (Am, Dm)"],
+      "preferredKeys": "Varies by story mood, can modulate",
+      "vocalRange": {"min": "C4", "max": "D5", "notes": 10},
+      "instruments": ["full orchestra", "character-specific instruments", "sound effects", "musical themes"],
+      "dynamics": "Variable mp to f (storytelling dynamics)",
+      "articulation": "Varied (matches story action)",
+      "scientificBasis": "Variable tempo maintains attention, musical themes enhance narrative memory"
+    },
+    "seasonal": {
+      "tempoBPM": {"min": 90, "max": 130, "optimal": 110},
+      "tempoName": "Moderato (varies by holiday)",
+      "keySignatures": ["C major", "G major", "D major", "F major"],
+      "preferredKeys": "Bright, celebratory",
+      "vocalRange": {"min": "C4", "max": "C5", "notes": 8},
+      "instruments": ["bells", "acoustic instruments", "strings", "brass", "hand percussion"],
+      "dynamics": "mf to f (celebratory)",
+      "articulation": "Festive, joyful",
+      "scientificBasis": "Cultural music activates identity-formation regions in developing brain (ages 3-6)"
+    }
+  },
+  "byAge": {
+    "0-6months": {
+      "optimalTempo": 68,
+      "tempoRange": [60, 80],
+      "vocalRange": "C4-G4 (5 notes)",
+      "attentionSpan": 3,
+      "duration": [2, 3],
+      "complexity": "Minimal - simple melodies, repetitive patterns"
+    },
+    "6-12months": {
+      "optimalTempo": 85,
+      "tempoRange": [70, 100],
+      "vocalRange": "C4-A4 (6-8 notes)",
+      "attentionSpan": 4,
+      "duration": [2, 4],
+      "complexity": "Simple - clear beat, simple variations"
+    },
+    "1-2years": {
+      "optimalTempo": 100,
+      "tempoRange": [80, 120],
+      "vocalRange": "C4-C5 (octave)",
+      "attentionSpan": 6,
+      "duration": [2, 4],
+      "complexity": "Moderate - varied rhythms, simple syncopation"
+    },
+    "2-3years": {
+      "optimalTempo": 110,
+      "tempoRange": [90, 130],
+      "vocalRange": "C4-D5 (9-10 notes)",
+      "attentionSpan": 9,
+      "duration": [2.5, 4],
+      "complexity": "Moderate - syncopation, tempo changes"
+    },
+    "3-4years": {
+      "optimalTempo": 120,
+      "tempoRange": [100, 140],
+      "vocalRange": "D4-A5 (1.5 octaves)",
+      "attentionSpan": 12,
+      "duration": [3, 5],
+      "complexity": "Advanced - complex patterns, dynamic contrast"
+    },
+    "4-5years": {
+      "optimalTempo": 130,
+      "tempoRange": [110, 150],
+      "vocalRange": "C4-C6 (2 octaves)",
+      "attentionSpan": 16,
+      "duration": [3, 6],
+      "complexity": "Advanced - polyrhythms, modal scales"
+    },
+    "5-6years": {
+      "optimalTempo": 135,
+      "tempoRange": [120, 160],
+      "vocalRange": "C4-E6 (2+ octaves)",
+      "attentionSpan": 20,
+      "duration": [3, 6],
+      "complexity": "Professional - full rhythmic variety, harmonies"
+    }
+  },
+  "instrumentRecommendations": {
+    "calming": ["piano", "harp", "acoustic guitar", "strings", "kalimba", "music box"],
+    "educational": ["xylophone", "marimba", "piano", "ukulele", "hand drums"],
+    "energizing": ["drums", "electric guitar", "brass", "tambourine", "synths"],
+    "storytelling": ["orchestral variety", "character-specific instruments", "sound effects"],
+    "traditional": ["acoustic guitar", "piano", "violin", "flute", "hand percussion"]
+  },
+  "vocalGuidelines": {
+    "infants": "Parent-like, soft, warm, whisper quality",
+    "toddlers": "Cheerful, engaging, slightly animated",
+    "preschoolers": "Expressive, character voices, theatrical",
+    "kindergarten": "Professional quality, contemporary, energetic"
+  }
+}

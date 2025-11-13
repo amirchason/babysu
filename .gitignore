@@ -1,0 +1,222 @@
+# ==========================================
+# BABYSU - COMPREHENSIVE .gitignore
+# ==========================================
+
+# ==========================================
+# CRITICAL: Environment & Secrets
+# ==========================================
+# NEVER commit these files - they contain API keys and credentials
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*.local
+**/.env
+**/.env.local
+
+# Firebase credentials
+firebase-adminsdk-*.json
+serviceAccountKey.json
+**/firebase-config.json
+
+# API keys and credentials
+.secrets
+credentials.json
+config.local.js
+secrets.json
+
+# ==========================================
+# Dependencies
+# ==========================================
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Package manager locks (keep these for consistency)
+# Uncomment if you want to ignore:
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# ==========================================
+# Build & Distribution
+# ==========================================
+dist/
+build/
+out/
+*.log
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+
+# Backend builds
+backend/dist/
+backend/build/
+
+# Frontend builds
+webapp/dist/
+webapp/build/
+mobile/dist/
+
+# ==========================================
+# Mobile (React Native / Expo)
+# ==========================================
+# Expo
+.expo/
+.expo-shared/
+*.orig.*
+web-build/
+
+# React Native
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.cer
+*.certSigningRequest
+ios/Pods/
+ios/build/
+android/app/build/
+android/.gradle/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# ==========================================
+# IDEs & Editors
+# ==========================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains (WebStorm, IntelliJ, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ==========================================
+# Operating Systems
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==========================================
+# Testing & Coverage
+# ==========================================
+coverage/
+*.coverage
+.nyc_output/
+.jest/
+test-results/
+junit.xml
+
+# ==========================================
+# Logs & Debugging
+# ==========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# ==========================================
+# Temporary Files
+# ==========================================
+*.tmp
+*.temp
+*.cache
+.temp/
+tmp/
+temp/
+
+# ==========================================
+# Database & Storage
+# ==========================================
+*.sqlite
+*.sqlite3
+*.db
+data/
+uploads/
+
+# ==========================================
+# Claude Code
+# ==========================================
+.claude/session-log.md
+.claude/settings.local.json
+
+# ==========================================
+# Beads (Issue Tracking)
+# ==========================================
+# Keep .beads for collaboration, but ignore local temp files
+.beads/*.tmp
+.beads/lock
+
+# ==========================================
+# Project Specific
+# ==========================================
+# User uploaded audio files
+audio/
+songs/
+generated/
+
+# Documentation drafts (keep published docs)
+*_DRAFT.md
+*_WIP.md
+TEMP_*.md
+
+# ==========================================
+# Miscellaneous
+# ==========================================
+.vercel
+.netlify
+.firebase/
+*.tgz
+*.zip
+*.tar.gz

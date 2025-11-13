@@ -1,0 +1,660 @@
+{
+  "ageGroups": {
+    "0-6months": {
+      "developmentalStage": "Newborn/Infant - Sensory exploration and bonding phase",
+      "cognitiveAbilities": [
+        "Processing sensory stimuli (light, sound, touch, smell)",
+        "Becoming alert for longer periods",
+        "Recognizing faces and contrasting patterns",
+        "Following moving objects with eyes",
+        "Beginning to expect routines",
+        "Exploring cause and effect (e.g., shaking rattle makes noise)"
+      ],
+      "languageMilestones": [
+        "Begins consonant babbling around 6 months",
+        "Hearing is fully developed",
+        "Turns and reacts to familiar sounds",
+        "Begins associating sounds with objects",
+        "Starts to mimic sounds"
+      ],
+      "vocabularyLevel": "Pre-verbal (sounds, coos, babbling)",
+      "attentionSpan": "Very brief - seconds to 1-2 minutes maximum",
+      "musicalPreferences": {
+        "tempo": "60-80 BPM (matches heartbeat)",
+        "style": "Lullabies, slow soothing songs",
+        "vocals": "High-pitched, motherese/infant-directed singing",
+        "instruments": "Soft acoustic, gentle percussion, music box sounds",
+        "characteristics": "Simple melodies, repetitive patterns, soothing timbres"
+      },
+      "learningModalities": [
+        "Listening and sound recognition",
+        "Rhythmic rocking and movement",
+        "Repetition and predictability",
+        "Parental bonding through singing",
+        "Sensory integration (sound + touch + movement)"
+      ],
+      "emotionalNeeds": [
+        "Safety and comfort",
+        "Bonding with primary caregivers",
+        "Regulation and calming",
+        "Sensory soothing"
+      ],
+      "motorSkills": "Limited - rolls over, brings things to mouth, develops basic coordination",
+      "affirmationExamples": [
+        "You are loved",
+        "You are safe",
+        "Mommy/Daddy is here",
+        "You are precious",
+        "You are our sunshine"
+      ],
+      "songTopics": [
+        "Lullabies and bedtime",
+        "Nature sounds (rain, birds, water)",
+        "Family bonding",
+        "Gentle movements (rocking, swaying)",
+        "Simple animal sounds",
+        "Body parts (gentle introduction)"
+      ],
+      "avoidTopics": [
+        "Complex narratives",
+        "Fast tempos",
+        "Loud/jarring sounds",
+        "Multiple simultaneous sounds",
+        "Abstract concepts"
+      ],
+      "lyricGuidelines": {
+        "vocabulary": "Simple, repetitive words (mama, baby, sleep, love)",
+        "sentenceLength": "Very short phrases (2-4 words)",
+        "repetition": "Extremely high - same phrase 4-8 times",
+        "rhymeScheme": "Simple AABB or AAAA patterns",
+        "perspective": "Second person (talking to baby) or third person (about baby)",
+        "exampleStructure": "Verse repeats with minimal variation, no chorus needed"
+      },
+      "optimalSongDuration": "2-3 minutes (can loop indefinitely)",
+      "scientificNotes": [
+        "Fetuses respond to music from 28 weeks gestation",
+        "Newborns are more attentive to infant-directed singing",
+        "Lullabies decrease heart rate and induce relaxation",
+        "Infants respond to universal lullaby elements across cultures",
+        "Music mimicking mother's heartbeat is most calming"
+      ]
+    },
+    
+    "6-12months": {
+      "developmentalStage": "Baby - Active exploration and early communication",
+      "cognitiveAbilities": [
+        "Separation and stranger anxiety developing",
+        "Understands object permanence (peek-a-boo)",
+        "Puts objects in containers and removes them",
+        "Bangs things together",
+        "Responds to simple commands",
+        "Points with finger"
+      ],
+      "languageMilestones": [
+        "Recognizes familiar words",
+        "Identifies where sounds come from",
+        "Says 'mama' or 'baba' around 12 months",
+        "Understands 'no'",
+        "Makes gestures",
+        "Recognizes songs and sounds, reacts to them"
+      ],
+      "vocabularyLevel": "First words emerging (1-10 words by 12 months)",
+      "attentionSpan": "2-4 minutes for engaging activities",
+      "musicalPreferences": {
+        "tempo": "60-100 BPM (slower for calm, moderate for play)",
+        "style": "Lullabies, simple play songs, peek-a-boo songs",
+        "vocals": "Infant-directed singing with expressiveness",
+        "instruments": "Rattles, soft drums, bells, shakers",
+        "characteristics": "Call and response patterns, simple melodies, exaggerated dynamics"
+      },
+      "learningModalities": [
+        "Imitation and mimicry",
+        "Repetition with slight variation",
+        "Movement and dance (bouncing, swaying)",
+        "Interactive games (peek-a-boo, pat-a-cake)",
+        "Cause and effect exploration"
+      ],
+      "emotionalNeeds": [
+        "Secure attachment",
+        "Exploration with safety",
+        "Social interaction",
+        "Emotional regulation support"
+      ],
+      "motorSkills": "Sits without support, crawls, stands with support, develops pincer grasp",
+      "affirmationExamples": [
+        "You are loved so much",
+        "You are growing strong",
+        "You can explore safely",
+        "You are curious and clever",
+        "Mommy/Daddy loves you always"
+      ],
+      "songTopics": [
+        "Interactive games (peek-a-boo, pat-a-cake)",
+        "Body parts exploration",
+        "Animal sounds and names",
+        "Simple movements (clapping, waving)",
+        "Family members",
+        "Daily routines (bath time, feeding)",
+        "Bedtime and naptime"
+      ],
+      "avoidTopics": [
+        "Complex stories",
+        "Multiple-step instructions",
+        "Abstract emotions",
+        "Scary imagery"
+      ],
+      "lyricGuidelines": {
+        "vocabulary": "Common first words (mama, dada, baby, dog, cat, ball)",
+        "sentenceLength": "3-5 words per phrase",
+        "repetition": "Very high - verses repeat with predictable changes",
+        "rhymeScheme": "Simple and consistent (AABB)",
+        "perspective": "Second person or first person plural (we/us)",
+        "exampleStructure": "Verse-Verse-Verse with actions, optional simple chorus"
+      },
+      "optimalSongDuration": "2-3 minutes",
+      "scientificNotes": [
+        "Babies prefer faster tempos for play songs vs. lullabies",
+        "Context-dependent musical preferences emerge",
+        "Music supports early word learning and memory",
+        "Rhythmic movement enhances neural development",
+        "Songs with gestures support language acquisition"
+      ]
+    },
+    
+    "1-2years": {
+      "developmentalStage": "Young Toddler - Language explosion and independence seeking",
+      "cognitiveAbilities": [
+        "Parallel play begins with peers",
+        "Follows 2-step instructions",
+        "Stacks 4+ blocks",
+        "Scribbles with writing instruments",
+        "Points to body parts when named",
+        "Understands simple concepts (big/small, hot/cold)"
+      ],
+      "languageMilestones": [
+        "Vocabulary expands rapidly: 10-50 words by age 2",
+        "Begins combining two words into phrases",
+        "50% intelligibility to strangers by age 2",
+        "Speaks in 2-4 word sentences",
+        "Says several individual words",
+        "Imitates words and sounds frequently"
+      ],
+      "vocabularyLevel": "50-300 words by age 2",
+      "attentionSpan": "2-6 minutes for preferred activities",
+      "musicalPreferences": {
+        "tempo": "80-120 BPM (varied based on activity)",
+        "style": "Action songs, simple narratives, animal songs, repetitive tunes",
+        "vocals": "Clear, animated singing with character voices",
+        "instruments": "Drums, xylophones, tambourines, simple rhythm instruments",
+        "characteristics": "Predictable patterns, opportunities for participation, movement-based"
+      },
+      "learningModalities": [
+        "Active participation (clapping, stomping, dancing)",
+        "Repetition with mastery",
+        "Movement and gross motor integration",
+        "Imitation of actions and sounds",
+        "Concrete, hands-on experiences"
+      ],
+      "emotionalNeeds": [
+        "Autonomy and independence",
+        "Emotional expression outlets",
+        "Consistent routines",
+        "Positive reinforcement",
+        "Tantrum regulation support"
+      ],
+      "socialDevelopment": "Parallel play, awareness of others, beginning to share (with prompting)",
+      "motorSkills": "Walks alone, climbs steps, kicks and throws balls, stands on tiptoes",
+      "affirmationExamples": [
+        "I can do it myself",
+        "I am a good helper",
+        "I am learning and growing",
+        "My feelings are okay",
+        "I am loved just the way I am",
+        "I can try again",
+        "I am brave and strong"
+      ],
+      "songTopics": [
+        "Body parts and movements",
+        "Animals and their sounds",
+        "Colors and shapes (introduction)",
+        "Numbers 1-5",
+        "Daily routines (brushing teeth, getting dressed)",
+        "Family and home",
+        "Weather and nature",
+        "Emotions (happy, sad, mad)",
+        "Transportation (car, bus, train)",
+        "Cleaning up and transitions"
+      ],
+      "avoidTopics": [
+        "Scary or intense scenarios",
+        "Complex emotional conflicts",
+        "Long narratives without repetition",
+        "Abstract concepts"
+      ],
+      "lyricGuidelines": {
+        "vocabulary": "Common nouns, action verbs, simple adjectives",
+        "sentenceLength": "4-7 words per line",
+        "repetition": "High - chorus repeats 3-4 times, verses have familiar structure",
+        "rhymeScheme": "Consistent AABB or ABCB patterns",
+        "perspective": "First person ('I can jump'), second person ('You are happy'), imperative ('Clap your hands')",
+        "exampleStructure": "Verse-Chorus-Verse-Chorus with actions throughout"
+      },
+      "optimalSongDuration": "2-3 minutes",
+      "scientificNotes": [
+        "Music vocabulary building is most effective at this age",
+        "Songs double word retention compared to stories",
+        "Repetitive music supports language pattern recognition",
+        "Movement songs enhance brain-body connection",
+        "Music supports emotional regulation during tantrums"
+      ]
+    },
+    
+    "2-3years": {
+      "developmentalStage": "Toddler - Imaginative play and social awareness",
+      "cognitiveAbilities": [
+        "Attention span increases to ~3 minutes for structured activities",
+        "Can identify colors and numbers",
+        "Understands most sentences",
+        "Follows 3-part commands",
+        "Engages in pretend play",
+        "Stacks 6+ blocks",
+        "Turns pages, pushes buttons, turns knobs"
+      ],
+      "languageMilestones": [
+        "Vocabulary: 300-1,000 words",
+        "75% intelligibility to strangers",
+        "Uses pronouns and plurals",
+        "Talks about the past",
+        "Introduces self with name, age, gender",
+        "Asks 'why?' questions frequently"
+      ],
+      "vocabularyLevel": "300-1,000 words, simple sentences",
+      "attentionSpan": "3-8 minutes for engaging content",
+      "musicalPreferences": {
+        "tempo": "90-130 BPM (varied - can handle more dynamic range)",
+        "style": "Story songs, counting songs, alphabet introduction, character songs",
+        "vocals": "Clear articulation, character differentiation, emotional expression",
+        "instruments": "Wider variety - piano, guitar, drums, bells, whistles",
+        "characteristics": "Simple narratives, call-and-response, predictable verses with surprises"
+      },
+      "learningModalities": [
+        "Imaginative play and role-playing",
+        "Storytelling through song",
+        "Counting and pattern recognition",
+        "Rhyme and alliteration awareness",
+        "Group participation",
+        "Turn-taking games"
+      ],
+      "emotionalNeeds": [
+        "Self-expression",
+        "Cooperation and sharing practice",
+        "Emotion identification",
+        "Frustration tolerance",
+        "Positive identity formation"
+      ],
+      "socialDevelopment": "Parallel play transitions to associative play, taking turns (with support), copying others",
+      "motorSkills": "Walks stairs one foot per step, runs easily, pedals tricycle, uses scissors",
+      "affirmationExamples": [
+        "I can share with my friends",
+        "I can use my words",
+        "I am kind and caring",
+        "I can calm down when I'm upset",
+        "I am a good friend",
+        "I can try new things",
+        "I am special and unique",
+        "My ideas are important"
+      ],
+      "songTopics": [
+        "Numbers 1-10 and counting",
+        "Alphabet introduction",
+        "Colors identification",
+        "Shapes (circle, square, triangle)",
+        "Emotions and feelings",
+        "Friendship and sharing",
+        "Manners (please, thank you, sorry)",
+        "Potty training encouragement",
+        "Bedtime cooperation",
+        "Seasons and weather",
+        "Healthy habits (handwashing, vegetables)",
+        "Imaginative scenarios (pretend play)"
+      ],
+      "avoidTopics": [
+        "Frightening scenarios (monsters, darkness fears)",
+        "Complex social dynamics",
+        "Loss or separation themes",
+        "Overly competitive themes"
+      ],
+      "lyricGuidelines": {
+        "vocabulary": "Expanded nouns, descriptive adjectives, helping verbs",
+        "sentenceLength": "5-10 words per line",
+        "repetition": "Moderate-high - chorus repeats, verses add new information",
+        "rhymeScheme": "AABB, ABCB, or ABAB patterns",
+        "perspective": "First person ('I can share'), second person ('You're my friend'), narrative ('The bear went up the mountain')",
+        "exampleStructure": "Verse-Chorus-Verse-Chorus-Bridge-Chorus"
+      },
+      "optimalSongDuration": "2.5-3.5 minutes",
+      "scientificNotes": [
+        "Phonological awareness develops rapidly",
+        "Rhyming songs are best predictors of literacy success",
+        "Music enhances pattern recognition for math",
+        "Social-emotional songs support cooperation",
+        "Repetitive music builds executive function"
+      ]
+    },
+    
+    "3-4years": {
+      "developmentalStage": "Preschooler - Cooperative play and conceptual learning",
+      "cognitiveAbilities": [
+        "Attention span 3-8 minutes",
+        "Prefers group play",
+        "Increased imaginative abilities",
+        "Identifies colors and numbers confidently",
+        "Draws 2-4 body parts in figures",
+        "Understands basic grammar",
+        "Can recite poems and songs from memory"
+      ],
+      "languageMilestones": [
+        "Vocabulary: 1,000-2,000 words",
+        "Nearly 100% intelligible",
+        "Uses complete sentences (5-8 words)",
+        "Tells stories with beginning, middle, end",
+        "Understands time concepts (yesterday, tomorrow)",
+        "Asks endless questions for learning"
+      ],
+      "vocabularyLevel": "1,000-2,000 words, complex sentences",
+      "attentionSpan": "5-12 minutes for group activities",
+      "musicalPreferences": {
+        "tempo": "100-140 BPM (wide range based on content)",
+        "style": "Story-based songs, learning songs, silly songs, group participation songs",
+        "vocals": "Expressive, clear, character voices, harmonies introduction",
+        "instruments": "Full range - orchestral sounds, band instruments, world instruments",
+        "characteristics": "Narrative arcs, humor, surprise elements, cumulative songs"
+      },
+      "learningModalities": [
+        "Cooperative group activities",
+        "Problem-solving through song",
+        "Abstract concept introduction (time, quantity)",
+        "Memory and sequencing",
+        "Creative expression and improvisation",
+        "Phonological awareness (rhyming, alliteration)"
+      ],
+      "emotionalNeeds": [
+        "Peer acceptance",
+        "Competence and mastery",
+        "Creative expression",
+        "Conflict resolution skills",
+        "Empathy development"
+      ],
+      "socialDevelopment": "Cooperative play, forming friendships, understanding rules, empathy emerging",
+      "motorSkills": "Hops on one foot, stands on one foot briefly, catches ball, cuts with scissors accurately",
+      "affirmationExamples": [
+        "I am a good problem solver",
+        "I can make friends easily",
+        "My creativity is amazing",
+        "I am brave when trying new things",
+        "I can handle challenges",
+        "I am kind to others",
+        "My feelings are important",
+        "I can ask for help when I need it",
+        "I am proud of what I can do"
+      ],
+      "songTopics": [
+        "Numbers 1-20, skip counting",
+        "Full alphabet and letter sounds (phonics intro)",
+        "Days of the week",
+        "Months and seasons",
+        "Community helpers (firefighter, doctor, teacher)",
+        "Life cycles (butterfly, plant growth)",
+        "Geography (continents, oceans intro)",
+        "Science concepts (weather, magnets, sinking/floating)",
+        "Empathy and feelings of others",
+        "Problem-solving scenarios",
+        "Cultural celebrations",
+        "Healthy choices"
+      ],
+      "avoidTopics": [
+        "Intense fear scenarios",
+        "Death or loss (unless specifically requested)",
+        "Complex moral dilemmas",
+        "Romantic themes"
+      ],
+      "lyricGuidelines": {
+        "vocabulary": "Rich vocabulary, synonyms, descriptive language",
+        "sentenceLength": "6-12 words per line",
+        "repetition": "Moderate - chorus repeats, verses tell progressive story",
+        "rhymeScheme": "Varied - AABB, ABCB, ABAB, even ABCD with internal rhymes",
+        "perspective": "All perspectives including narrative storytelling",
+        "exampleStructure": "Intro-Verse-Chorus-Verse-Chorus-Bridge-Chorus-Outro"
+      },
+      "optimalSongDuration": "3-4 minutes",
+      "scientificNotes": [
+        "Executive functions (attention, inhibitory control) strengthen with music",
+        "Music enhances spatial-temporal reasoning",
+        "Group singing builds social cohesion",
+        "Phonemic awareness critical for reading readiness",
+        "Music activates multiple brain regions simultaneously"
+      ]
+    },
+    
+    "4-5years": {
+      "developmentalStage": "Pre-Kindergarten - Academic readiness and independence",
+      "cognitiveAbilities": [
+        "Attention span 5-15 minutes",
+        "Distinguishes reality from pretend",
+        "Counts to 10 or higher",
+        "Draws 6-part figures",
+        "Prints some letters and numbers",
+        "Understands same/different concepts",
+        "Beginning logical thinking"
+      ],
+      "languageMilestones": [
+        "Vocabulary: 2,000-3,000 words",
+        "Fully intelligible speech",
+        "Uses future tense correctly",
+        "Tells detailed stories",
+        "Understands and uses prepositions",
+        "Can define simple words",
+        "Recognizes some written words"
+      ],
+      "vocabularyLevel": "2,000-3,000 words, descriptive and complex",
+      "attentionSpan": "8-15 minutes for preferred activities",
+      "musicalPreferences": {
+        "tempo": "110-150 BPM (energetic songs popular)",
+        "style": "Educational pop, story ballads, comedy songs, call-and-response, echo songs",
+        "vocals": "Clear lyrics, harmonies, vocal variety",
+        "instruments": "Rock band setup, orchestral, electronic sounds, world music",
+        "characteristics": "Catchy hooks, humor, educational content, participation opportunities"
+      },
+      "learningModalities": [
+        "Structured learning activities",
+        "Phonics and early reading through song",
+        "Mathematical concepts (addition, subtraction intro)",
+        "Memorization through music",
+        "Critical thinking and prediction",
+        "Creative composition (making up verses)"
+      ],
+      "emotionalNeeds": [
+        "Academic confidence",
+        "Peer belonging",
+        "Growth mindset development",
+        "Emotional self-regulation",
+        "Self-esteem building"
+      ],
+      "socialDevelopment": "Complex cooperative play, best friends, rule-following, leadership roles",
+      "motorSkills": "Stands on one foot 10 seconds, somersaults, skips smoothly, writes letters",
+      "affirmationExamples": [
+        "I am ready to learn new things",
+        "I can read and write",
+        "Mistakes help me learn",
+        "I am a great friend",
+        "I can control my emotions",
+        "I am smart and capable",
+        "I believe in myself",
+        "I can solve problems",
+        "I am responsible",
+        "My hard work pays off"
+      ],
+      "songTopics": [
+        "Phonics and letter sounds",
+        "Sight words",
+        "Number operations (simple addition/subtraction)",
+        "Time (telling time, calendar)",
+        "Money (coin recognition)",
+        "Science (solar system, animals, plants, human body)",
+        "Geography (continents, countries, maps)",
+        "History (simple historical figures, holidays)",
+        "Character education (honesty, responsibility, respect)",
+        "Growth mindset concepts",
+        "Cultural diversity",
+        "Environmental awareness"
+      ],
+      "avoidTopics": [
+        "Overly mature content",
+        "Violence or aggression",
+        "Pessimistic or defeatist messages",
+        "Body shaming"
+      ],
+      "lyricGuidelines": {
+        "vocabulary": "Academic vocabulary, precise descriptors, compound words",
+        "sentenceLength": "8-15 words per line",
+        "repetition": "Balanced - catchy chorus, informative verses",
+        "rhymeScheme": "Sophisticated patterns, internal rhymes, slant rhymes",
+        "perspective": "Varied - encourage perspective-taking",
+        "exampleStructure": "Full song structure with intro, multiple verses, pre-chorus, chorus, bridge, outro"
+      },
+      "optimalSongDuration": "3-5 minutes",
+      "scientificNotes": [
+        "Music training enhances reading skills",
+        "Rhythm supports mathematical thinking",
+        "Music improves auditory processing for language",
+        "Group music enhances social cognition",
+        "Musical memory supports academic memory"
+      ]
+    },
+    
+    "5-6years": {
+      "developmentalStage": "Kindergarten - Formal learning and social complexity",
+      "cognitiveAbilities": [
+        "Attention span 10-20 minutes for structured learning",
+        "Increased memory capacity",
+        "Impulse control improving",
+        "Counts to 20+, beginning number concepts",
+        "Writes name and simple words",
+        "Understands concepts like more/less, bigger/smaller",
+        "Beginning critical thinking"
+      ],
+      "languageMilestones": [
+        "Vocabulary: 3,000-5,000 words",
+        "Perfect speech clarity",
+        "Complex sentence structures",
+        "Can retell stories accurately",
+        "Understands jokes and riddles",
+        "Reads simple books (emergent reader)",
+        "Writes simple sentences"
+      ],
+      "vocabularyLevel": "3,000-5,000 words, academic language emerging",
+      "attentionSpan": "10-20 minutes, longer for highly engaging content",
+      "musicalPreferences": {
+        "tempo": "Variable 90-160 BPM based on content",
+        "style": "All genres - pop, rock, hip-hop, folk, classical, world music",
+        "vocals": "Clear articulation, harmonies, rap sections",
+        "instruments": "Full spectrum of sounds and instruments",
+        "characteristics": "Sophisticated lyrics, educational depth, humor, relatability"
+      },
+      "learningModalities": [
+        "Reading and literacy through song lyrics",
+        "Mathematical problem-solving in music",
+        "Scientific inquiry themes",
+        "Historical and cultural learning",
+        "Creative composition and performance",
+        "Collaborative music-making"
+      ],
+      "emotionalNeeds": [
+        "Academic success and competence",
+        "Complex peer relationships",
+        "Independence and responsibility",
+        "Emotional intelligence",
+        "Identity exploration"
+      ],
+      "socialDevelopment": "Complex friendships, team activities, conflict resolution, leadership and followership",
+      "motorSkills": "Refined motor control, can play instruments with technique, coordinated dance",
+      "affirmationExamples": [
+        "I am a lifelong learner",
+        "I can overcome challenges with practice",
+        "I am a good citizen",
+        "I respect others and myself",
+        "My mistakes are opportunities to grow",
+        "I am creative and innovative",
+        "I can make good choices",
+        "I am responsible for my actions",
+        "I can work well with others",
+        "I am prepared for new adventures"
+      ],
+      "songTopics": [
+        "Advanced phonics and spelling patterns",
+        "Reading comprehension strategies",
+        "Math facts and operations",
+        "Scientific method and experiments",
+        "World geography and cultures",
+        "Historical events (age-appropriate)",
+        "Civic responsibility",
+        "Environmental stewardship",
+        "Health and wellness",
+        "Digital citizenship",
+        "Career exploration",
+        "Social justice (age-appropriate)"
+      ],
+      "avoidTopics": [
+        "Overly mature themes",
+        "Graphic content",
+        "Cynical or jaded perspectives",
+        "Stereotyping or discrimination"
+      ],
+      "lyricGuidelines": {
+        "vocabulary": "Grade-level academic vocabulary, figurative language introduction",
+        "sentenceLength": "Variable, can handle complex sentences",
+        "repetition": "Strategic - catchy elements repeated, verses provide depth",
+        "rhymeScheme": "Complex and varied patterns",
+        "perspective": "Multiple perspectives within one song possible",
+        "exampleStructure": "Professional song structure with multiple sections, possible rap verse or spoken word"
+      },
+      "optimalSongDuration": "3-6 minutes",
+      "scientificNotes": [
+        "85% of brain developed by age 5",
+        "Music enhances all academic domains",
+        "Long-term music training shows structural brain changes",
+        "Music supports executive function development",
+        "Social music-making builds empathy and cooperation"
+      ]
+    }
+  },
+  
+  "crossAgeGuidelines": {
+    "repetitionStrategy": {
+      "0-2years": "Very high repetition (80-90% of song is repeated elements)",
+      "2-3years": "High repetition (60-70% repeated)",
+      "3-4years": "Moderate repetition (40-50% repeated, progressive verses)",
+      "4-6years": "Strategic repetition (chorus and hook, verses tell story)"
+    },
+    "vocabularyProgression": {
+      "principle": "Use vocabulary at child's current level + 10-20% stretch words",
+      "contextClues": "Always provide context for new words through repetition and description",
+      "pronunciation": "Clear, exaggerated pronunciation for younger ages"
+    },
+    "culturalConsiderations": {
+      "representation": "Include diverse names, family structures, cultural references",
+      "languages": "Incorporate simple words from multiple languages",
+      "celebrations": "Reference various cultural celebrations and traditions",
+      "musicStyles": "Draw from global musical traditions"
+    },
+    "specialNeeds": {
+      "note": "All songs should be accessible and adaptable for children with different abilities",
+      "considerations": [
+        "Clear, predictable structures for autistic children",
+        "Multi-sensory elements for various learning styles",
+        "Calming options for sensory sensitivities",
+        "Movement adaptations for different motor abilities"
+      ]
+    }
+  }
+}

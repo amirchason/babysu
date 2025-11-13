@@ -1,0 +1,413 @@
+{
+  "songTypes": {
+    "lullaby": {
+      "purpose": "Soothe, calm, prepare for sleep",
+      "optimalTempo": "60-80 BPM (matches resting heartbeat)",
+      "optimalKey": "Major keys (C, F, G) or minor keys (Am, Dm) - avoid complex keys",
+      "melodicRange": "Narrow range (octave or less), stay in easy vocal register",
+      "rhythmicFeatures": {
+        "meter": "Triple meter (3/4, 6/8) or duple with rocking feel (4/4 with swing)",
+        "pattern": "Gentle, swaying, waltz-like or rocking motion",
+        "syncopation": "Minimal or none - predictable beats"
+      },
+      "structure": {
+        "typical": "Verse-Verse-Verse (no chorus needed) or Verse-Chorus-Verse",
+        "duration": "2-3 minutes, but designed for looping indefinitely",
+        "intro": "Optional soft instrumental (0-10 seconds)",
+        "outro": "Gentle fade or slow ritardando"
+      },
+      "lyricContent": {
+        "themes": ["Sleep", "Dreams", "Stars/Moon/Night sky", "Love and safety", "Gentle animals", "Nature sounds"],
+        "vocabulary": "Very simple, repetitive, soothing words",
+        "imagery": "Peaceful, safe, soft, gentle",
+        "avoid": "Stimulating or scary images, complex narratives, questions",
+        "repetition": "Extremely high - same phrases multiple times"
+      },
+      "vocalsStyle": {
+        "delivery": "Soft, gentle, warm, intimate",
+        "vibrato": "Minimal, natural",
+        "dynamics": "Mostly soft (p to mp), occasional gentle swells",
+        "breath": "Smooth, legato phrasing"
+      },
+      "instrumentation": {
+        "primary": ["Acoustic guitar", "Piano", "Harp", "Music box"],
+        "supporting": ["Soft strings", "Gentle woodwinds", "Light percussion (brushes, soft shakers)"],
+        "avoid": ["Loud drums", "Brass", "Electric guitars", "Heavy bass"]
+      },
+      "acousticConsiderations": {
+        "volume": "Quiet (under 50 decibels)",
+        "frequency": "Avoid very high frequencies, focus on mid-range",
+        "harmonics": "Simple, consonant harmonies",
+        "whitePinkNoise": "Optional very soft background nature sounds"
+      },
+      "ageSpecificAdaptations": {
+        "0-6months": "Simpler melodies, more repetitive, softer dynamics",
+        "6-12months": "Can include very gentle variations",
+        "1-6years": "Can have simple story element, still very calming"
+      },
+      "exampleStructure": {
+        "intro": "[4 bars soft instrumental]",
+        "verse1": "Twinkle twinkle little star, How I wonder what you are...",
+        "verse2": "Up above the world so high, Like a diamond in the sky...",
+        "verse3": "Twinkle twinkle little star, How I wonder what you are...",
+        "outro": "[Instrumental fade]"
+      },
+      "scientificBasis": [
+        "60-80 BPM matches mother's resting heartbeat",
+        "Familiar from womb experience",
+        "Triple meter mimics rocking/swaying motion",
+        "Repetition provides predictability and security",
+        "Soft vocals activate parasympathetic nervous system (calming)"
+      ]
+    },
+    
+    "educationalSong": {
+      "purpose": "Teach concepts (numbers, letters, colors, etc.)",
+      "optimalTempo": "90-120 BPM (moderate, clear articulation)",
+      "optimalKey": "C Major, G Major, D Major (easy to sing)",
+      "melodicRange": "Child's vocal range (D4 to D5 typically)",
+      "rhythmicFeatures": {
+        "meter": "4/4 or 2/4 (simple time)",
+        "pattern": "Clear, steady beat for predictability",
+        "syncopation": "Minimal until age 4+"
+      },
+      "structure": {
+        "typical": "Verse-Chorus-Verse-Chorus or Cumulative (adding verses)",
+        "duration": "2-4 minutes",
+        "repetition": "High - chorus repeats 3-4 times minimum"
+      },
+      "lyricContent": {
+        "themes": ["Alphabet", "Numbers/Counting", "Colors", "Shapes", "Body parts", "Animals", "Days/Months", "Phonics"],
+        "vocabulary": "Target vocabulary + context",
+        "structure": "Introduce concept, repeat, apply",
+        "mnemonic": "Rhyme scheme aids memory",
+        "repetition": "Each new item repeated 2-3 times"
+      },
+      "vocalsStyle": {
+        "delivery": "Clear, enthusiastic, energetic",
+        "articulation": "Exaggerated for clarity (especially phonics songs)",
+        "dynamics": "Moderate to moderately loud (mf to f)",
+        "characterization": "Possible character voices for engagement"
+      },
+      "instrumentation": {
+        "primary": ["Bright acoustic instruments", "Piano", "Guitar", "Ukulele"],
+        "supporting": ["Light percussion", "Xylophone", "Hand claps", "Tambourine"],
+        "avoid": "Instruments that obscure vocals"
+      },
+      "learningTechniques": {
+        "repetition": "Each concept presented multiple times",
+        "pattern": "Predictable pattern aids memory",
+        "rhythm": "Rhythm supports phonological awareness",
+        "melody": "Melody aids retention",
+        "movement": "Optional movement integration"
+      },
+      "ageSpecificAdaptations": {
+        "1-2years": "1-5 items (e.g., numbers 1-5), very simple",
+        "2-3years": "5-10 items, basic concepts",
+        "3-4years": "10-15 items, can handle sequencing",
+        "4-6years": "Full alphabet, numbers to 20+, complex concepts"
+      },
+      "exampleStructure": {
+        "intro": "[Instrumental establishing beat]",
+        "verse1": "A is for Apple, A-A-Apple (repeat 2x)",
+        "verse2": "B is for Ball, B-B-Ball (repeat 2x)",
+        "chorus": "Learning letters is so fun, We'll sing them all, every one!",
+        "verse3": "C is for Cat, C-C-Cat (repeat 2x)",
+        "chorus": "[Repeat]",
+        "outro": "Now we know our ABCs!"
+      },
+      "scientificBasis": [
+        "Music activates multiple brain regions for memory",
+        "Rhythm supports pattern recognition and math",
+        "Melody aids long-term retention (superior to spoken words)",
+        "Repetition strengthens neural pathways",
+        "Multimodal learning (hearing + singing + moving) most effective"
+      ]
+    },
+    
+    "energizingSong": {
+      "purpose": "Wake up, energize, motivate movement",
+      "optimalTempo": "120-160 BPM (upbeat, fast)",
+      "optimalKey": "Major keys (bright, happy)",
+      "melodicRange": "Wide range possible, energetic leaps",
+      "rhythmicFeatures": {
+        "meter": "4/4 with strong beat",
+        "pattern": "Driving, propulsive rhythm",
+        "syncopation": "Yes for ages 3+, adds excitement"
+      },
+      "structure": {
+        "typical": "Intro-Verse-Chorus-Verse-Chorus-Bridge-Chorus",
+        "duration": "2.5-4 minutes",
+        "build": "Energy builds throughout song"
+      },
+      "lyricContent": {
+        "themes": ["Wake up/Good morning", "Movement/Dance", "Exercise", "Cleanup", "Transition times", "Outdoor play"],
+        "vocabulary": "Action verbs, energetic adjectives",
+        "imperatives": "Command form encourages action (Jump! Clap! Dance!)",
+        "enthusiasm": "Exclamations and high energy",
+        "repetition": "Moderate - enough to learn, varied enough for interest"
+      },
+      "vocalsStyle": {
+        "delivery": "Loud, excited, enthusiastic",
+        "articulation": "Clear but energetic",
+        "dynamics": "Loud (f to ff), varying for effect",
+        "characterization": "Coach/cheerleader energy"
+      },
+      "instrumentation": {
+        "primary": ["Drums", "Electric guitar", "Bright horns", "Hand claps"],
+        "supporting": ["Full band sound", "Energetic percussion", "Bass"],
+        "style": "Rock, pop, hip-hop influences"
+      },
+      "movementIntegration": {
+        "essential": "Movement is core purpose",
+        "types": ["Jumping", "Clapping", "Stomping", "Dancing", "Stretching", "Running in place"],
+        "cues": "Clear directional cues in lyrics",
+        "patterns": "Repeat movement patterns for mastery"
+      },
+      "ageSpecificAdaptations": {
+        "1-2years": "Simple movements (clap, stomp, wave), slower tempo (100-120 BPM)",
+        "2-3years": "Basic dance moves, body part touches, moderate tempo (110-130 BPM)",
+        "3-4years": "Complex movements, coordination challenges, upbeat (120-140 BPM)",
+        "4-6years": "Dance routines, sequences, games, fast tempo (130-160 BPM)"
+      },
+      "exampleStructure": {
+        "intro": "[Strong drum beat, 4 bars]",
+        "verse1": "Wake up, wake up, it's a brand new day! Time to jump and shout and play!",
+        "chorus": "Clap your hands! (clap clap) Stomp your feet! (stomp stomp) Dance around to the beat beat beat!",
+        "verse2": "Stretch up high, reach for the sky! Now bend down low, here we go!",
+        "chorus": "[Repeat with added energy]",
+        "bridge": "Now we're gonna freeze! (silence) Now we GO GO GO!",
+        "chorus": "[Final repeat, biggest energy]"
+      },
+      "scientificBasis": [
+        "Fast tempo increases heart rate and alertness",
+        "Movement songs build gross motor skills",
+        "Physical activity releases dopamine and endorphins",
+        "Music-movement integration enhances brain development",
+        "Energizing music effective for transitions"
+      ]
+    },
+    
+    "affirmationSong": {
+      "purpose": "Build self-esteem, confidence, emotional health",
+      "optimalTempo": "80-110 BPM (steady, confident)",
+      "optimalKey": "Major keys (uplifting)",
+      "melodicRange": "Moderate, comfortable for singing along",
+      "rhythmicFeatures": {
+        "meter": "4/4 (steady and grounding)",
+        "pattern": "Solid, confident beat",
+        "syncopation": "Minimal, emphasize stability"
+      },
+      "structure": {
+        "typical": "Verse-Chorus-Verse-Chorus-Bridge-Chorus",
+        "duration": "2.5-3.5 minutes",
+        "repetition": "Very high for affirmation internalization"
+      },
+      "lyricContent": {
+        "themes": ["Self-worth", "Capabilities", "Emotions", "Growth", "Kindness", "Courage"],
+        "perspective": "First person ('I am...') for ages 2+",
+        "present tense": "Always 'I am,' never 'I will be'",
+        "positive framing": "State what IS, not what isn't",
+        "repetition": "Each affirmation repeated 3-6 times per song"
+      },
+      "vocalsStyle": {
+        "delivery": "Warm, genuine, affirming",
+        "dynamics": "Moderate to strong (mf to f), confident",
+        "emotion": "Sincere belief in the message",
+        "inviting": "Encourages child to sing along"
+      },
+      "instrumentation": {
+        "primary": ["Acoustic guitar", "Piano", "Warm strings"],
+        "supporting": ["Light percussion", "Gentle full band"],
+        "style": "Folk, pop, contemporary"
+      },
+      "emotionalTone": {
+        "overall": "Uplifting but genuine (not artificially cheerful)",
+        "authenticity": "Real emotion, not performative",
+        "empowerment": "Building inner strength"
+      },
+      "ageSpecificAdaptations": {
+        "0-2years": "Second person ('You are loved'), parent sings to child",
+        "2-3years": "Transition to first person, simple concepts",
+        "3-4years": "First person, multiple affirmations per song",
+        "4-6years": "Complex affirmations, growth mindset concepts"
+      },
+      "exampleStructure": {
+        "intro": "[Gentle instrumental, establishing warmth]",
+        "verse1": "I am special, I am me, I'm the best that I can be",
+        "chorus": "I am loved, I am strong, I am right where I belong (repeat 2x)",
+        "verse2": "I am brave, I can try, I can reach up to the sky",
+        "chorus": "[Repeat]",
+        "bridge": "Every day I'm learning, Every day I'm growing",
+        "chorus": "[Repeat with added conviction]"
+      },
+      "scientificBasis": [
+        "Repeated positive messages create neural pathways",
+        "First-person affirmations more powerful than second-person",
+        "Music + affirmation = dual encoding for stronger memory",
+        "Builds self-concept and resilience",
+        "Activates reward centers when internalized"
+      ]
+    },
+    
+    "storySong": {
+      "purpose": "Tell narrative, teach moral, cultural story",
+      "optimalTempo": "90-120 BPM (moderate, allows for storytelling)",
+      "optimalKey": "Major or minor based on story mood",
+      "melodicRange": "Variable based on character and emotion",
+      "rhythmicFeatures": {
+        "meter": "Flexible, often 4/4",
+        "pattern": "Supports narrative flow",
+        "syncopation": "Based on natural speech rhythm"
+      },
+      "structure": {
+        "typical": "Verse-Chorus-Verse-Chorus-Bridge/Climax-Chorus (resolution)",
+        "duration": "3-5 minutes for ages 3+",
+        "arc": "Beginning, middle, end with clear resolution"
+      },
+      "lyricContent": {
+        "narrative": "Clear story with characters, problem, solution",
+        "sequencing": "Events in logical order",
+        "characterVoices": "Different melodies or styles for different characters",
+        "moral": "Age-appropriate lesson (optional)",
+        "repetition": "Chorus provides grounding, verses advance story"
+      },
+      "vocalsStyle": {
+        "delivery": "Theatrical, expressive, storytelling",
+        "characterization": "Different voices for different characters",
+        "dynamics": "Varied based on story emotion",
+        "pacing": "Allows story to unfold naturally"
+      },
+      "instrumentation": {
+        "primary": "Supports story mood and setting",
+        "programmatic": "Musical sound effects (footsteps, weather, animals)",
+        "flexibility": "Changes with story progression"
+      },
+      "narrativeElements": {
+        "setting": "Establish where and when",
+        "characters": "Introduce who",
+        "conflict": "What's the problem?",
+        "climax": "Turning point",
+        "resolution": "How it resolves"
+      },
+      "ageSpecificAdaptations": {
+        "2-3years": "Very simple 3-part story, familiar scenarios",
+        "3-4years": "Simple problem-solution, animals or children characters",
+        "4-6years": "Complex plot, moral lessons, fantasy elements"
+      },
+      "exampleStructure": {
+        "intro": "[Musical scene-setting]",
+        "verse1": "Once there was a little bear who lived inside a cave...(Introduce character)",
+        "chorus": "Little bear, little bear, what will you do? Adventures waiting just for you!",
+        "verse2": "One day he heard a sound outside...(Problem arises)",
+        "chorus": "[Repeat]",
+        "bridge": "He gathered all his courage and...(Climax)",
+        "verse3": "And that's how little bear made friends...(Resolution)",
+        "chorus": "[Repeat with resolution feeling]"
+      },
+      "scientificBasis": [
+        "Narrative structure aids memory and comprehension",
+        "Stories build empathy and perspective-taking",
+        "Music enhances emotional connection to narrative",
+        "Teaches cause-effect relationships",
+        "Cultural stories build identity"
+      ]
+    },
+    
+    "socialEmotionalSong": {
+      "purpose": "Teach emotions, behavior, social skills",
+      "optimalTempo": "90-110 BPM (moderate, allows processing)",
+      "optimalKey": "Match emotional content (major=happy, minor=sad)",
+      "melodicRange": "Moderate, singable",
+      "rhythmicFeatures": {
+        "meter": "4/4, steady and predictable",
+        "pattern": "Clear, grounding beat",
+        "syncopation": "Minimal to moderate"
+      },
+      "structure": {
+        "typical": "Verse (situation)-Chorus (solution/skill)-Verse-Chorus",
+        "duration": "2.5-3.5 minutes",
+        "teaching": "Problem-solution format"
+      },
+      "lyricContent": {
+        "themes": ["Identifying emotions", "Sharing/taking turns", "Kindness", "Problem-solving", "Conflict resolution", "Empathy"],
+        "scenarios": "Concrete, relatable situations",
+        "solutions": "Specific skills or strategies",
+        "validation": "Acknowledges all emotions are okay",
+        "empowerment": "Gives child tools to handle situations"
+      },
+      "vocalsStyle": {
+        "delivery": "Warm, understanding, coaching tone",
+        "dynamics": "Moderate, non-threatening",
+        "emotion": "Models appropriate emotional expression",
+        "inviting": "Encourages child participation"
+      },
+      "instrumentation": {
+        "primary": "Friendly, accessible instruments",
+        "supporting": "Matches emotional content",
+        "avoid": "Overly intense or scary sounds"
+      },
+      "teachingStrategies": {
+        "modelBehavior": "Lyrics demonstrate desired behavior",
+        "validation": "Acknowledge feeling before offering solution",
+        "concrete": "Specific, actionable strategies",
+        "practice": "Song IS the practice"
+      },
+      "ageSpecificAdaptations": {
+        "2-3years": "Basic emotions (happy, sad, mad), simple solutions",
+        "3-4years": "More emotions, basic social skills (sharing, turn-taking)",
+        "4-6years": "Complex emotions, empathy, conflict resolution"
+      },
+      "exampleStructure": {
+        "intro": "[Gentle, approachable music]",
+        "verse1": "When I feel angry, my face gets hot, My hands get tight, I want what I want",
+        "chorus": "I can take deep breaths, 1-2-3, Count to ten and calm down, calm down me",
+        "verse2": "When I feel sad, I want to cry, That's okay, I'll tell you why",
+        "chorus": "I can talk about my feelings, yes I can, I can ask for a hug or hold someone's hand",
+        "outro": "All my feelings are okay, I have tools to help me every day"
+      },
+      "scientificBasis": [
+        "Naming emotions helps regulate them",
+        "Songs provide emotional scripts children can follow",
+        "Music activates emotional centers + cognitive centers simultaneously",
+        "Repeated practice through song builds social skills",
+        "Songs as coping tools in challenging moments"
+      ]
+    }
+  },
+  
+  "universalBestPractices": {
+    "vocalRange": {
+      "infant": "Doesn't matter - they listen",
+      "toddler": "D4 to A4 (limited range)",
+      "preschool": "C4 to D5 (expanding)",
+      "kindergarten": "C4 to E5 (child voice)"
+    },
+    "songLength": {
+      "0-2years": "1.5-3 minutes (attention span)",
+      "2-4years": "2-3.5 minutes",
+      "4-6years": "2.5-5 minutes"
+    },
+    "repetitionRatios": {
+      "0-2years": "80-90% repetition",
+      "2-3years": "60-70% repetition",
+      "3-4years": "40-50% repetition",
+      "4-6years": "30-40% repetition (catchy chorus)"
+    },
+    "lyricGuidelines": {
+      "clarity": "Clear enunciation always",
+      "simplicity": "Age-appropriate vocabulary + 10-20% stretch",
+      "concrete": "Tangible, not abstract concepts (until age 5+)",
+      "positive": "Affirming, empowering, hopeful",
+      "rhyme": "Aids memory and phonological awareness",
+      "rhythm": "Natural speech rhythm, not forced"
+    },
+    "productionQuality": {
+      "vocals": "Clear, forward in mix, intelligible",
+      "instrumentation": "Supports but doesn't overpower vocals",
+      "mixing": "Age-appropriate dynamics (not too loud)",
+      "mastering": "Gentle, no harsh frequencies",
+      "authenticity": "Real instruments preferred over heavy synthesis (especially for young children)"
+    }
+  }
+}

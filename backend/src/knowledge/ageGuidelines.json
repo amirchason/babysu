@@ -1,0 +1,461 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-08",
+  "source": "Research-backed child development and music education studies",
+  "ageGroups": {
+    "0-6months": {
+      "label": "Newborn/Infant",
+      "minAge": 0,
+      "maxAge": 0.5,
+      "development": {
+        "cognitive": "Sensory exploration, recognizing voices, responding to sounds",
+        "language": "Cooing, crying, beginning vowel sounds",
+        "vocabulary": "0-50 words (receptive)",
+        "attentionSpan": "1-3 minutes",
+        "motorSkills": "Reflexive movements, beginning head control"
+      },
+      "musicalPreferences": {
+        "tempoBPM": [60, 80],
+        "tempoDescription": "Very slow, heartbeat-matching (calming)",
+        "rhythmComplexity": "Simple, steady beat",
+        "vocalStyle": "Soft, gentle, parent-like",
+        "preferredInstruments": ["soft piano", "gentle harp", "music box", "wind chimes"],
+        "keySignature": ["C major", "G major", "F major"],
+        "melodicRange": "Narrow (5-6 notes)",
+        "duration": "2-3 minutes maximum"
+      },
+      "learningModalities": {
+        "repetition": "90-95%",
+        "callAndResponse": false,
+        "movementIntegration": "Minimal (rocking, swaying only)",
+        "parentBonding": "Critical - parent voice recognition"
+      },
+      "songTopics": [
+        "Sleep and lullabies",
+        "Comfort and security",
+        "Parent love and bonding",
+        "Gentle nature sounds (rain, birds, ocean)"
+      ],
+      "avoidTopics": [
+        "Complex narratives",
+        "Action or movement",
+        "Loud or sudden sounds",
+        "Multiple characters or concepts"
+      ],
+      "affirmations": {
+        "style": "Third-person, parent-to-child",
+        "examples": [
+          "You are so loved",
+          "You are safe and warm",
+          "Mommy/Daddy is here",
+          "You are our precious baby"
+        ],
+        "integration": "Embed naturally in lullaby verses, spoken-word style"
+      },
+      "lyricGuidelines": {
+        "sentenceLength": "3-5 words per line",
+        "rhymeScheme": "AABB (simple couplets)",
+        "nameRepetition": "2-3 times (babies don't recognize names yet)",
+        "vocabulary": "Very simple: sleep, love, soft, warm, night, stars, moon, baby",
+        "structure": "Simple verse repetition, no chorus needed",
+        "soundEffects": "Shh, hush, soft lullaby sounds"
+      },
+      "methodology": "Kodály (folk lullabies), Suzuki (mother-tongue approach)"
+    },
+    "6-12months": {
+      "label": "Baby",
+      "minAge": 0.5,
+      "maxAge": 1,
+      "development": {
+        "cognitive": "Object permanence emerging, cause-and-effect understanding",
+        "language": "Babbling, first words (mama, dada), understanding simple commands",
+        "vocabulary": "50-100 words (receptive), 1-5 words (expressive)",
+        "attentionSpan": "2-5 minutes",
+        "motorSkills": "Sitting, crawling, beginning to stand, clapping hands"
+      },
+      "musicalPreferences": {
+        "tempoBPM": [70, 100],
+        "tempoDescription": "Slow to moderate, soothing or gentle playful",
+        "rhythmComplexity": "Simple patterns, steady beat with occasional variation",
+        "vocalStyle": "Warm, engaging, slightly animated",
+        "preferredInstruments": ["xylophone", "soft drums", "acoustic guitar", "kalimba", "bells"],
+        "keySignature": ["C major", "G major", "D major", "Pentatonic scales"],
+        "melodicRange": "Moderate (6-8 notes)",
+        "duration": "2-4 minutes"
+      },
+      "learningModalities": {
+        "repetition": "80-90%",
+        "callAndResponse": "Beginning (simple sounds: ba-ba, la-la)",
+        "movementIntegration": "Clapping, bouncing on lap, gentle rocking",
+        "parentBonding": "Essential - interactive singing"
+      },
+      "songTopics": [
+        "Body parts (hands, feet, nose, eyes)",
+        "Animal sounds (dog says woof, cat says meow)",
+        "Daily routines (bath time, meal time, sleep)",
+        "Simple actions (clap, wave, peek-a-boo)",
+        "Family members (mama, dada, baby)"
+      ],
+      "avoidTopics": [
+        "Abstract concepts",
+        "Complex sequences",
+        "Multiple steps",
+        "Scary or intense emotions"
+      ],
+      "affirmations": {
+        "style": "Second-person, warm and loving",
+        "examples": [
+          "[Name], you are loved",
+          "You are growing strong",
+          "You are safe with us",
+          "You can do it, [Name]"
+        ],
+        "integration": "Repeat 2-3 times in chorus, simple phrasing"
+      },
+      "lyricGuidelines": {
+        "sentenceLength": "4-6 words per line",
+        "rhymeScheme": "AABB or ABAB",
+        "nameRepetition": "4-5 times",
+        "vocabulary": "Basic nouns and verbs: baby, mama, dada, sleep, eat, play, love, happy",
+        "structure": "Verse-Chorus-Verse (simple)",
+        "soundEffects": "Animal sounds, action sounds (clap clap, zoom zoom)"
+      },
+      "methodology": "Kodály (solfège with hand signs), Music Together (parent-child bonding)"
+    },
+    "1-2years": {
+      "label": "Young Toddler",
+      "minAge": 1,
+      "maxAge": 2,
+      "development": {
+        "cognitive": "Symbolic thinking beginning, simple problem-solving, imitation",
+        "language": "50-200 word vocabulary, 2-word phrases, understanding simple stories",
+        "vocabulary": "100-500 words",
+        "attentionSpan": "3-8 minutes",
+        "motorSkills": "Walking, running, climbing, dancing, improved coordination"
+      },
+      "musicalPreferences": {
+        "tempoBPM": [80, 120],
+        "tempoDescription": "Moderate, playful to energetic",
+        "rhythmComplexity": "Clear beat, simple syncopation beginning",
+        "vocalStyle": "Cheerful, expressive, encouraging",
+        "preferredInstruments": ["drums", "maracas", "tambourine", "ukulele", "recorder"],
+        "keySignature": ["C major", "G major", "F major"],
+        "melodicRange": "Wide (octave range C4-C5)",
+        "duration": "2-4 minutes"
+      },
+      "learningModalities": {
+        "repetition": "70-80%",
+        "callAndResponse": "Yes - simple words and sounds",
+        "movementIntegration": "Essential - jumping, stomping, twirling, clapping",
+        "parentBonding": "Important - learning through play"
+      },
+      "songTopics": [
+        "Colors (red, blue, yellow)",
+        "Shapes (circle, square, triangle)",
+        "Numbers 1-5",
+        "Animals and their sounds/movements",
+        "Transportation (car, bus, train, plane)",
+        "Body parts and movements",
+        "Sharing and playing with friends",
+        "Emotions (happy, sad, excited)"
+      ],
+      "avoidTopics": [
+        "Complex multi-step instructions",
+        "Abstract time concepts",
+        "Competitive themes",
+        "Fearful scenarios"
+      ],
+      "affirmations": {
+        "style": "Second-person, growth mindset",
+        "examples": [
+          "[Name], you can try new things",
+          "You are learning every day",
+          "It's okay to make mistakes",
+          "[Name] is kind and brave"
+        ],
+        "integration": "Bridge section, 2-3 affirmations clearly stated"
+      },
+      "lyricGuidelines": {
+        "sentenceLength": "5-7 words per line",
+        "rhymeScheme": "AABB or ABCB",
+        "nameRepetition": "5-6 times",
+        "vocabulary": "Concrete nouns, action verbs, basic adjectives: big, small, fast, slow, fun, silly",
+        "structure": "Verse-Chorus-Verse-Chorus-Bridge-Outro",
+        "soundEffects": "Onomatopoeia (vroom, beep, splash, moo)"
+      },
+      "methodology": "Orff Schulwerk (movement and rhythm), Dalcroze (eurhythmics)"
+    },
+    "2-3years": {
+      "label": "Toddler",
+      "minAge": 2,
+      "maxAge": 3,
+      "development": {
+        "cognitive": "Categorizing objects, understanding past/present, longer memory",
+        "language": "200-1000 words, 3-4 word sentences, asking 'why' questions",
+        "vocabulary": "500-1000 words",
+        "attentionSpan": "6-12 minutes",
+        "motorSkills": "Jumping, hopping on one foot, catching ball, fine motor improving"
+      },
+      "musicalPreferences": {
+        "tempoBPM": [90, 130],
+        "tempoDescription": "Moderate to upbeat, energetic for active songs",
+        "rhythmComplexity": "Varied rhythms, simple syncopation",
+        "vocalStyle": "Animated, character voices, dynamic range",
+        "preferredInstruments": ["piano", "guitar", "trumpet", "violin", "hand drums"],
+        "keySignature": ["C major", "G major", "D major", "A major"],
+        "melodicRange": "Full octave (C4-C5 or D4-D5)",
+        "duration": "2.5-4 minutes"
+      },
+      "learningModalities": {
+        "repetition": "60-70%",
+        "callAndResponse": "Yes - full phrases and questions",
+        "movementIntegration": "Active - dancing, freeze games, action sequences",
+        "parentBonding": "Developing independence, sibling interaction"
+      },
+      "songTopics": [
+        "Numbers 1-10, counting songs",
+        "Alphabet introduction",
+        "Colors and color mixing",
+        "Shapes and patterns",
+        "Days of week (simplified)",
+        "Seasons and weather",
+        "Manners (please, thank you, sorry)",
+        "Potty training encouragement",
+        "Sharing and turn-taking",
+        "Feelings identification (happy, sad, angry, scared)",
+        "Bedtime routines",
+        "Healthy habits (brushing teeth, eating vegetables)"
+      ],
+      "avoidTopics": [
+        "Complex narratives with multiple plots",
+        "Scary monsters or dangers",
+        "Death or loss (unless specifically requested)",
+        "Competitive winning/losing"
+      ],
+      "affirmations": {
+        "style": "First-person and second-person",
+        "examples": [
+          "I am brave and strong",
+          "[Name], you are special",
+          "I can do hard things",
+          "You are loved just the way you are",
+          "I am a good friend"
+        ],
+        "integration": "Chorus and bridge, repeated for internalization"
+      },
+      "lyricGuidelines": {
+        "sentenceLength": "6-8 words per line",
+        "rhymeScheme": "ABAB or ABCB preferred",
+        "nameRepetition": "6-7 times",
+        "vocabulary": "Expanding adjectives, prepositions (in, on, under), comparative words (bigger, smaller)",
+        "structure": "Full structure: Intro-Verse-Chorus-Verse-Chorus-Bridge-Chorus-Outro",
+        "soundEffects": "Character voices, environmental sounds, musical interludes"
+      },
+      "methodology": "Montessori (practical life themes), Orff Schulwerk (improvisation)"
+    },
+    "3-4years": {
+      "label": "Preschooler",
+      "minAge": 3,
+      "maxAge": 4,
+      "development": {
+        "cognitive": "Logical thinking emerging, understanding time sequences, imaginative play",
+        "language": "1000-1500 words, complex sentences, storytelling ability",
+        "vocabulary": "1000-1600 words",
+        "attentionSpan": "9-15 minutes",
+        "motorSkills": "Skipping, galloping, balancing, improved fine motor (drawing, cutting)"
+      },
+      "musicalPreferences": {
+        "tempoBPM": [100, 140],
+        "tempoDescription": "Upbeat to energetic, varied pacing within song",
+        "rhythmComplexity": "Syncopation, tempo changes, dynamic contrast",
+        "vocalStyle": "Expressive, storytelling, character-driven",
+        "preferredInstruments": ["full band", "orchestral sounds", "electronic elements", "world instruments"],
+        "keySignature": ["All major keys", "Simple minor keys (Am, Dm)"],
+        "melodicRange": "Wide (1.5 octaves, D4-A5)",
+        "duration": "3-5 minutes"
+      },
+      "learningModalities": {
+        "repetition": "50-60%",
+        "callAndResponse": "Complex - full verses, questions with answers",
+        "movementIntegration": "Creative movement, dance choreography, freeze dance",
+        "parentBonding": "Peer play emerging, group singing"
+      },
+      "songTopics": [
+        "Alphabet recognition and phonics",
+        "Numbers 1-20, simple addition/subtraction",
+        "Reading readiness (rhyming, syllables)",
+        "Science concepts (plants growing, weather, animals)",
+        "Social skills (empathy, cooperation, conflict resolution)",
+        "Cultural diversity and traditions",
+        "Community helpers (firefighter, doctor, teacher)",
+        "Safety rules (crossing street, stranger danger basics)",
+        "Emotions and self-regulation",
+        "Nature and environmental care",
+        "Imagination and creativity"
+      ],
+      "avoidTopics": [
+        "Intense violence or fear",
+        "Overly competitive themes",
+        "Complex moral dilemmas"
+      ],
+      "affirmations": {
+        "style": "First-person empowerment statements",
+        "examples": [
+          "I am capable of learning new things",
+          "I can express my feelings with words",
+          "I am creative and imaginative",
+          "[Name], you make good choices",
+          "I am a problem-solver",
+          "My ideas are valuable"
+        ],
+        "integration": "Bridge and outro, memorable and sing-along"
+      },
+      "lyricGuidelines": {
+        "sentenceLength": "7-10 words per line",
+        "rhymeScheme": "ABAB, AABB, or ABCB with internal rhymes",
+        "nameRepetition": "7-8 times",
+        "vocabulary": "Rich descriptive language, metaphors (simple), emotional vocabulary, sequence words (first, next, then)",
+        "structure": "Complex: Verse-PreChorus-Chorus-Verse-PreChorus-Chorus-Bridge-Chorus-Outro",
+        "soundEffects": "Story narration segments, instrumental breaks"
+      },
+      "methodology": "Kodály (music literacy), Waldorf (imaginative stories), Kindermusik"
+    },
+    "4-5years": {
+      "label": "Pre-Kindergarten",
+      "minAge": 4,
+      "maxAge": 5,
+      "development": {
+        "cognitive": "Abstract thinking beginning, understanding rules, planning ahead",
+        "language": "1500-2500 words, storytelling with details, humor understanding",
+        "vocabulary": "1600-2100 words",
+        "attentionSpan": "12-20 minutes",
+        "motorSkills": "Coordination refined, can learn simple dance routines, sports basics"
+      },
+      "musicalPreferences": {
+        "tempoBPM": [110, 150],
+        "tempoDescription": "Energetic, varied with dynamic changes",
+        "rhythmComplexity": "Complex patterns, tempo changes, polyrhythms introduced",
+        "vocalStyle": "Character-rich, theatrical, humorous",
+        "preferredInstruments": ["full orchestra", "rock band", "jazz ensemble", "ethnic instruments"],
+        "keySignature": ["All major and minor keys", "Modal scales introduced"],
+        "melodicRange": "Very wide (2 octaves possible)",
+        "duration": "3-6 minutes"
+      },
+      "learningModalities": {
+        "repetition": "40-50%",
+        "callAndResponse": "Advanced - echo singing, harmony introduction",
+        "movementIntegration": "Choreographed dance, musical theater elements",
+        "parentBonding": "Peer collaboration, group performance"
+      },
+      "songTopics": [
+        "Alphabet phonics and spelling patterns",
+        "Numbers to 100, skip counting, simple multiplication",
+        "Reading skills (sight words, blending sounds)",
+        "Science (life cycles, solar system, simple machines)",
+        "Geography (continents, oceans, maps)",
+        "History (simple timelines, famous people)",
+        "Social responsibility (helping others, kindness)",
+        "Growth mindset and perseverance",
+        "Cultural celebrations and holidays",
+        "Teamwork and cooperation",
+        "Conflict resolution strategies",
+        "Digital citizenship basics"
+      ],
+      "avoidTopics": [
+        "Overly mature themes",
+        "Complex tragedy",
+        "Intense conflict without resolution"
+      ],
+      "affirmations": {
+        "style": "First-person declarations, future-oriented",
+        "examples": [
+          "I believe in myself",
+          "I can figure things out",
+          "Mistakes help me learn and grow",
+          "I am proud of who I am",
+          "[Name], you are unstoppable",
+          "I have important things to say",
+          "I am ready for new challenges"
+        ],
+        "integration": "Integrated throughout, especially chorus and bridge"
+      },
+      "lyricGuidelines": {
+        "sentenceLength": "8-12 words per line",
+        "rhymeScheme": "Complex: ABABCC, ABCCBA, internal rhymes, multi-syllable rhymes",
+        "nameRepetition": "8-10 times",
+        "vocabulary": "Advanced: analogies, idioms (simple), figurative language, academic vocabulary",
+        "structure": "Sophisticated: Intro-Verse-PreChorus-Chorus-Verse-PreChorus-Chorus-Bridge-Breakdown-FinalChorus-Outro",
+        "soundEffects": "Dialogue, story arcs, musical themes and variations"
+      },
+      "methodology": "All methods appropriate, Music Learning Theory (Edwin Gordon)"
+    },
+    "5-6years": {
+      "label": "Kindergarten",
+      "minAge": 5,
+      "maxAge": 6,
+      "development": {
+        "cognitive": "Logical reasoning, understanding consequences, longer-term memory",
+        "language": "2500-5000 words, complex storytelling, reading beginning",
+        "vocabulary": "2100-2600 words",
+        "attentionSpan": "15-25 minutes",
+        "motorSkills": "Refined coordination, can learn instruments, sports skills"
+      },
+      "musicalPreferences": {
+        "tempoBPM": [120, 160],
+        "tempoDescription": "High energy, pop-style, engaging rhythms",
+        "rhythmComplexity": "Full rhythmic variety, syncopation, off-beat emphasis",
+        "vocalStyle": "Professional quality, theatrical, contemporary",
+        "preferredInstruments": ["modern production", "synthesizers", "full band", "world music fusion"],
+        "keySignature": ["All keys appropriate", "Modal interchange"],
+        "melodicRange": "Full range (2+ octaves)",
+        "duration": "3-6 minutes"
+      },
+      "learningModalities": {
+        "repetition": "30-40%",
+        "callAndResponse": "Harmonies, counter-melodies, rounds",
+        "movementIntegration": "Complex choreography, performance elements",
+        "parentBonding": "Independent learning, peer teaching"
+      },
+      "songTopics": [
+        "Advanced literacy (compound words, prefixes/suffixes)",
+        "Mathematics (addition, subtraction, word problems)",
+        "Scientific method and experiments",
+        "Historical figures and events",
+        "World geography and cultures",
+        "Environmental conservation",
+        "Emotional intelligence and empathy",
+        "Leadership and responsibility",
+        "Digital literacy and safety",
+        "Art and music appreciation",
+        "Physical health and nutrition",
+        "Career exploration"
+      ],
+      "avoidTopics": [
+        "Age-inappropriate complexity",
+        "Pessimistic worldviews"
+      ],
+      "affirmations": {
+        "style": "Empowering declarations, identity-forming",
+        "examples": [
+          "I am a lifelong learner",
+          "My voice matters",
+          "I can make a difference",
+          "[Name], you are unique and valuable",
+          "I embrace challenges",
+          "I am kind, brave, and strong",
+          "I create my own success"
+        ],
+        "integration": "Woven throughout narrative, anthem-style chorus"
+      },
+      "lyricGuidelines": {
+        "sentenceLength": "10-15 words per line",
+        "rhymeScheme": "Sophisticated: All patterns, slant rhymes, alliteration, assonance",
+        "nameRepetition": "10-12 times",
+        "vocabulary": "Grade-level academic vocabulary, figurative language, wordplay",
+        "structure": "Professional pop structure with creative variations",
+        "soundEffects": "Spoken word sections, rap verses (age-appropriate), musical interludes"
+      },
+      "methodology": "All methods, introduction to formal music theory"
+    }
+  }
+}

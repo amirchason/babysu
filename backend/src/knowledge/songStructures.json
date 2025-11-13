@@ -1,0 +1,427 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-08",
+  "source": "Music education research and proven pedagogical methods",
+  "songTypes": {
+    "lullaby": {
+      "name": "Lullaby / Sleep Song",
+      "purpose": "Calming, sleep induction, bedtime routine, bonding",
+      "recommendedAges": ["0-6months", "6-12months", "1-2years", "2-3years"],
+      "musicalCharacteristics": {
+        "tempoBPM": [60, 80],
+        "tempoName": "Adagio to Andante (very slow, heartbeat-matching)",
+        "dynamics": "pp to mp (very soft to moderately soft)",
+        "articulation": "Legato (smooth, connected)",
+        "keyMood": "Major keys for comfort, minor keys for melancholy beauty",
+        "instruments": ["soft piano", "acoustic guitar (fingerpicked)", "harp", "strings (cello, violin)", "music box", "kalimba", "warm synth pads"],
+        "vocalStyle": "Soft, gentle, parent-like, whisper quality",
+        "duration": "2-4 minutes"
+      },
+      "structureTemplate": {
+        "format": "Simple repetitive structure",
+        "sections": [
+          {
+            "tag": "[Intro]",
+            "description": "Optional soft instrumental (8-16 beats)",
+            "lyricStyle": "Instrumental or soft humming"
+          },
+          {
+            "tag": "[Verse 1]",
+            "lines": 4,
+            "description": "Introduce sleep theme, child's name, comforting imagery",
+            "example": "[Name], [Name], close your eyes\nStars are twinkling in the skies\n[Name] is safe and warm tonight\nDrifting off in soft moonlight"
+          },
+          {
+            "tag": "[Chorus]",
+            "lines": 4,
+            "description": "Repetitive, soothing main message",
+            "example": "Sleep, sweet [Name], sleep so deep\nAngels guard you while you sleep\nDreams of love will come your way\nUntil the morning brings new day"
+          },
+          {
+            "tag": "[Verse 2]",
+            "lines": 4,
+            "description": "Deepen relaxation, nature imagery, security",
+            "example": "[Name], [Name], rest your head\nSoft and cozy in your bed\n[Name] is loved beyond compare\nMommy/Daddy's always there"
+          },
+          {
+            "tag": "[Chorus]",
+            "lines": 4,
+            "description": "Repeat for familiarity and calming effect"
+          },
+          {
+            "tag": "[Outro]",
+            "lines": "2-3",
+            "description": "Final affirmation, goodnight message",
+            "example": "[Name], [Name], drift away\nTomorrow brings another day\nGoodnight, sweet [Name], sleep tight"
+          }
+        ],
+        "rhymeScheme": "AABB or ABAB (simple, predictable)",
+        "wordCount": "60-100 words total",
+        "nameRepetition": "6-8 times",
+        "keyThemes": ["safety", "love", "peace", "stars/moon", "dreams", "comfort"]
+      },
+      "scientificBasis": "60-80 BPM matches resting heartbeat, activates parasympathetic nervous system, releases oxytocin (bonding hormone)"
+    },
+    "educational": {
+      "name": "Educational / Learning Song",
+      "purpose": "Teaching concepts, vocabulary building, cognitive development",
+      "recommendedAges": ["1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "musicalCharacteristics": {
+        "tempoBPM": [100, 130],
+        "tempoName": "Moderato to Allegro (moderate to fast)",
+        "dynamics": "mf to f (moderately loud to loud)",
+        "articulation": "Staccato mixed with legato (bouncy and smooth)",
+        "keyMood": "Bright major keys",
+        "instruments": ["piano", "xylophone", "ukulele", "cheerful brass", "hand percussion", "synthesizers"],
+        "vocalStyle": "Clear, enthusiastic, teacher-like",
+        "duration": "2.5-4 minutes"
+      },
+      "structureTemplate": {
+        "format": "Verse-Chorus with educational content integration",
+        "sections": [
+          {
+            "tag": "[Intro]",
+            "description": "Upbeat instrumental, sets learning mood (8 beats)",
+            "lyricStyle": "Optional opening question or hook"
+          },
+          {
+            "tag": "[Verse 1]",
+            "lines": 4,
+            "description": "Introduce topic/concept with child's name",
+            "example": "[Name], [Name], let's learn today\nColors, numbers, fun to say!\n[Name] is smart and growing bright\nLearning things feels just right!"
+          },
+          {
+            "tag": "[Pre-Chorus]",
+            "lines": 2,
+            "description": "Optional - build anticipation",
+            "example": "Are you ready? Yes, I am!\nLet's start learning, here we go, bam!"
+          },
+          {
+            "tag": "[Chorus - Educational Content]",
+            "lines": "4-6",
+            "description": "Core learning content (alphabet, numbers, concepts)",
+            "example": "A-B-C with [Name] today\nD-E-F, we sing and play\nG-H-I-J-K-L-M\n[Name] knows the alphabet, yes!"
+          },
+          {
+            "tag": "[Verse 2]",
+            "lines": 4,
+            "description": "Reinforcement, application, praise",
+            "example": "[Name], [Name], you did great\nLearning more, we celebrate!\n[Name] can count from one to ten\nLet's try it out again!"
+          },
+          {
+            "tag": "[Chorus]",
+            "lines": "4-6",
+            "description": "Repeat educational content"
+          },
+          {
+            "tag": "[Bridge - Affirmation]",
+            "lines": 3,
+            "description": "Growth mindset, encouragement",
+            "example": "[Name] is a learner, strong and true\nEvery day there's something new\nYou can do it, yes you can!"
+          },
+          {
+            "tag": "[Final Chorus]",
+            "lines": "4-6",
+            "description": "Repeat with optional variation"
+          },
+          {
+            "tag": "[Outro]",
+            "lines": 2,
+            "description": "Celebration, completion",
+            "example": "[Name] learned so much today\nGood job, [Name], hip-hip-hooray!"
+          }
+        ],
+        "rhymeScheme": "AABB or ABAB (clear and memorable)",
+        "wordCount": "100-150 words",
+        "nameRepetition": "8-10 times",
+        "keyThemes": ["learning", "intelligence", "curiosity", "growth", "achievement", "fun"],
+        "educationalIntegration": "Embed learning content in chorus, use call-and-response"
+      },
+      "scientificBasis": "Music activates multiple brain regions simultaneously, songs improve memory retention by 60-80% vs. spoken word"
+    },
+    "energizing": {
+      "name": "Energizing / Movement Song",
+      "purpose": "Physical activity, mood boosting, transitions, exercise",
+      "recommendedAges": ["1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "musicalCharacteristics": {
+        "tempoBPM": [120, 150],
+        "tempoName": "Allegro to Vivace (fast and lively)",
+        "dynamics": "f to ff (loud to very loud)",
+        "articulation": "Staccato and accented (bouncy, energetic)",
+        "keyMood": "Major keys, uplifting",
+        "instruments": ["drums", "electric guitar", "brass", "upbeat synths", "hand claps", "tambourine"],
+        "vocalStyle": "High energy, commanding, fun",
+        "duration": "2-3.5 minutes"
+      },
+      "structureTemplate": {
+        "format": "Active song with movement cues",
+        "sections": [
+          {
+            "tag": "[Intro - Energy Build]",
+            "description": "Instrumental build-up, clapping rhythm",
+            "lyricStyle": "Counting down or 'Ready, set, go!' cue"
+          },
+          {
+            "tag": "[Verse 1 - Movement Intro]",
+            "lines": 4,
+            "description": "Introduce movement theme, child's name",
+            "example": "[Name], [Name], jump up high! [*JUMP*]\nReach your hands up to the sky! [*REACH*]\n[Name] has energy to share\nMoving, grooving everywhere!"
+          },
+          {
+            "tag": "[Chorus - Action Commands]",
+            "lines": 4,
+            "description": "Clear movement instructions with sound effects",
+            "example": "Clap your hands [*CLAP CLAP*], stomp your feet [*STOMP*]\nSpin around to the beat [*SPIN*]\n[Name], [Name], dance with me\nMove your body, wild and free!"
+          },
+          {
+            "tag": "[Verse 2 - More Movements]",
+            "lines": 4,
+            "description": "Different movements, increasing energy",
+            "example": "[Name], [Name], wiggle and shake [*SHAKE*]\nMove like a snake, for goodness' sake!\nJump like a frog [*BOING*], roar like a bear [*ROAR*]\n[Name]'s having fun everywhere!"
+          },
+          {
+            "tag": "[Chorus]",
+            "lines": 4,
+            "description": "Repeat movement commands"
+          },
+          {
+            "tag": "[Bridge - Freeze Dance]",
+            "lines": 2,
+            "description": "Optional freeze/rest moment",
+            "example": "And FREEZE! [*silence*] Good job, [Name]!\nReady to dance again? Let's GO!"
+          },
+          {
+            "tag": "[Final Chorus - High Energy]",
+            "lines": 4,
+            "description": "Maximum energy, all movements"
+          },
+          {
+            "tag": "[Outro - Cool Down]",
+            "lines": 2,
+            "description": "Slowing down, transition",
+            "example": "Great job, [Name], you moved so well\nTake a deep breath... [*inhale/exhale*]"
+          }
+        ],
+        "rhymeScheme": "AABB (simple for clarity during movement)",
+        "wordCount": "80-120 words",
+        "nameRepetition": "8-10 times",
+        "soundEffects": "[*CLAP*], [*JUMP*], [*STOMP*], [*SPIN*], [*FREEZE*]",
+        "keyThemes": ["movement", "energy", "fun", "body awareness", "coordination"],
+        "movementIntegration": "Explicit action cues in brackets, simple choreography"
+      },
+      "scientificBasis": "Physical movement + music enhances motor development, rhythm processing linked to executive function"
+    },
+    "affirmation": {
+      "name": "Positive Affirmation Song",
+      "purpose": "Self-esteem building, identity formation, emotional regulation",
+      "recommendedAges": ["2-3years", "3-4years", "4-5years", "5-6years"],
+      "musicalCharacteristics": {
+        "tempoBPM": [90, 110],
+        "tempoName": "Andante to Moderato (walking pace to moderate)",
+        "dynamics": "mf (moderately loud, confident)",
+        "articulation": "Legato with strong emphasis on affirmations",
+        "keyMood": "Major keys, inspiring",
+        "instruments": ["piano", "strings", "uplifting synths", "acoustic guitar", "light percussion"],
+        "vocalStyle": "Warm, confident, empowering",
+        "duration": "2.5-4 minutes"
+      },
+      "structureTemplate": {
+        "format": "Anthem-style with repeated affirmations",
+        "sections": [
+          {
+            "tag": "[Intro]",
+            "description": "Gentle, building confidence",
+            "lyricStyle": "Optional spoken intro: 'Listen to these words, [Name]...'"
+          },
+          {
+            "tag": "[Verse 1 - Identity]",
+            "lines": 4,
+            "description": "Who the child is, their uniqueness",
+            "example": "[Name], [Name], you are special\nUnique and wonderful, yes you are\n[Name], you are loved beyond measure\nYou're our shining, bright star"
+          },
+          {
+            "tag": "[Chorus - Core Affirmations]",
+            "lines": 4,
+            "description": "First-person affirmations, sung powerfully",
+            "example": "I am brave, I am strong (I am brave, I am strong)\nI am kind, I belong (I am kind, I belong)\nI can do hard things, it's true\nI believe in me, yes I do!"
+          },
+          {
+            "tag": "[Verse 2 - Growth]",
+            "lines": 4,
+            "description": "Learning, trying, growing",
+            "example": "[Name], [Name], you are learning\nEvery day your mind is growing\n[Name], mistakes help you get better\nYou keep trying, always knowing"
+          },
+          {
+            "tag": "[Chorus]",
+            "lines": 4,
+            "description": "Repeat affirmations for internalization"
+          },
+          {
+            "tag": "[Bridge - Specific Affirmations]",
+            "lines": "3-4",
+            "description": "Targeted affirmations (customize based on request)",
+            "example": "My feelings are okay to feel\nMy ideas are important and real\n[Name], you make a difference\nYou matter, your presence is a gift"
+          },
+          {
+            "tag": "[Final Chorus - Powerful]",
+            "lines": 4,
+            "description": "Full volume, confident declaration"
+          },
+          {
+            "tag": "[Outro - Internalization]",
+            "lines": "2-3",
+            "description": "Quiet, personal affirmation",
+            "example": "[Name], remember these words are true\nI am proud to be me, through and through\nI am [Name], and I am enough"
+          }
+        ],
+        "rhymeScheme": "ABAB or ABCB (lyrical, flowing)",
+        "wordCount": "100-140 words",
+        "nameRepetition": "8-12 times",
+        "keyThemes": ["self-worth", "capability", "growth", "uniqueness", "belonging", "resilience"],
+        "affirmationStyle": "Mix second-person ([Name], you are...) and first-person (I am...) for ownership"
+      },
+      "scientificBasis": "Positive affirmations activate reward centers in brain, first-person statements 2x more effective for internalization (ages 3+)"
+    },
+    "story": {
+      "name": "Story / Narrative Song",
+      "purpose": "Teaching through storytelling, moral lessons, imagination",
+      "recommendedAges": ["2-3years", "3-4years", "4-5years", "5-6years"],
+      "musicalCharacteristics": {
+        "tempoBPM": [95, 120],
+        "tempoName": "Andante to Moderato (varies with story pacing)",
+        "dynamics": "Variable (mp to f depending on story action)",
+        "articulation": "Varied (legato for calm, staccato for action)",
+        "keyMood": "Storytelling appropriate (can modulate keys)",
+        "instruments": ["orchestral variety", "character-specific instruments", "sound effects", "musical themes"],
+        "vocalStyle": "Narrative, character voices, theatrical",
+        "duration": "3-5 minutes"
+      },
+      "structureTemplate": {
+        "format": "Story arc with musical narration",
+        "sections": [
+          {
+            "tag": "[Intro - Once Upon a Time]",
+            "description": "Set the scene, introduce protagonist",
+            "example": "Once upon a time there lived\nA child named [Name] so bright\n[Name] had a special gift\nOf spreading joy and light"
+          },
+          {
+            "tag": "[Verse 1 - Setup]",
+            "lines": 4,
+            "description": "Establish story world, character",
+            "example": "[Name] loved to explore and play\nAdventures every single day\nOne morning [Name] woke up and found\nSomething magical on the ground"
+          },
+          {
+            "tag": "[Chorus - Story Theme]",
+            "lines": 4,
+            "description": "Recurring musical theme/lesson",
+            "example": "[Name], [Name], brave and true\nWonderful things are waiting for you\n[Name], [Name], use your heart\nEvery ending's a new start"
+          },
+          {
+            "tag": "[Verse 2 - Challenge/Conflict]",
+            "lines": 4,
+            "description": "Introduce problem or adventure",
+            "example": "[Name] met a friend who felt so sad\nLost their toy, they felt so bad\n[Name] said, 'Don't worry, I'll help you'\nWorking together, that's what we'll do!"
+          },
+          {
+            "tag": "[Chorus]",
+            "lines": 4,
+            "description": "Repeat theme"
+          },
+          {
+            "tag": "[Bridge - Resolution]",
+            "lines": "3-4",
+            "description": "Solve problem, learn lesson",
+            "example": "They searched high and low with care\nHelping hands were everywhere\n[Name] showed that kindness wins\nThat's where happiness begins"
+          },
+          {
+            "tag": "[Final Chorus - Lesson Learned]",
+            "lines": 4,
+            "description": "Emphasize moral/learning"
+          },
+          {
+            "tag": "[Outro - The End]",
+            "lines": "2-3",
+            "description": "Story conclusion, affirmation",
+            "example": "And so [Name] learned that day\nHelping others is the way\n[Name], you can be a hero too\nKindness starts with you"
+          }
+        ],
+        "rhymeScheme": "AABB or ABCB (clear narrative flow)",
+        "wordCount": "120-180 words",
+        "nameRepetition": "10-12 times",
+        "keyThemes": ["adventure", "problem-solving", "friendship", "courage", "kindness", "moral lesson"],
+        "storyElements": "Characters, setting, conflict, resolution, moral - adapted to age level"
+      },
+      "scientificBasis": "Narrative structure activates episodic memory, emotional engagement improves retention, moral reasoning develops through stories"
+    },
+    "seasonal": {
+      "name": "Seasonal / Holiday Song",
+      "purpose": "Cultural learning, celebration, tradition, anticipation",
+      "recommendedAges": ["1-2years", "2-3years", "3-4years", "4-5years", "5-6years"],
+      "musicalCharacteristics": {
+        "tempoBPM": [90, 130],
+        "tempoName": "Varies by holiday mood",
+        "dynamics": "mf to f (celebratory)",
+        "articulation": "Festive, joyful",
+        "keyMood": "Major keys primarily",
+        "instruments": ["holiday-specific", "bells", "acoustic instruments", "choral elements"],
+        "vocalStyle": "Cheerful, celebratory, warm",
+        "duration": "2.5-4 minutes"
+      },
+      "structureTemplate": {
+        "format": "Celebration song with traditional elements",
+        "sections": [
+          {
+            "tag": "[Intro]",
+            "description": "Holiday theme introduction"
+          },
+          {
+            "tag": "[Verse 1 - Holiday Description]",
+            "lines": 4,
+            "description": "What the holiday is about",
+            "example": "[Holiday] is here, [Name] can't wait\nTime to celebrate, it feels so great!\n[Name] sees the [holiday symbols]\nLove and joy fill up our home"
+          },
+          {
+            "tag": "[Chorus - Celebration]",
+            "lines": 4,
+            "description": "Holiday joy, child participation",
+            "example": "[Name], [Name], it's [holiday] time\nLet's sing together, bells will chime\n[Name], [Name], hearts are bright\nCelebrate with all our might!"
+          },
+          {
+            "tag": "[Verse 2 - Traditions]",
+            "lines": 4,
+            "description": "Holiday activities and traditions",
+            "example": "[Name] helps with [holiday activity]\nFamily together, joy and unity\n[Name] learns about [cultural element]\nTraditions shared from heart"
+          },
+          {
+            "tag": "[Chorus]",
+            "lines": 4,
+            "description": "Repeat celebration"
+          },
+          {
+            "tag": "[Bridge - Meaning]",
+            "lines": 3,
+            "description": "Deeper meaning of holiday (age-appropriate)",
+            "example": "[Holiday] teaches us to [core value]\n[Name], you are part of this\nLove and [value] - that's the gift"
+          },
+          {
+            "tag": "[Final Chorus]",
+            "lines": 4,
+            "description": "Full celebration"
+          },
+          {
+            "tag": "[Outro]",
+            "lines": 2,
+            "description": "Holiday wishes",
+            "example": "Happy [holiday], [Name] dear\nFull of love throughout the year!"
+          }
+        ],
+        "rhymeScheme": "AABB (festive, simple)",
+        "wordCount": "100-140 words",
+        "nameRepetition": "8-10 times",
+        "keyThemes": ["celebration", "family", "tradition", "gratitude", "giving", "cultural identity"],
+        "culturalSensitivity": "Include diverse holidays, respect all traditions, teach inclusion"
+      },
+      "scientificBasis": "Ritual songs strengthen cultural identity formation (ages 3-6), music enhances holiday memory encoding"
+    }
+  }
+}
