@@ -138,7 +138,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <BrowserRouter>
+        <BrowserRouter basename="/babysu">
           <AppRouter />
         </BrowserRouter>
       </ThemeProvider>

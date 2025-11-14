@@ -1,28 +1,61 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { children } from '../../api/index'; // Using backend API
 
+// LocalStorage fallback helpers
+const CHILDREN_STORAGE_KEY = 'babysu_children';
+
+const getLocalChildren = () => {
+  try {
+    const stored = localStorage.getItem(CHILDREN_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
+const saveLocalChildren = (childrenList) => {
+  try {
+    localStorage.setItem(CHILDREN_STORAGE_KEY, JSON.stringify(childrenList));
+  } catch (err) {
+    console.error('Failed to save children to localStorage:', err);
+  }
+};
+
 export const fetchChildren = createAsyncThunk(
   'children/fetchAll',
   async (_, { rejectWithValue }) => {
     try {
-      // ALWAYS use real API (even in guest mode)
+      // Try API first
       const response = await children.getAll();
-      return response;
+      return { source: 'api', data: response };
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      // Fallback to localStorage if API fails
+      console.log('API unavailable, using localStorage for children');
+      const localChildren = getLocalChildren();
+      return { source: 'local', data: localChildren };
     }
   }
 );
 
 export const addChild = createAsyncThunk(
   'children/add',
-  async (childData, { rejectWithValue }) => {
+  async (childData, { rejectWithValue, getState }) => {
     try {
-      // ALWAYS use real API (even in guest mode)
+      // Try API first
       const response = await children.create(childData);
-      return response;
+      return { source: 'api', data: response };
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      // Fallback to localStorage if API fails
+      console.log('API unavailable, saving child to localStorage');
+      const newChild = {
+        id: `local_${Date.now()}`,
+        ...childData,
+        createdAt: new Date().toISOString(),
+      };
+      const currentChildren = getLocalChildren();
+      const updatedChildren = [...currentChildren, newChild];
+      saveLocalChildren(updatedChildren);
+      return { source: 'local', data: newChild };
     }
   }
 );
@@ -31,11 +64,19 @@ export const updateChild = createAsyncThunk(
   'children/update',
   async ({ id, data }, { rejectWithValue }) => {
     try {
-      // ALWAYS use real API (even in guest mode)
+      // Try API first
       const response = await children.update(id, data);
-      return response;
+      return { source: 'api', data: response };
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      // Fallback to localStorage if API fails
+      console.log('API unavailable, updating child in localStorage');
+      const currentChildren = getLocalChildren();
+      const updatedChildren = currentChildren.map(child =>
+        child.id === id ? { ...child, ...data } : child
+      );
+      saveLocalChildren(updatedChildren);
+      const updatedChild = updatedChildren.find(c => c.id === id);
+      return { source: 'local', data: updatedChild };
     }
   }
 );
@@ -44,11 +85,16 @@ export const deleteChild = createAsyncThunk(
   'children/delete',
   async (id, { rejectWithValue }) => {
     try {
-      // ALWAYS use real API (even in guest mode)
+      // Try API first
       await children.delete(id);
-      return id;
+      return { source: 'api', id };
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      // Fallback to localStorage if API fails
+      console.log('API unavailable, deleting child from localStorage');
+      const currentChildren = getLocalChildren();
+      const updatedChildren = currentChildren.filter(child => child.id !== id);
+      saveLocalChildren(updatedChildren);
+      return { source: 'local', id };
     }
   }
 );
@@ -73,7 +119,7 @@ const childrenSlice = createSlice({
       })
       .addCase(fetchChildren.fulfilled, (state, action) => {
         state.loading = false;
-        state.list = action.payload.data || action.payload;
+        state.list = action.payload.data;
       })
       .addCase(fetchChildren.rejected, (state, action) => {
         state.loading = false;
@@ -88,7 +134,7 @@ const childrenSlice = createSlice({
       })
       .addCase(addChild.fulfilled, (state, action) => {
         state.loading = false;
-        const child = action.payload.data || action.payload;
+        const child = action.payload.data;
         state.list.push(child);
       })
       .addCase(addChild.rejected, (state, action) => {
@@ -104,7 +150,7 @@ const childrenSlice = createSlice({
       })
       .addCase(updateChild.fulfilled, (state, action) => {
         state.loading = false;
-        const child = action.payload.data || action.payload;
+        const child = action.payload.data;
         const index = state.list.findIndex(c => c.id === child.id);
         if (index !== -1) {
           state.list[index] = child;
@@ -123,7 +169,7 @@ const childrenSlice = createSlice({
       })
       .addCase(deleteChild.fulfilled, (state, action) => {
         state.loading = false;
-        state.list = state.list.filter(c => c.id !== action.payload);
+        state.list = state.list.filter(c => c.id !== action.payload.id);
       })
       .addCase(deleteChild.rejected, (state, action) => {
         state.loading = false;
