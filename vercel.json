@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "name": "babysu",
+  "builds": [
+    {
+      "src": "backend/src/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "webapp/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "webapp/dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/src/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "webapp/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

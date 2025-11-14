@@ -1,0 +1,118 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║                   🚀 ONE-COMMAND DEPLOYMENT 🚀                        ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+Your app is ready to deploy automatically!
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ JUST RUN THIS ONE COMMAND:                                          │
+└─────────────────────────────────────────────────────────────────────┘
+
+  ./deploy-auto.sh
+
+That's it! The script will:
+  ✓ Login to Vercel (opens browser once)
+  ✓ Deploy backend automatically
+  ✓ Configure all environment variables
+  ✓ Deploy webapp automatically
+  ✓ Connect webapp to backend
+  ✓ Test both deployments
+  ✓ Give you live URLs
+
+Total time: ~3 minutes (mostly waiting for builds)
+
+═══════════════════════════════════════════════════════════════════════
+
+📋 WHAT YOU NEED:
+
+Before running the script, make sure you have:
+
+1. ✓ backend/.env configured with your API keys
+   (See ENV_STATUS_REPORT.md if you haven't done this)
+
+2. ✓ webapp/.env configured with Firebase settings
+   (Should already be done)
+
+That's all! The script handles everything else.
+
+═══════════════════════════════════════════════════════════════════════
+
+🎯 EXAMPLE OUTPUT:
+
+The script will show you:
+
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║                🚀 DEPLOYMENT COMPLETE! 🚀                         ║
+  ╚══════════════════════════════════════════════════════════════════╝
+
+  🌐 LIVE URLS:
+
+    🚀 Web App:    https://babysu-webapp-xyz.vercel.app
+    ℹ️  Backend API: https://babysu-backend-abc.vercel.app
+    ℹ️  Health Check: https://babysu-backend-abc.vercel.app/health
+
+  📱 NEXT STEPS:
+    1. Open webapp URL in your browser
+    2. Test creating an account
+    3. Share the URL!
+
+═══════════════════════════════════════════════════════════════════════
+
+🔄 TO UPDATE YOUR APP LATER:
+
+Made changes to your code? Just run the script again:
+
+  ./deploy-auto.sh
+
+It will automatically deploy your updates!
+
+═══════════════════════════════════════════════════════════════════════
+
+🆘 TROUBLESHOOTING:
+
+If the script fails:
+
+1. Check that you have .env files:
+   ls backend/.env webapp/.env
+
+2. Make sure you're logged in to Vercel:
+   vercel whoami
+
+3. Check the error message - the script shows exactly what went wrong
+
+4. For more help, see: DEPLOYMENT_GUIDE.md
+
+═══════════════════════════════════════════════════════════════════════
+
+💡 WHAT THE SCRIPT DOES:
+
+Step 1: Checks Vercel login (logs you in if needed)
+Step 2: Deploys backend to Vercel
+Step 3: Adds all API keys from backend/.env
+Step 4: Redeploys backend with env vars
+Step 5: Deploys webapp to Vercel
+Step 6: Adds Firebase config and backend URL
+Step 7: Redeploys webapp with env vars
+Step 8: Tests both deployments
+Step 9: Shows you the live URLs!
+
+═══════════════════════════════════════════════════════════════════════
+
+✨ FEATURES:
+
+  ✓ Fully automated - no manual steps
+  ✓ Color-coded output - easy to read
+  ✓ Error handling - tells you what went wrong
+  ✓ Health checks - verifies deployments work
+  ✓ URL saving - saves URLs to DEPLOYMENT_URLS.txt
+  ✓ Idempotent - safe to run multiple times
+
+═══════════════════════════════════════════════════════════════════════
+
+🎉 READY? LET'S GO!
+
+Run this command now:
+
+  ./deploy-auto.sh
+
+Your app will be live in ~3 minutes! 🚀
