@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { auth } from '../../api/localApi'; // Using localStorage + serverless
+import { auth } from '../../api/index'; // Using real backend API
 
 // Async thunks
 export const loginUser = createAsyncThunk(
