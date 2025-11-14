@@ -220,3 +220,6 @@ TEMP_*.md
 *.tgz
 *.zip
 *.tar.gz
+
+# Environment variables with credentials
+webapp/.env

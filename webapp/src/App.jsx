@@ -99,9 +99,8 @@ function AppRouter() {
         }
       }
 
-      // AUTO-ENABLE GUEST MODE on first visit
-      console.log('🎭 No auth found, enabling guest mode automatically');
-      dispatch(loginAsGuest());
+      // No auto-login configured, user must login manually
+      console.log('⚠️ No auto-login configured');
       setAutoLoginAttempted(true);
     }
 

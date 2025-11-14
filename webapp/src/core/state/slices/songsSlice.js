@@ -1,49 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { songs } from '../../api/index';
 
-// Guest mode localStorage helpers
-const SONGS_STORAGE_KEY = 'babysu_songs';
-const isGuestMode = () => localStorage.getItem('guestMode') === 'true';
-
-const getLocalSongs = () => {
-  try {
-    const stored = localStorage.getItem(SONGS_STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch {
-    return [];
-  }
-};
-
-const saveLocalSongs = (songsList) => {
-  try {
-    localStorage.setItem(SONGS_STORAGE_KEY, JSON.stringify(songsList));
-  } catch (err) {
-    console.error('Failed to save songs to localStorage:', err);
-  }
-};
-
 export const generateSong = createAsyncThunk(
   'songs/generate',
   async (songData, { rejectWithValue }) => {
-    // Guest mode: create demo song in localStorage
-    if (isGuestMode()) {
-      const newSong = {
-        id: `local_song_${Date.now()}`,
-        ...songData,
-        status: 'ready',
-        audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', // Demo audio
-        lyrics: `🎵 Demo Song: "${songData.topic}"\n\nThis is a demo song in guest mode.\nSign up to generate real AI songs with Suno!\n\nFor: ${songData.childIds?.join(', ') || 'Your child'}\nCategory: ${songData.category}\nStyle: ${songData.style}`,
-        duration: 180,
-        isFavorite: false,
-        createdAt: new Date().toISOString(),
-      };
-      const currentSongs = getLocalSongs();
-      const updatedSongs = [newSong, ...currentSongs];
-      saveLocalSongs(updatedSongs);
-      return newSong;
-    }
-
-    // Real user: use backend AI generation
     try {
       const response = await songs.generate(songData);
       return response;
@@ -56,12 +16,6 @@ export const generateSong = createAsyncThunk(
 export const fetchSongs = createAsyncThunk(
   'songs/fetchAll',
   async (filters = {}, { rejectWithValue }) => {
-    // Guest mode: use localStorage
-    if (isGuestMode()) {
-      return getLocalSongs();
-    }
-
-    // Real user: use backend
     try {
       const response = await songs.getAll(filters);
       return response;
@@ -74,12 +28,6 @@ export const fetchSongs = createAsyncThunk(
 export const fetchSongStatus = createAsyncThunk(
   'songs/fetchStatus',
   async (songId, { rejectWithValue }) => {
-    // Guest mode: return ready status
-    if (isGuestMode()) {
-      return { status: 'ready', songId };
-    }
-
-    // Real user: check backend status
     try {
       const response = await songs.getStatus(songId);
       return response;
@@ -92,18 +40,6 @@ export const fetchSongStatus = createAsyncThunk(
 export const toggleFavorite = createAsyncThunk(
   'songs/toggleFavorite',
   async (songId, { rejectWithValue }) => {
-    // Guest mode: use localStorage
-    if (isGuestMode()) {
-      const currentSongs = getLocalSongs();
-      const updatedSongs = currentSongs.map(song =>
-        song.id === songId ? { ...song, isFavorite: !song.isFavorite } : song
-      );
-      saveLocalSongs(updatedSongs);
-      const updatedSong = updatedSongs.find(s => s.id === songId);
-      return updatedSong;
-    }
-
-    // Real user: use backend
     try {
       const response = await songs.toggleFavorite(songId);
       return response;
@@ -116,15 +52,6 @@ export const toggleFavorite = createAsyncThunk(
 export const deleteSong = createAsyncThunk(
   'songs/delete',
   async (songId, { rejectWithValue }) => {
-    // Guest mode: use localStorage
-    if (isGuestMode()) {
-      const currentSongs = getLocalSongs();
-      const updatedSongs = currentSongs.filter(song => song.id !== songId);
-      saveLocalSongs(updatedSongs);
-      return songId;
-    }
-
-    // Real user: use backend
     try {
       await songs.delete(songId);
       return songId;
