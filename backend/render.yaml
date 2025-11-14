@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: babysu-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: FIREBASE_PROJECT_ID
+        value: babynames-app-9fa2a
+      - key: FIREBASE_STORAGE_BUCKET
+        value: babynames-app-9fa2a.firebasestorage.app
+      - key: SUNO_API_KEY
+        value: 146dbdd8ee328ab2ea49e9d318f27489
+      - key: SUNO_BASE_URL
+        value: https://api.sunoapi.org
+      - key: SUNO_MODEL
+        value: V4
+      - key: GEMINI_API_KEY
+        value: AIzaSyALzy3qXMyXPtLl7pUuCDo_eE5X89u3dpA
+      - key: OPENAI_API_KEY
+        value: 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
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: https://amirchason.github.io
+      - key: RATE_LIMIT_WINDOW_MS
+        value: 900000
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: 100
