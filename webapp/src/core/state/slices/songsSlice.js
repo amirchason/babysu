@@ -1,12 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { songs } from '../../api/index'; // Using backend API
+import { songs } from '../../api/index';
 
 export const generateSong = createAsyncThunk(
   'songs/generate',
   async (songData, { rejectWithValue }) => {
     try {
-      // ALWAYS use real API for song generation (even in guest mode)
-      // Guest users will have a unique guest ID stored in localStorage
       const response = await songs.generate(songData);
       return response;
     } catch (error) {
@@ -19,7 +17,6 @@ export const fetchSongs = createAsyncThunk(
   'songs/fetchAll',
   async (filters = {}, { rejectWithValue }) => {
     try {
-      // ALWAYS use real API for fetching songs (even in guest mode)
       const response = await songs.getAll(filters);
       return response;
     } catch (error) {
@@ -32,7 +29,6 @@ export const fetchSongStatus = createAsyncThunk(
   'songs/fetchStatus',
   async (songId, { rejectWithValue }) => {
     try {
-      // ALWAYS use real API for status checking (even in guest mode)
       const response = await songs.getStatus(songId);
       return response;
     } catch (error) {
@@ -45,7 +41,6 @@ export const toggleFavorite = createAsyncThunk(
   'songs/toggleFavorite',
   async (songId, { rejectWithValue }) => {
     try {
-      // ALWAYS use real API (even in guest mode)
       const response = await songs.toggleFavorite(songId);
       return response;
     } catch (error) {
@@ -58,7 +53,6 @@ export const deleteSong = createAsyncThunk(
   'songs/delete',
   async (songId, { rejectWithValue }) => {
     try {
-      // ALWAYS use real API (even in guest mode)
       await songs.delete(songId);
       return songId;
     } catch (error) {
@@ -92,53 +86,49 @@ const songsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // Generate song
     builder
+      // Generate song
       .addCase(generateSong.pending, (state) => {
         state.generating = true;
         state.error = null;
       })
       .addCase(generateSong.fulfilled, (state, action) => {
         state.generating = false;
-        const song = action.payload.data || action.payload;
-        state.currentlyGenerating = song;
-        // Add to list immediately with pending status
+        state.currentlyGenerating = action.payload;
+        // Add to list immediately
         state.list.unshift({
-          ...song,
-          status: 'generating',
+          ...action.payload,
+          status: action.payload.status || 'generating',
         });
       })
       .addCase(generateSong.rejected, (state, action) => {
         state.generating = false;
         state.error = action.payload;
-      });
+      })
 
-    // Fetch songs
-    builder
+      // Fetch songs
       .addCase(fetchSongs.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchSongs.fulfilled, (state, action) => {
         state.loading = false;
-        state.list = action.payload.data || action.payload;
+        state.list = action.payload;
       })
       .addCase(fetchSongs.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
 
-    // Toggle favorite
-    builder
+      // Toggle favorite
       .addCase(toggleFavorite.fulfilled, (state, action) => {
-        const song = action.payload.data || action.payload;
+        const song = action.payload;
         const index = state.list.findIndex(s => s.id === song.id);
         if (index !== -1) {
           state.list[index].isFavorite = song.isFavorite;
         }
-      });
+      })
 
-    // Delete song
-    builder
+      // Delete song
       .addCase(deleteSong.fulfilled, (state, action) => {
         state.list = state.list.filter(s => s.id !== action.payload);
       });

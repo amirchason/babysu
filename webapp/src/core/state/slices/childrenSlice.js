@@ -1,61 +1,26 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { children } from '../../api/index'; // Using backend API
-
-// LocalStorage fallback helpers
-const CHILDREN_STORAGE_KEY = 'babysu_children';
-
-const getLocalChildren = () => {
-  try {
-    const stored = localStorage.getItem(CHILDREN_STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch {
-    return [];
-  }
-};
-
-const saveLocalChildren = (childrenList) => {
-  try {
-    localStorage.setItem(CHILDREN_STORAGE_KEY, JSON.stringify(childrenList));
-  } catch (err) {
-    console.error('Failed to save children to localStorage:', err);
-  }
-};
+import { children } from '../../api/index';
 
 export const fetchChildren = createAsyncThunk(
   'children/fetchAll',
   async (_, { rejectWithValue }) => {
     try {
-      // Try API first
       const response = await children.getAll();
-      return { source: 'api', data: response };
+      return response;
     } catch (error) {
-      // Fallback to localStorage if API fails
-      console.log('API unavailable, using localStorage for children');
-      const localChildren = getLocalChildren();
-      return { source: 'local', data: localChildren };
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
 
 export const addChild = createAsyncThunk(
   'children/add',
-  async (childData, { rejectWithValue, getState }) => {
+  async (childData, { rejectWithValue }) => {
     try {
-      // Try API first
       const response = await children.create(childData);
-      return { source: 'api', data: response };
+      return response;
     } catch (error) {
-      // Fallback to localStorage if API fails
-      console.log('API unavailable, saving child to localStorage');
-      const newChild = {
-        id: `local_${Date.now()}`,
-        ...childData,
-        createdAt: new Date().toISOString(),
-      };
-      const currentChildren = getLocalChildren();
-      const updatedChildren = [...currentChildren, newChild];
-      saveLocalChildren(updatedChildren);
-      return { source: 'local', data: newChild };
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -64,19 +29,10 @@ export const updateChild = createAsyncThunk(
   'children/update',
   async ({ id, data }, { rejectWithValue }) => {
     try {
-      // Try API first
       const response = await children.update(id, data);
-      return { source: 'api', data: response };
+      return response;
     } catch (error) {
-      // Fallback to localStorage if API fails
-      console.log('API unavailable, updating child in localStorage');
-      const currentChildren = getLocalChildren();
-      const updatedChildren = currentChildren.map(child =>
-        child.id === id ? { ...child, ...data } : child
-      );
-      saveLocalChildren(updatedChildren);
-      const updatedChild = updatedChildren.find(c => c.id === id);
-      return { source: 'local', data: updatedChild };
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -85,16 +41,10 @@ export const deleteChild = createAsyncThunk(
   'children/delete',
   async (id, { rejectWithValue }) => {
     try {
-      // Try API first
       await children.delete(id);
-      return { source: 'api', id };
+      return id;
     } catch (error) {
-      // Fallback to localStorage if API fails
-      console.log('API unavailable, deleting child from localStorage');
-      const currentChildren = getLocalChildren();
-      const updatedChildren = currentChildren.filter(child => child.id !== id);
-      saveLocalChildren(updatedChildren);
-      return { source: 'local', id };
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -103,73 +53,79 @@ const childrenSlice = createSlice({
   name: 'children',
   initialState: {
     list: [],
+    selectedChild: null,
     loading: false,
     error: null,
   },
   reducers: {
+    selectChild: (state, action) => {
+      state.selectedChild = action.payload;
+    },
     clearError: (state) => {
       state.error = null;
     },
   },
   extraReducers: (builder) => {
-    // Fetch children
     builder
+      // Fetch children
       .addCase(fetchChildren.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(fetchChildren.fulfilled, (state, action) => {
         state.loading = false;
-        state.list = action.payload.data;
+        state.list = action.payload;
       })
       .addCase(fetchChildren.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
 
-    // Add child
-    builder
+      // Add child
       .addCase(addChild.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(addChild.fulfilled, (state, action) => {
         state.loading = false;
-        const child = action.payload.data;
-        state.list.push(child);
+        state.list.push(action.payload);
       })
       .addCase(addChild.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
 
-    // Update child
-    builder
+      // Update child
       .addCase(updateChild.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(updateChild.fulfilled, (state, action) => {
         state.loading = false;
-        const child = action.payload.data;
-        const index = state.list.findIndex(c => c.id === child.id);
+        const index = state.list.findIndex(c => c.id === action.payload.id);
         if (index !== -1) {
-          state.list[index] = child;
+          state.list[index] = action.payload;
+        }
+        if (state.selectedChild?.id === action.payload.id) {
+          state.selectedChild = action.payload;
         }
       })
       .addCase(updateChild.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
 
-    // Delete child
-    builder
+      // Delete child
       .addCase(deleteChild.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(deleteChild.fulfilled, (state, action) => {
         state.loading = false;
-        state.list = state.list.filter(c => c.id !== action.payload.id);
+        state.list = state.list.filter(c => c.id !== action.payload);
+        if (state.selectedChild?.id === action.payload) {
+          state.selectedChild = null;
+        }
       })
       .addCase(deleteChild.rejected, (state, action) => {
         state.loading = false;
@@ -178,5 +134,5 @@ const childrenSlice = createSlice({
   },
 });
 
-export const { clearError } = childrenSlice.actions;
+export const { selectChild, clearError } = childrenSlice.actions;
 export default childrenSlice.reducer;
