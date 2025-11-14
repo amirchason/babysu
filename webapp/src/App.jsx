@@ -71,14 +71,14 @@ function AppRouter() {
         try {
           await dispatch(getCurrentUser()).unwrap();
           console.log('✅ Session restored successfully');
+          setAutoLoginAttempted(true);
+          return;
         } catch (error) {
           console.log('❌ Session restore failed:', error.message);
           // Clear invalid token
           localStorage.removeItem('userToken');
           localStorage.removeItem('userId');
         }
-        setAutoLoginAttempted(true);
-        return;
       }
 
       // Try auto-login with env credentials
@@ -92,10 +92,16 @@ function AppRouter() {
             password: autoPassword.trim()
           })).unwrap();
           console.log('✅ Auto-login successful');
+          setAutoLoginAttempted(true);
+          return;
         } catch (error) {
           console.log('❌ Auto-login failed:', error.message);
         }
       }
+
+      // AUTO-ENABLE GUEST MODE on first visit
+      console.log('🎭 No auth found, enabling guest mode automatically');
+      dispatch(loginAsGuest());
       setAutoLoginAttempted(true);
     }
 

@@ -1,9 +1,36 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { children } from '../../api/index';
 
+// Guest mode localStorage helpers
+const CHILDREN_STORAGE_KEY = 'babysu_children';
+const isGuestMode = () => localStorage.getItem('guestMode') === 'true';
+
+const getLocalChildren = () => {
+  try {
+    const stored = localStorage.getItem(CHILDREN_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
+const saveLocalChildren = (childrenList) => {
+  try {
+    localStorage.setItem(CHILDREN_STORAGE_KEY, JSON.stringify(childrenList));
+  } catch (err) {
+    console.error('Failed to save children to localStorage:', err);
+  }
+};
+
 export const fetchChildren = createAsyncThunk(
   'children/fetchAll',
   async (_, { rejectWithValue }) => {
+    // Guest mode: use localStorage
+    if (isGuestMode()) {
+      return getLocalChildren();
+    }
+
+    // Real user: use backend
     try {
       const response = await children.getAll();
       return response;
@@ -16,6 +43,20 @@ export const fetchChildren = createAsyncThunk(
 export const addChild = createAsyncThunk(
   'children/add',
   async (childData, { rejectWithValue }) => {
+    // Guest mode: use localStorage
+    if (isGuestMode()) {
+      const newChild = {
+        id: `local_${Date.now()}`,
+        ...childData,
+        createdAt: new Date().toISOString(),
+      };
+      const currentChildren = getLocalChildren();
+      const updatedChildren = [...currentChildren, newChild];
+      saveLocalChildren(updatedChildren);
+      return newChild;
+    }
+
+    // Real user: use backend
     try {
       const response = await children.create(childData);
       return response;
@@ -28,6 +69,18 @@ export const addChild = createAsyncThunk(
 export const updateChild = createAsyncThunk(
   'children/update',
   async ({ id, data }, { rejectWithValue }) => {
+    // Guest mode: use localStorage
+    if (isGuestMode()) {
+      const currentChildren = getLocalChildren();
+      const updatedChildren = currentChildren.map(child =>
+        child.id === id ? { ...child, ...data } : child
+      );
+      saveLocalChildren(updatedChildren);
+      const updatedChild = updatedChildren.find(c => c.id === id);
+      return updatedChild;
+    }
+
+    // Real user: use backend
     try {
       const response = await children.update(id, data);
       return response;
@@ -40,6 +93,15 @@ export const updateChild = createAsyncThunk(
 export const deleteChild = createAsyncThunk(
   'children/delete',
   async (id, { rejectWithValue }) => {
+    // Guest mode: use localStorage
+    if (isGuestMode()) {
+      const currentChildren = getLocalChildren();
+      const updatedChildren = currentChildren.filter(child => child.id !== id);
+      saveLocalChildren(updatedChildren);
+      return id;
+    }
+
+    // Real user: use backend
     try {
       await children.delete(id);
       return id;
